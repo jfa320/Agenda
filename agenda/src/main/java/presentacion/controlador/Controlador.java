@@ -69,8 +69,15 @@ public class Controlador implements ActionListener
 				reporte.mostrar();				
 			}
 			else if(e.getSource() == this.ventanaPersona.getBtnAgregarPersona())
-			{
-				PersonaDTO nuevaPersona = new PersonaDTO(0,this.ventanaPersona.getTxtNombre().getText(), ventanaPersona.getTxtTelefono().getText());
+			{	
+				PersonaDTO nuevaPersona;
+				
+				if(agenda.obtenerPersonas().isEmpty()){
+					 nuevaPersona = new PersonaDTO(0,this.ventanaPersona.getTxtNombre().getText(), ventanaPersona.getTxtTelefono().getText());
+				}
+				else{
+					nuevaPersona = new PersonaDTO(agenda.obtenerPersonas().size(),this.ventanaPersona.getTxtNombre().getText(), ventanaPersona.getTxtTelefono().getText());
+				}
 				this.agenda.agregarPersona(nuevaPersona);
 				this.llenarTabla();
 				this.ventanaPersona.dispose();
