@@ -42,10 +42,12 @@ public class Controlador implements ActionListener
 		{
 			this.llenarTabla();
 			this.vista.show();
+			
 		}
 		
 		private void llenarComboBox(){
-			
+			this.ventanaPersona.getComboBoxLocalidad().removeAllItems();
+			this.ventanaPersona.getComboBoxTipo().removeAllItems();
 			this.localidades_en_tabla=agenda.obtenerLocalidades();
 			
 			for (int i = 0; i < this.localidades_en_tabla.size(); i ++){
@@ -122,9 +124,9 @@ public class Controlador implements ActionListener
 				System.out.println("ventanaTipo");
 				this.ventanaTipo = new VentanaTipo(this);
 			}
-			
-			else if (e.getSource()==this.ventanaTipo.getBtnConfirmarTipo())
+			else if (!(this.ventanaTipo==null) && e.getSource()==this.ventanaTipo.getBtnConfirmarTipo()  )
 			{
+				
 				Tipo nuevoTipo;
 				nuevoTipo=new Tipo(0,ventanaTipo.getTxtNombre().getText());
 				this.agenda.agregarTipo(nuevoTipo);
@@ -143,6 +145,9 @@ public class Controlador implements ActionListener
 				this.llenarComboBox();
 				this.ventanaLocalidad.dispose();
 			}
+			
+			
+			
 			
 			
 		}

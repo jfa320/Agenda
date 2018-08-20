@@ -159,7 +159,6 @@ public class VentanaPersona extends JFrame
 		panel.add(lblLocalidad);
 		
 		
-		comboBox_tipoContacto.addItem("amigos");
 		
 		btnAgregarPersona = new JButton("Agregar");
 		btnAgregarPersona.addActionListener(this.controlador);
