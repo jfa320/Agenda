@@ -20,11 +20,11 @@ public class Conexion
 		{
 			Class.forName("com.mysql.jdbc.Driver"); // quitar si no es necesario
 			this.connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/agenda","root","123456");
-			log.info("Conexión exitosa");
+			log.info("ConexiÃ³n exitosa");
 		}
 		catch(Exception e)
 		{
-			log.error("Conexión fallida", e);
+			log.error("ConexiÃ³n fallida", e);
 		}
 	}
 	
@@ -52,7 +52,7 @@ public class Conexion
 		}
 		catch (SQLException e) 
 		{
-			log.error("Error al cerrar la conexión!", e);
+			log.error("Error al cerrar la conexiÃ³n!", e);
 		}
 		instancia = null;
 	}

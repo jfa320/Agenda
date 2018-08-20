@@ -1,35 +1,35 @@
 package persistencia.dao.mysql;
 
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.sql.Date;
 import java.util.List;
 
-import persistencia.conexion.Conexion;
-import persistencia.dao.interfaz.PersonaDAO;
-import dto.PersonaDTO;
+import dto.Localidad;
 
-public class PersonaDAOSQL implements PersonaDAO
+import persistencia.conexion.Conexion;
+import persistencia.dao.interfaz.LocalidadDAO;
+
+public class LocalidadDAOSQL implements LocalidadDAO
 {
-	private static final String insert = "INSERT INTO personas(idPersona, nombre, telefono,email,cumple) VALUES(?, ?, ?, ?, ?)";
-	private static final String delete = "DELETE FROM personas WHERE idPersona = ?";
-	private static final String readall = "SELECT * FROM personas";
+	private static final String insert = "INSERT INTO localidades(idLocalidad, nombre) VALUES(?, ?)";
+	private static final String delete = "DELETE FROM personas WHERE idLocalidad = ?";
+	private static final String readall = "SELECT * FROM localidades";
 		
-	public boolean insert(PersonaDTO persona)
+	public boolean insert(Localidad localidad)
 	{
+		
 		PreparedStatement statement;
 		Conexion conexion = Conexion.getConexion();
 		try 
 		{
-			System.out.println(persona.getEmail());
+			
 			statement = conexion.getSQLConexion().prepareStatement(insert);
-			statement.setInt(1, persona.getIdPersona());
-			statement.setString(2, persona.getNombre());
-			statement.setString(3, persona.getTelefono());
-			statement.setString(4, persona.getEmail());
-			statement.setString(5, persona.getCumpleaños());
+			statement.setInt(1, localidad.getIdLocalidad());
+			statement.setString(2, localidad.getNombre());
+			
 			
 			if(statement.executeUpdate() > 0) //Si se ejecut� devuelvo true
 				return true;
@@ -42,7 +42,7 @@ public class PersonaDAOSQL implements PersonaDAO
 		return false;
 	}
 	
-	public boolean delete(PersonaDTO persona_a_eliminar)
+	public boolean delete(Localidad localidad_a_eliminar)
 	{
 		PreparedStatement statement;
 		int chequeoUpdate = 0;
@@ -50,7 +50,7 @@ public class PersonaDAOSQL implements PersonaDAO
 		try 
 		{
 			statement = conexion.getSQLConexion().prepareStatement(delete);
-			statement.setString(1, Integer.toString(persona_a_eliminar.getIdPersona()));
+			statement.setString(1, Integer.toString(localidad_a_eliminar.getIdLocalidad()));
 			chequeoUpdate = statement.executeUpdate();
 			if(chequeoUpdate > 0) //Si se ejecutó devuelvo true
 				return true;
@@ -62,11 +62,11 @@ public class PersonaDAOSQL implements PersonaDAO
 		return false;
 	}
 	
-	public List<PersonaDTO> readAll()
+	public List<Localidad> readAll()
 	{
 		PreparedStatement statement;
 		ResultSet resultSet; //Guarda el resultado de la query
-		ArrayList<PersonaDTO> personas = new ArrayList<PersonaDTO>();
+		ArrayList<Localidad> localidades = new ArrayList<Localidad>();
 		Conexion conexion = Conexion.getConexion();
 		try 
 		{
@@ -76,7 +76,7 @@ public class PersonaDAOSQL implements PersonaDAO
 			while(resultSet.next())
 			{
 				
-				personas.add(new PersonaDTO(resultSet.getInt("idPersona"), resultSet.getString("Nombre"), resultSet.getString("Telefono"),resultSet.getString("Email"),resultSet.getString("cumple")));
+				localidades.add(new Localidad(resultSet.getInt("idLocalidad"), resultSet.getString("Nombre")));
 				
 			}
 			
@@ -85,6 +85,6 @@ public class PersonaDAOSQL implements PersonaDAO
 		{
 			e.printStackTrace();
 		}
-		return personas;
+		return localidades;
 	}
 }

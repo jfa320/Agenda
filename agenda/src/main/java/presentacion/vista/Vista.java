@@ -20,7 +20,7 @@ public class Vista
 	private JButton btnBorrar;
 	private JButton btnReporte;
 	private DefaultTableModel modelPersonas;
-	private  String[] nombreColumnas = {"Nombre y apellido","Telefono","calle","altura","piso","depto","localidad","Tipo contacto"};
+	private  String[] nombreColumnas = {"Nombre y apellido","Telefono","Email","Cumpleaños","Direccion","Localidad","Piso","Depto","Tipo"};
 
 	public Vista() 
 	{
@@ -32,17 +32,17 @@ public class Vista
 	private void initialize() 
 	{
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 666, 316);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 434, 262);
+		panel.setBounds(0, 0, 640, 330);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JScrollPane spPersonas = new JScrollPane();
-		spPersonas.setBounds(10, 11, 414, 182);
+		spPersonas.setBounds(10, 11, 620, 206);
 		panel.add(spPersonas);
 		
 		modelPersonas = new DefaultTableModel(null,nombreColumnas);
@@ -52,6 +52,11 @@ public class Vista
 		tablaPersonas.getColumnModel().getColumn(0).setResizable(false);
 		tablaPersonas.getColumnModel().getColumn(1).setPreferredWidth(100);
 		tablaPersonas.getColumnModel().getColumn(1).setResizable(false);
+		tablaPersonas.getColumnModel().getColumn(2).setPreferredWidth(100);
+		tablaPersonas.getColumnModel().getColumn(2).setResizable(false);
+		tablaPersonas.getColumnModel().getColumn(3).setPreferredWidth(100);
+		tablaPersonas.getColumnModel().getColumn(3).setResizable(false);
+		
 		
 		spPersonas.setViewportView(tablaPersonas);
 		
@@ -60,15 +65,15 @@ public class Vista
 		panel.add(btnAgregar);
 		
 		JButton btnEditar = new JButton("Editar");
-		btnEditar.setBounds(109, 228, 89, 23);
+		btnEditar.setBounds(151, 228, 89, 23);
 		panel.add(btnEditar);
 		
 		btnBorrar = new JButton("Borrar");
-		btnBorrar.setBounds(208, 228, 89, 23);
+		btnBorrar.setBounds(296, 228, 89, 23);
 		panel.add(btnBorrar);
 		
 		btnReporte = new JButton("Reporte");
-		btnReporte.setBounds(307, 228, 89, 23);
+		btnReporte.setBounds(426, 228, 89, 23);
 		panel.add(btnReporte);
 	}
 	

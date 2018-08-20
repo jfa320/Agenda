@@ -1,26 +1,23 @@
 package dto;
-import java.util.Date;
+
+import java.sql.Date;
 
 public class PersonaDTO 
 {
 	private int idPersona;
 	private String nombre;
 	private String telefono;
-	private Tipo tipo;
-	private Domicilio domicilio;
-	private String fechaDeCumpleaños;
-	private String mail;
+	private String email;
+	private String cumpleaños;
 	
 
-	public PersonaDTO(int idPersona, String nombre, String telefono,Tipo tipo,Domicilio domicilio,String fechaDeCumpleaños,String mail)
+	public PersonaDTO(int idPersona, String nombre, String telefono,String email,String cumpleaños)
 	{
 		this.idPersona = idPersona;
 		this.nombre = nombre;
 		this.telefono = telefono;
-		this.tipo=tipo;
-		this.domicilio=domicilio;
-		this.fechaDeCumpleaños=fechaDeCumpleaños;
-		this.mail=mail;
+		this.email=email;
+		this.cumpleaños=cumpleaños;
 	}
 	
 	public int getIdPersona() 
@@ -38,6 +35,12 @@ public class PersonaDTO
 		return this.nombre;
 	}
 
+	@Override
+	public String toString() {
+		return "PersonaDTO [idPersona=" + idPersona + ", nombre=" + nombre + ", telefono=" + telefono + ", email="
+				+ email + ", cumpleaÃ±os=" + cumpleaños + "]";
+	}
+
 	public void setNombre(String nombre) 
 	{
 		this.nombre = nombre;
@@ -53,36 +56,12 @@ public class PersonaDTO
 		this.telefono = telefono;
 	}
 
-	public Tipo getTipo() {
-		return tipo;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setTipo(Tipo tipo) {
-		this.tipo = tipo;
-	}
-
-	public Domicilio getDomicilio() {
-		return domicilio;
-	}
-
-	public void setDomicilio(Domicilio domicilio) {
-		this.domicilio = domicilio;
-	}
-
-	public String getFechaDeCumpleaños() {
-		return fechaDeCumpleaños;
-	}
-
-	public void setFechaDeCumpleaños(String fechaDeCumpleaños) {
-		this.fechaDeCumpleaños = fechaDeCumpleaños;
-	}
-
-	public String getMail() {
-		return mail;
-	}
-
-	public void setMail(String mail) {
-		this.mail = mail;
+	public String getCumpleaños() {
+		return cumpleaños;
 	}
 	
 }

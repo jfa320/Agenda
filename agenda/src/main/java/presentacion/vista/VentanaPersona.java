@@ -1,7 +1,7 @@
 package presentacion.vista;
 
 
-import javax.swing.DefaultComboBoxModel;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -11,6 +11,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import presentacion.controlador.Controlador;
+
 
 public class VentanaPersona extends JFrame 
 {
@@ -25,11 +26,16 @@ public class VentanaPersona extends JFrame
 	private JTextField txtPiso;
 	private JTextField txtDepto;
 	
+	private JTextField txtEmail;
+	private JTextField txtCumple;
+	
+	
 	private JComboBox<String>  comboBox_tipoContacto;
-	private JComboBox<String> comboBox_localidad;
+	private JComboBox<String> comboBox_localidad = new JComboBox<String>();
 	private JButton btnAgregarPersona;
 	private Controlador controlador;
-	
+	private JButton btnAgregarLocalidad;
+	private JButton buttonAgregarTipo;
 	
 	
 	
@@ -40,18 +46,18 @@ public class VentanaPersona extends JFrame
 		this.controlador = controlador;
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 343, 500);
+		setBounds(100, 100, 444, 500);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(10, 11, 307,500);
+		panel.setBounds(0, 11, 443,500);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblNombreYApellido = new JLabel("Nombre y apellidor");
+		JLabel lblNombreYApellido = new JLabel("Nombre y apellido");
 		lblNombreYApellido.setBounds(10, 10, 113, 14);
 		panel.add(lblNombreYApellido);
 		
@@ -74,6 +80,17 @@ public class VentanaPersona extends JFrame
 		JLabel lblDepto = new JLabel("Depto");
 		lblDepto.setBounds(10, 210, 113, 14);
 		panel.add(lblDepto);
+		
+		JLabel lblEmail = new JLabel("Email");
+		 lblEmail.setBounds(10, 330, 113, 14);
+		panel.add( lblEmail);
+		
+		JLabel lblCumple = new JLabel("Cumpleaños");
+		lblCumple.setBounds(10, 370, 113, 14);
+		panel.add(lblCumple);
+		
+		
+		
 		
 		txtNombre = new JTextField();
 		txtNombre.setBounds(133, 10, 164, 20);
@@ -107,7 +124,15 @@ public class VentanaPersona extends JFrame
 		txtDepto.setColumns(10);
 		
 		
+		txtEmail = new JTextField();
+		txtEmail.setBounds(133, 330, 164, 20);
+		panel.add(txtEmail);
+		txtEmail.setColumns(10);
 		
+		txtCumple = new JTextField();
+		txtCumple.setBounds(133, 370, 164, 20);
+		panel.add(txtCumple);
+		txtCumple.setColumns(10);
 		
 		
 		
@@ -124,29 +149,35 @@ public class VentanaPersona extends JFrame
 		lblTipoContacto.setBounds(10, 255, 113, 14);
 		panel.add(lblTipoContacto);
 		
-		comboBox_localidad = new JComboBox<String>();
+		
 		comboBox_localidad.setBounds(133, 283, 164, 20);
 		panel.add(comboBox_localidad);
+		
 		
 		JLabel lblLocalidad = new JLabel("Localidad");
 		lblLocalidad.setBounds(10, 286, 113, 14);
 		panel.add(lblLocalidad);
 		
 		
-		
+		comboBox_tipoContacto.addItem("amigos");
 		
 		btnAgregarPersona = new JButton("Agregar");
 		btnAgregarPersona.addActionListener(this.controlador);
-		btnAgregarPersona.setBounds(208, 346, 89, 23);
+		btnAgregarPersona.setBounds(208, 410, 89, 23);
 		panel.add(btnAgregarPersona);
 		
+		btnAgregarLocalidad = new JButton("+");
+		btnAgregarLocalidad.addActionListener(this.controlador);
+		btnAgregarLocalidad.setBounds(307, 282, 60, 23);
+		panel.add(btnAgregarLocalidad);
 		
-		
+		buttonAgregarTipo = new JButton("+");
+		buttonAgregarTipo.setBounds(307, 251, 60, 23);
+		panel.add(buttonAgregarTipo);
+		buttonAgregarTipo.addActionListener(this.controlador);
 		this.setVisible(true);
 		
-		
-		
-		
+
 		
 	}
 	
@@ -157,7 +188,15 @@ public class VentanaPersona extends JFrame
 	public String getComboBox_localidad() {
 		return comboBox_localidad.getSelectedItem().toString();
 	}
+	
+	public JComboBox<String> getComboBoxLocalidad(){
+		return comboBox_localidad;
+	}
 
+	public JComboBox<String> getComboBoxTipo(){
+		return comboBox_tipoContacto;
+	}
+	
 	public JTextField getTxtNombre() 
 	{
 		return txtNombre;
@@ -188,8 +227,29 @@ public class VentanaPersona extends JFrame
 	public JTextField getTxtDepto() {
 		return txtDepto;
 	}
-	
-	
-	
+
+	public JTextField getTxtEmail() {
+		return txtEmail;
+	}
+
+	public void setTxtEmail(JTextField txtEmail) {
+		this.txtEmail = txtEmail;
+	}
+
+	public JTextField getTxtCumple() {
+		return txtCumple;
+	}
+
+	public void setTxtCumple(JTextField txtCumple) {
+		this.txtCumple = txtCumple;
+	}
+
+	public JButton getBtnAgregarLocalidad() {
+		return btnAgregarLocalidad;
+	}
+
+	public JButton  getBtnAgregarTipo() {
+		return buttonAgregarTipo;
+	}
 }
 

@@ -18,7 +18,7 @@ public class Tipo {
 		this.idTipo=idTipo;
 	}
 	
-	public String getTipo(String tipo){
+	public String getTipo(){
 		return this.tipo;
 	}
 	
