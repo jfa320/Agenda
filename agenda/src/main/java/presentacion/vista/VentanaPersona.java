@@ -135,7 +135,7 @@ public class VentanaPersona extends JFrame
 		
 		
 		
-		btnAgregarPersona = new JButton("Agregarr");
+		btnAgregarPersona = new JButton("Agregar");
 		btnAgregarPersona.addActionListener(this.controlador);
 		btnAgregarPersona.setBounds(208, 346, 89, 23);
 		panel.add(btnAgregarPersona);
@@ -143,9 +143,6 @@ public class VentanaPersona extends JFrame
 		
 		
 		this.setVisible(true);
-		
-		
-		
 		
 		
 		

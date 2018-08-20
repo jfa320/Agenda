@@ -8,7 +8,10 @@ import java.util.List;
 
 import persistencia.conexion.Conexion;
 import persistencia.dao.interfaz.PersonaDAO;
+import dto.Domicilio;
+import dto.Localidad;
 import dto.PersonaDTO;
+import dto.Tipo;
 
 public class PersonaDAOSQL implements PersonaDAO
 {
@@ -69,8 +72,11 @@ public class PersonaDAOSQL implements PersonaDAO
 			resultSet = statement.executeQuery();
 			
 			while(resultSet.next())
-			{
-				personas.add(new PersonaDTO(resultSet.getInt("idPersona"), resultSet.getString("Nombre"), resultSet.getString("Telefono")));
+			{	
+				Tipo tipo=new Tipo(resultSet.getInt("idTipo"),resultSet.getString("tipo"));
+				Localidad localidad=new Localidad(resultSet.getInt("idLocalidad"),resultSet.getString("nombre"));
+				Domicilio domicilio=new Domicilio(resultSet.getInt("idDomicilio"),resultSet.getString("calle"),resultSet.getString("altura"),localidad);
+				personas.add(new PersonaDTO(resultSet.getInt("idPersona"), resultSet.getString("Nombre"), resultSet.getString("Telefono"),tipo,domicilio,resultSet.getString("fechaDeCumpleaños"),resultSet.getString("mail")));
 			}
 		} 
 		catch (SQLException e) 
