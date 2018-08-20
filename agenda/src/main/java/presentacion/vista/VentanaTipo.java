@@ -17,7 +17,7 @@ public class VentanaTipo extends JFrame
 	private JPanel contentPane;
 	private Controlador controlador;
 	
-	private JButton btnConfirmarTipo;
+	private JButton btnConfirmarTipo=new JButton("Agregar");
 	
 	private JTextField txtNombre;
 	
@@ -49,7 +49,7 @@ public class VentanaTipo extends JFrame
 		panel.add(txtNombre);
 		txtNombre.setColumns(10);
 		
-		btnConfirmarTipo = new JButton("Agregar");
+		
 		btnConfirmarTipo.addActionListener(this.controlador);
 		btnConfirmarTipo.setBounds(208, 66, 89, 23);
 		panel.add(btnConfirmarTipo);
