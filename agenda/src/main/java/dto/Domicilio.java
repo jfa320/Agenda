@@ -4,12 +4,12 @@ public class Domicilio {
 	
 	private int idDomicilio;
 	private String calle;
-	private int altura;
-	private int piso;
+	private String altura;
+	private String piso;
 	private String depto;
 	private Localidad localidad;
 	
-	public Domicilio(int idDomicilio,String calle,int altura,Localidad localidad){
+	public Domicilio(int idDomicilio,String calle,String altura,Localidad localidad){
 		this.idDomicilio=idDomicilio;
 		this.calle=calle;
 		this.altura=altura;
@@ -30,20 +30,24 @@ public class Domicilio {
 		this.calle=calle;
 	}
 	
-	public int getAltura(){
-		return this.altura;
-	}
-	public void setAltura(int altura){
-		this.altura=altura;
-	}
+
 	
-	public int getPiso(){
-		return this.piso;
+	public String getAltura() {
+		return altura;
 	}
-	public void setPiso(int piso){
-		this.piso=piso;
+
+	public void setAltura(String altura) {
+		this.altura = altura;
 	}
-	
+
+	public String getPiso() {
+		return piso;
+	}
+
+	public void setPiso(String piso) {
+		this.piso = piso;
+	}
+
 	public String getDepto(){
 		return this.depto;
 	}

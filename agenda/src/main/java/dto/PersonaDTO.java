@@ -1,5 +1,4 @@
 package dto;
-
 import java.util.Date;
 
 public class PersonaDTO 
@@ -9,11 +8,11 @@ public class PersonaDTO
 	private String telefono;
 	private Tipo tipo;
 	private Domicilio domicilio;
-	private Date fechaDeCumpleaños;
+	private String fechaDeCumpleaños;
 	private String mail;
 	
 
-	public PersonaDTO(int idPersona, String nombre, String telefono,Tipo tipo,Domicilio domicilio,Date fechaDeCumpleaños,String mail)
+	public PersonaDTO(int idPersona, String nombre, String telefono,Tipo tipo,Domicilio domicilio,String fechaDeCumpleaños,String mail)
 	{
 		this.idPersona = idPersona;
 		this.nombre = nombre;
@@ -53,4 +52,37 @@ public class PersonaDTO
 	{
 		this.telefono = telefono;
 	}
+
+	public Tipo getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(Tipo tipo) {
+		this.tipo = tipo;
+	}
+
+	public Domicilio getDomicilio() {
+		return domicilio;
+	}
+
+	public void setDomicilio(Domicilio domicilio) {
+		this.domicilio = domicilio;
+	}
+
+	public String getFechaDeCumpleaños() {
+		return fechaDeCumpleaños;
+	}
+
+	public void setFechaDeCumpleaños(String fechaDeCumpleaños) {
+		this.fechaDeCumpleaños = fechaDeCumpleaños;
+	}
+
+	public String getMail() {
+		return mail;
+	}
+
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
+	
 }

@@ -5,7 +5,7 @@ public class Localidad {
 	private int idLocalidad;
 	private String nombre;
 	
-	Localidad(int idLocalidad,String nombre){
+	public Localidad(int idLocalidad,String nombre){
 		this.idLocalidad=idLocalidad;
 		this.nombre=nombre;
 	}

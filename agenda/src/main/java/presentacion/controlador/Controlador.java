@@ -7,7 +7,10 @@ import modelo.Agenda;
 import presentacion.reportes.ReporteAgenda;
 import presentacion.vista.VentanaPersona;
 import presentacion.vista.Vista;
+import dto.Domicilio;
+import dto.Localidad;
 import dto.PersonaDTO;
+import dto.Tipo;
 
 public class Controlador implements ActionListener
 {
@@ -73,10 +76,23 @@ public class Controlador implements ActionListener
 				PersonaDTO nuevaPersona;
 				
 				if(agenda.obtenerPersonas().isEmpty()){
-					 nuevaPersona = new PersonaDTO(0,this.ventanaPersona.getTxtNombre().getText(), ventanaPersona.getTxtTelefono().getText());
+					
+					Localidad nuevaLocalidad=new Localidad(0,ventanaPersona.getComboBox_localidad());
+					
+					Domicilio nuevoDomicilio= new Domicilio(0,ventanaPersona.getTxtCalle().getText(),ventanaPersona.getTxtAltura().getText(),nuevaLocalidad);
+					
+					Tipo nuevoTipo=new Tipo(0,ventanaPersona.getComboBox_tipoContacto());
+					
+					 nuevaPersona = new PersonaDTO(0,this.ventanaPersona.getTxtNombre().getText(), ventanaPersona.getTxtTelefono().getText(),nuevoTipo,nuevoDomicilio,"cumple","mail");
 				}
 				else{
-					nuevaPersona = new PersonaDTO(agenda.obtenerPersonas().size(),this.ventanaPersona.getTxtNombre().getText(), ventanaPersona.getTxtTelefono().getText());
+					Localidad nuevaLocalidad=new Localidad(0,ventanaPersona.getComboBox_localidad());
+					
+					Domicilio nuevoDomicilio= new Domicilio(0,ventanaPersona.getTxtCalle().getText(),ventanaPersona.getTxtAltura().getText(),nuevaLocalidad);
+					
+					Tipo nuevoTipo=new Tipo(0,ventanaPersona.getComboBox_tipoContacto());
+					
+					nuevaPersona = new PersonaDTO(agenda.obtenerPersonas().size(),this.ventanaPersona.getTxtNombre().getText(), ventanaPersona.getTxtTelefono().getText(),nuevoTipo,nuevoDomicilio,"cumple","mail");
 				}
 				this.agenda.agregarPersona(nuevaPersona);
 				this.llenarTabla();

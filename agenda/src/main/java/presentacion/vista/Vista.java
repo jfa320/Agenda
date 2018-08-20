@@ -1,5 +1,4 @@
 package presentacion.vista;
-
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -21,7 +20,7 @@ public class Vista
 	private JButton btnBorrar;
 	private JButton btnReporte;
 	private DefaultTableModel modelPersonas;
-	private  String[] nombreColumnas = {"Nombre y apellido","Telefono"};
+	private  String[] nombreColumnas = {"Nombre y apellido","Telefono","calle","altura","piso","depto","localidad","Tipo contacto"};
 
 	public Vista() 
 	{
