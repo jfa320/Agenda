@@ -170,7 +170,9 @@ public class Controlador implements ActionListener
 				this.ventanaLocalidad.dispose();
 			}
 			
-			
+			else if(e.getSource()==this.vista.getBtnEditar()){
+				System.out.println("andaaa");
+			}
 			
 			
 			
