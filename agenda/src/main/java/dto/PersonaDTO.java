@@ -74,32 +74,63 @@ public class PersonaDTO
 		return email;
 	}
 
+	public void setEmail(String Email){
+		this.email=Email;
+	}
+	
 	public String getCumpleaños() {
 		return cumpleaños;
 	}
 
+	public void setCumpleaños(String cumpleaños){
+		this.cumpleaños=cumpleaños;
+	}
+	
 	public Tipo getTipo() {
 		return tipo_contacto;
+	}
+	
+	public void setTipo(Tipo tipo){
+		this.tipo_contacto=tipo;
 	}
 
 	public Localidad getLocalidad() {
 		return localidad;
 	}
 
+	public void setLocalidad(Localidad localidad){
+		this.localidad=localidad;
+	}
+	
 	public String getCalle() {
 		return calle;
 	}
 
+	public void setCalle(String calle){
+		this.calle=calle;
+	}
+	
 	public String getAltura() {
 		return altura;
 	}
 
+	public void setAltura(String altura){
+		this.altura=altura;
+	}
+	
 	public String getPiso() {
 		return piso;
+	}
+	
+	public void setPiso(String piso){
+		this.piso=piso;
 	}
 
 	public String getDepartamento() {
 		return departamento;
 	}
 	
+	public void setDepartamento(String departamento){
+		this.departamento=departamento;
+	}
 }

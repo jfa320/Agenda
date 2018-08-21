@@ -34,6 +34,10 @@ public class Agenda
 		this.persona.delete(persona_a_eliminar);
 	}
 	
+	public void actualizarContacto(PersonaDTO persona){
+		this.persona.update(persona);
+	}
+	
 	public List<PersonaDTO> obtenerPersonas()
 	{
 		return this.persona.readAll();		

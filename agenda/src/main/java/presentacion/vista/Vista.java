@@ -11,6 +11,9 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
 
 import persistencia.conexion.Conexion;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.Button;
 
 public class Vista
 {
@@ -19,9 +22,10 @@ public class Vista
 	private JButton btnAgregar;
 	private JButton btnBorrar;
 	private JButton btnReporte;
+	private JButton btnEditarContacto;
 	private DefaultTableModel modelPersonas;
 	private  String[] nombreColumnas = {"Nombre y apellido","Telefono","Email","Cumpleaños","Tipo Contacto","Localidad","Calle","Altura","Piso","Departamento"};
-	JButton btnEditar;
+	
 	public Vista() 
 	{
 		super();
@@ -75,10 +79,6 @@ public class Vista
 		btnAgregar.setBounds(10, 228, 89, 23);
 		panel.add(btnAgregar);
 		
-		btnEditar = new JButton("Editar");
-		btnEditar.setBounds(151, 228, 89, 23);
-		panel.add(btnEditar);
-		
 		btnBorrar = new JButton("Borrar");
 		btnBorrar.setBounds(296, 228, 89, 23);
 		panel.add(btnBorrar);
@@ -86,6 +86,12 @@ public class Vista
 		btnReporte = new JButton("Reporte");
 		btnReporte.setBounds(426, 228, 89, 23);
 		panel.add(btnReporte);
+		
+		btnEditarContacto = new JButton("Editar");
+		btnEditarContacto.setBounds(145, 228, 89, 23);
+		panel.add(btnEditarContacto);
+		
+		
 	}
 	
 	public void show()
@@ -140,6 +146,6 @@ public class Vista
 
 
 	public JButton getBtnEditar() {
-		return btnEditar;
+		return btnEditarContacto;
 	}
 }

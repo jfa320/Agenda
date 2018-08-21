@@ -18,6 +18,7 @@ public class PersonaDAOSQL implements PersonaDAO
 	private static final String insert = "INSERT INTO personas(idPersona, nombre, telefono,email,cumple,idTipo,idLocalidad,calle,altura,piso,departamento) VALUES(?, ?, ?, ?, ?, ?,?, ?, ?, ?,?)";
 	private static final String delete = "DELETE FROM personas WHERE idPersona = ?";
 	private static final String readall = "SELECT * FROM personas";
+	//private static final String update = "UPDATE personas SET nombre = ? , "+"telefono= ? ,"+"email= ? ,"+"cumple= ? ,"+"idTipo= ? ,"+"idLocalidad= ? ,"+"calle= ? ,"+"altura= ? ,"+"piso= ? ,"+ "departamento = ? "+ "WHERE idPersona = ?";;
 		
 	public boolean insert(PersonaDTO persona)
 	{
@@ -25,7 +26,7 @@ public class PersonaDAOSQL implements PersonaDAO
 		Conexion conexion = Conexion.getConexion();
 		try 
 		{
-			System.out.println(persona.getEmail());
+			
 			statement = conexion.getSQLConexion().prepareStatement(insert);
 			statement.setInt(1, persona.getIdPersona());
 			statement.setString(2, persona.getNombre());
@@ -64,6 +65,7 @@ public class PersonaDAOSQL implements PersonaDAO
 			statement = conexion.getSQLConexion().prepareStatement(delete);
 			statement.setString(1, Integer.toString(persona_a_eliminar.getIdPersona()));
 			chequeoUpdate = statement.executeUpdate();
+	
 			if(chequeoUpdate > 0) //Si se ejecutó devuelvo true
 				return true;
 		} 
@@ -124,6 +126,13 @@ public class PersonaDAOSQL implements PersonaDAO
 			e.printStackTrace();
 		}
 		return personas;
+	}
+
+	
+	public void update(PersonaDTO persona) {
+
+		this.delete(persona);
+		this.insert(persona);
 	}
 }
 
