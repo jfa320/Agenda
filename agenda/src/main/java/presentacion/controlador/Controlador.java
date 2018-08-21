@@ -72,8 +72,9 @@ public class Controlador implements ActionListener
 			this.personas_en_tabla = agenda.obtenerPersonas();
 			for (int i = 0; i < this.personas_en_tabla.size(); i ++)
 			{
-				
-				Object[] fila = {this.personas_en_tabla.get(i).getNombre(), this.personas_en_tabla.get(i).getTelefono(),this.personas_en_tabla.get(i).getEmail(),this.personas_en_tabla.get(i).getCumpleaños(),this.personas_en_tabla.get(i).getTipo().getNombre(),this.personas_en_tabla.get(i).getLocalidad().getNombre()};
+				System.out.println(this.personas_en_tabla.get(i));
+				Object[] fila = {this.personas_en_tabla.get(i).getNombre(), this.personas_en_tabla.get(i).getTelefono(),this.personas_en_tabla.get(i).getEmail(),this.personas_en_tabla.get(i).getCumpleaños(),this.personas_en_tabla.get(i).getTipo().getNombre(),this.personas_en_tabla.get(i).getLocalidad().getNombre(),
+								 this.personas_en_tabla.get(i).getCalle(),this.personas_en_tabla.get(i).getAltura(),this.personas_en_tabla.get(i).getPiso(),this.personas_en_tabla.get(i).getDepartamento()};
 				this.vista.getModelPersonas().addRow(fila);
 			}				
 		}
@@ -131,7 +132,7 @@ public class Controlador implements ActionListener
 				
 				System.out.println(nuevaLocalidad.getNombre());
 				
-				nuevaPersona = new PersonaDTO(0,this.ventanaPersona.getTxtNombre().getText(), ventanaPersona.getTxtTelefono().getText(),ventanaPersona.getTxtEmail().getText(),ventanaPersona.getTxtCumple().getText(),nuevoTipo,nuevaLocalidad);
+				nuevaPersona = new PersonaDTO(0,this.ventanaPersona.getTxtNombre().getText(), ventanaPersona.getTxtTelefono().getText(),ventanaPersona.getTxtEmail().getText(),ventanaPersona.getTxtCumple().getText(),nuevoTipo,nuevaLocalidad,ventanaPersona.getTxtCalle().getText(),ventanaPersona.getTxtAltura().getText(),ventanaPersona.getTxtPiso().getText(),ventanaPersona.getTxtDepto().getText());
 			
 				
 				this.agenda.agregarPersona(nuevaPersona);
@@ -168,6 +169,46 @@ public class Controlador implements ActionListener
 				this.agenda.agregarLocalidad(nuevaLocalidad);
 				this.llenarComboBox();
 				this.ventanaLocalidad.dispose();
+			}
+			else if (e.getSource()==this.ventanaPersona.getButtonEliminarLocalidad())
+			{
+				System.out.println("intenta eliminar");
+					Localidad localidad=null;
+					
+					List<Localidad> localidades=agenda.obtenerLocalidades();
+					for (int i = 0; i < localidades.size(); i ++){
+					
+					if (localidades.get(i).getNombre().equals(ventanaPersona.getComboBoxLocalidad().getSelectedItem().toString()))
+					{
+		
+						localidad=new Localidad(localidades.get(i).getIdLocalidad(),localidades.get(i).getNombre());
+					}
+					
+					
+				}
+				
+				
+				this.agenda.eliminarLocalidad(localidad);
+			}
+			else if (e.getSource()==this.ventanaPersona.getButtonEliminarTipo())
+			{
+				
+				Tipo tipo=null;
+				
+				List<Tipo> tipos=agenda.obtenerTipos();
+				for (int i = 0; i < tipos.size(); i ++){
+				
+				if (tipos.get(i).getNombre().equals(ventanaPersona.getComboBoxTipo().getSelectedItem().toString()))
+				{
+	
+					tipo=new Tipo(tipos.get(i).getIdTipo(),tipos.get(i).getNombre());
+				}
+				
+				
+			}
+			
+			
+			this.agenda.eliminarTipo(tipo);
 			}
 			
 			else if(e.getSource()==this.vista.getBtnEditar()){

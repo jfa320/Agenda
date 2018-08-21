@@ -15,7 +15,7 @@ import dto.Tipo;
 
 public class PersonaDAOSQL implements PersonaDAO
 {
-	private static final String insert = "INSERT INTO personas(idPersona, nombre, telefono,email,cumple,idTipo,idLocalidad) VALUES(?, ?, ?, ?, ?, ?,?)";
+	private static final String insert = "INSERT INTO personas(idPersona, nombre, telefono,email,cumple,idTipo,idLocalidad,calle,altura,piso,departamento) VALUES(?, ?, ?, ?, ?, ?,?, ?, ?, ?,?)";
 	private static final String delete = "DELETE FROM personas WHERE idPersona = ?";
 	private static final String readall = "SELECT * FROM personas";
 		
@@ -34,6 +34,14 @@ public class PersonaDAOSQL implements PersonaDAO
 			statement.setString(5, persona.getCumpleaños());
 			statement.setInt(6, persona.getTipo().getIdTipo());
 			statement.setInt(7, persona.getLocalidad().getIdLocalidad());
+			statement.setString(8, persona.getCalle());
+			statement.setString(9, persona.getAltura());
+			statement.setString(10, persona.getPiso());
+			statement.setString(11, persona.getDepartamento());
+			
+			
+			
+			
 			
 			if(statement.executeUpdate() > 0) //Si se ejecut� devuelvo true
 				return true;
@@ -106,7 +114,7 @@ public class PersonaDAOSQL implements PersonaDAO
 					}
 				}
 				
-				personas.add(new PersonaDTO(resultSet.getInt("idPersona"), resultSet.getString("Nombre"), resultSet.getString("Telefono"),resultSet.getString("Email"),resultSet.getString("cumple"),tipo,localidad));
+				personas.add(new PersonaDTO(resultSet.getInt("idPersona"), resultSet.getString("Nombre"), resultSet.getString("Telefono"),resultSet.getString("Email"),resultSet.getString("cumple"),tipo,localidad,resultSet.getString("calle"),resultSet.getString("altura"),resultSet.getString("piso"),resultSet.getString("departamento")));
 				
 			}
 			

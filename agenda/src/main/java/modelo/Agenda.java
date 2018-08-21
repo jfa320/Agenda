@@ -46,6 +46,11 @@ public class Agenda
 	{
 		this.localidad.insert(nuevaLocalidad);
 	}
+	
+	public void eliminarLocalidad(Localidad localidad)
+	{
+		this.localidad.delete(localidad);
+	}
 
 	@Override
 	public String toString() {
@@ -61,6 +66,9 @@ public class Agenda
 		
 		return this.tipo.readAll();
 	}
+	public void eliminarTipo(Tipo tipo)
+	{
+		this.tipo.delete(tipo);
+	}
 	
 }
-

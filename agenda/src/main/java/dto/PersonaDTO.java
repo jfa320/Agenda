@@ -11,9 +11,13 @@ public class PersonaDTO
 	private String cumpleaños;
 	private Tipo tipo_contacto;
 	private Localidad localidad;
+	private String calle;
+	private String altura;
+	private String piso;
+	private String departamento;
 	
 
-	public PersonaDTO(int idPersona, String nombre, String telefono,String email,String cumpleaños,Tipo tipo_contacto,Localidad localidad)
+	public PersonaDTO(int idPersona, String nombre, String telefono,String email,String cumpleaños,Tipo tipo_contacto,Localidad localidad,String calle, String altura,String piso,String departamento)
 	{
 		this.idPersona = idPersona;
 		this.nombre = nombre;
@@ -22,6 +26,10 @@ public class PersonaDTO
 		this.cumpleaños=cumpleaños;
 		this.tipo_contacto=tipo_contacto;
 		this.localidad=localidad;
+		this.calle=calle;
+		this.altura=altura;
+		this.piso=piso;
+		this.departamento=departamento;
 	}
 	
 	public int getIdPersona() 
@@ -76,6 +84,22 @@ public class PersonaDTO
 
 	public Localidad getLocalidad() {
 		return localidad;
+	}
+
+	public String getCalle() {
+		return calle;
+	}
+
+	public String getAltura() {
+		return altura;
+	}
+
+	public String getPiso() {
+		return piso;
+	}
+
+	public String getDepartamento() {
+		return departamento;
 	}
 	
 }

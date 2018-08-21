@@ -15,7 +15,7 @@ import persistencia.dao.interfaz.TipoDAO;
 public class TipoDAOSQL implements TipoDAO
 {
 	private static final String insert = "INSERT INTO tipos(idTipo, tipo) VALUES(?, ?)";
-	private static final String delete = "DELETE FROM personas WHERE idTipo = ?";
+	private static final String delete = "DELETE FROM tipos WHERE idTipo = ?";
 	private static final String readall = "SELECT * FROM tipos";
 		
 	public boolean insert(Tipo tipo)

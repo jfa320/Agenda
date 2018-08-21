@@ -37,7 +37,8 @@ public class VentanaPersona extends JFrame
 	private JButton btnAgregarLocalidad;
 	private JButton buttonAgregarTipo;
 	
-	
+	private JButton buttonEliminarTipo;
+	private JButton buttonEliminarLocalidad;
 	
 
 	public VentanaPersona(Controlador controlador) 
@@ -174,6 +175,24 @@ public class VentanaPersona extends JFrame
 		buttonAgregarTipo.setBounds(307, 251, 60, 23);
 		panel.add(buttonAgregarTipo);
 		buttonAgregarTipo.addActionListener(this.controlador);
+		
+		
+		buttonEliminarTipo = new JButton("-");
+		buttonEliminarTipo.setBounds(358, 251, 41, 23);
+		panel.add(buttonEliminarTipo);
+		buttonEliminarTipo.addActionListener(this.controlador);
+		
+		
+		buttonEliminarLocalidad = new JButton("-");
+		buttonEliminarLocalidad.setBounds(358, 282, 41, 23);
+		panel.add(buttonEliminarLocalidad);
+		buttonEliminarLocalidad.addActionListener(this.controlador);
+		
+		
+		
+		
+		
+		
 		this.setVisible(true);
 		
 
@@ -245,6 +264,17 @@ public class VentanaPersona extends JFrame
 
 	public JButton  getBtnAgregarTipo() {
 		return buttonAgregarTipo;
+	}
+	public JButton getButtonEliminarTipo() {
+		return buttonEliminarTipo;
+	}
+
+
+
+
+
+	public JButton getButtonEliminarLocalidad() {
+		return buttonEliminarLocalidad;
 	}
 }
 
