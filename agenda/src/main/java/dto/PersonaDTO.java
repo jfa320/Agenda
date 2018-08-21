@@ -1,6 +1,6 @@
 package dto;
 
-import java.sql.Date;
+
 
 public class PersonaDTO 
 {
@@ -9,15 +9,19 @@ public class PersonaDTO
 	private String telefono;
 	private String email;
 	private String cumpleaños;
+	private Tipo tipo_contacto;
+	private Localidad localidad;
 	
 
-	public PersonaDTO(int idPersona, String nombre, String telefono,String email,String cumpleaños)
+	public PersonaDTO(int idPersona, String nombre, String telefono,String email,String cumpleaños,Tipo tipo_contacto,Localidad localidad)
 	{
 		this.idPersona = idPersona;
 		this.nombre = nombre;
 		this.telefono = telefono;
 		this.email=email;
 		this.cumpleaños=cumpleaños;
+		this.tipo_contacto=tipo_contacto;
+		this.localidad=localidad;
 	}
 	
 	public int getIdPersona() 
@@ -35,10 +39,12 @@ public class PersonaDTO
 		return this.nombre;
 	}
 
+	
+
 	@Override
 	public String toString() {
 		return "PersonaDTO [idPersona=" + idPersona + ", nombre=" + nombre + ", telefono=" + telefono + ", email="
-				+ email + ", cumpleaÃ±os=" + cumpleaños + "]";
+				+ email + ", cumpleaños=" + cumpleaños + ", tipo_contacto=" + tipo_contacto + "]";
 	}
 
 	public void setNombre(String nombre) 
@@ -62,6 +68,14 @@ public class PersonaDTO
 
 	public String getCumpleaños() {
 		return cumpleaños;
+	}
+
+	public Tipo getTipo() {
+		return tipo_contacto;
+	}
+
+	public Localidad getLocalidad() {
+		return localidad;
 	}
 	
 }

@@ -28,7 +28,7 @@ public class TipoDAOSQL implements TipoDAO
 			
 			statement = conexion.getSQLConexion().prepareStatement(insert);
 			statement.setInt(1, tipo.getIdTipo());
-			statement.setString(2, tipo.getTipo());
+			statement.setString(2, tipo.getNombre());
 			
 			
 			if(statement.executeUpdate() > 0) //Si se ejecut� devuelvo true

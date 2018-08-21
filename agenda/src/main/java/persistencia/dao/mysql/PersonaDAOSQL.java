@@ -9,11 +9,13 @@ import java.util.List;
 
 import persistencia.conexion.Conexion;
 import persistencia.dao.interfaz.PersonaDAO;
+import dto.Localidad;
 import dto.PersonaDTO;
+import dto.Tipo;
 
 public class PersonaDAOSQL implements PersonaDAO
 {
-	private static final String insert = "INSERT INTO personas(idPersona, nombre, telefono,email,cumple) VALUES(?, ?, ?, ?, ?)";
+	private static final String insert = "INSERT INTO personas(idPersona, nombre, telefono,email,cumple,idTipo,idLocalidad) VALUES(?, ?, ?, ?, ?, ?,?)";
 	private static final String delete = "DELETE FROM personas WHERE idPersona = ?";
 	private static final String readall = "SELECT * FROM personas";
 		
@@ -30,6 +32,8 @@ public class PersonaDAOSQL implements PersonaDAO
 			statement.setString(3, persona.getTelefono());
 			statement.setString(4, persona.getEmail());
 			statement.setString(5, persona.getCumpleaños());
+			statement.setInt(6, persona.getTipo().getIdTipo());
+			statement.setInt(7, persona.getLocalidad().getIdLocalidad());
 			
 			if(statement.executeUpdate() > 0) //Si se ejecut� devuelvo true
 				return true;
@@ -76,7 +80,33 @@ public class PersonaDAOSQL implements PersonaDAO
 			while(resultSet.next())
 			{
 				
-				personas.add(new PersonaDTO(resultSet.getInt("idPersona"), resultSet.getString("Nombre"), resultSet.getString("Telefono"),resultSet.getString("Email"),resultSet.getString("cumple")));
+				TipoDAOSQL tipodaosql=new TipoDAOSQL();
+				LocalidadDAOSQL localidaddaosql=new LocalidadDAOSQL();
+				
+				
+				List<Tipo>tipos=tipodaosql.readAll();
+				List<Localidad>localidades=localidaddaosql.readAll();
+				
+				int idTipo=resultSet.getInt("idTipo");
+				int idLocalidad=resultSet.getInt("idLocalidad");
+				
+				Tipo tipo=null;
+				Localidad localidad=null;
+				
+				for (Tipo t : tipos) 
+				{
+					if (t.getIdTipo()==idTipo)
+						tipo=t;
+					
+				}
+				
+				for (Localidad l:localidades){
+					if (l.getIdLocalidad()==idLocalidad){
+						localidad=l;
+					}
+				}
+				
+				personas.add(new PersonaDTO(resultSet.getInt("idPersona"), resultSet.getString("Nombre"), resultSet.getString("Telefono"),resultSet.getString("Email"),resultSet.getString("cumple"),tipo,localidad));
 				
 			}
 			
@@ -88,3 +118,4 @@ public class PersonaDAOSQL implements PersonaDAO
 		return personas;
 	}
 }
+

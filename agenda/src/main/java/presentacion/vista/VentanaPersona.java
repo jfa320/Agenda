@@ -31,7 +31,7 @@ public class VentanaPersona extends JFrame
 	
 	
 	private JComboBox<String>  comboBox_tipoContacto;
-	private JComboBox<String> comboBox_localidad = new JComboBox<String>();
+	private JComboBox<String> comboBox_localidad;
 	private JButton btnAgregarPersona;
 	private Controlador controlador;
 	private JButton btnAgregarLocalidad;
@@ -149,7 +149,7 @@ public class VentanaPersona extends JFrame
 		lblTipoContacto.setBounds(10, 255, 113, 14);
 		panel.add(lblTipoContacto);
 		
-		
+		comboBox_localidad = new JComboBox<String>();
 		comboBox_localidad.setBounds(133, 283, 164, 20);
 		panel.add(comboBox_localidad);
 		
@@ -180,13 +180,9 @@ public class VentanaPersona extends JFrame
 		
 	}
 	
-	public String getComboBox_tipoContacto() {
-		return comboBox_tipoContacto.getSelectedItem().toString();
-	}
+	
 
-	public String getComboBox_localidad() {
-		return comboBox_localidad.getSelectedItem().toString();
-	}
+	
 	
 	public JComboBox<String> getComboBoxLocalidad(){
 		return comboBox_localidad;
