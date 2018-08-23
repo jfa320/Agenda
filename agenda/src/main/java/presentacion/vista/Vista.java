@@ -13,7 +13,7 @@ import javax.swing.JButton;
 import persistencia.conexion.Conexion;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.Button;
+
 
 public class Vista
 {
@@ -24,6 +24,7 @@ public class Vista
 	private JButton btnReporte;
 	private JButton btnEditarContacto;
 	private DefaultTableModel modelPersonas;
+	private JButton btnAbmLocalidades;
 	private  String[] nombreColumnas = {"Nombre y apellido","Telefono","Email","Cumpleaños","Tipo Contacto","Localidad","Calle","Altura","Piso","Departamento"};
 	
 	public Vista() 
@@ -36,20 +37,21 @@ public class Vista
 	private void initialize() 
 	{
 		frame = new JFrame();
-		frame.setBounds(100, 100, 666, 316);
+		frame.setBounds(100, 100, 882, 316);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 640, 330);
+		panel.setBounds(0, 0, 856, 330);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JScrollPane spPersonas = new JScrollPane();
-		spPersonas.setBounds(10, 11, 620, 206);
+		spPersonas.setBounds(10, 11, 836, 206);
 		panel.add(spPersonas);
 		
 		modelPersonas = new DefaultTableModel(null,nombreColumnas);
+		
 		tablaPersonas = new JTable(modelPersonas);
 		
 		tablaPersonas.getColumnModel().getColumn(0).setPreferredWidth(103);
@@ -90,6 +92,11 @@ public class Vista
 		btnEditarContacto = new JButton("Editar");
 		btnEditarContacto.setBounds(145, 228, 89, 23);
 		panel.add(btnEditarContacto);
+		
+		btnAbmLocalidades = new JButton("ABM Localidades");
+		
+		btnAbmLocalidades.setBounds(542, 228, 136, 23);
+		panel.add(btnAbmLocalidades);
 		
 		
 	}
@@ -147,5 +154,13 @@ public class Vista
 
 	public JButton getBtnEditar() {
 		return btnEditarContacto;
+	}
+	
+	public JButton getBtnAbmLocalidades(){
+		return btnAbmLocalidades;
+	}
+	
+	public void alertaEditar(){
+		JOptionPane.showMessageDialog(null, "Seleccione contacto a editar");
 	}
 }

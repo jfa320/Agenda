@@ -51,9 +51,9 @@ public class Agenda
 		this.localidad.insert(nuevaLocalidad);
 	}
 	
-	public void eliminarLocalidad(Localidad localidad)
+	public boolean eliminarLocalidad(Localidad localidad)
 	{
-		this.localidad.delete(localidad);
+		return this.localidad.delete(localidad);
 	}
 
 	@Override

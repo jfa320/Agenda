@@ -2,13 +2,14 @@ package presentacion.controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JOptionPane;
+
+
 
 import modelo.Agenda;
 import presentacion.reportes.ReporteAgenda;
+import presentacion.vista.VentanaABMLocalidades;
 import presentacion.vista.VentanaEditarPersona;
 import presentacion.vista.VentanaLocalidad;
 import presentacion.vista.VentanaPersona;
@@ -29,6 +30,7 @@ public class Controlador implements ActionListener
 		private List<Localidad> localidades_en_tabla;
 		private List<Tipo> tipos_en_tabla;
 		private VentanaEditarPersona ventanaEditar;
+		private VentanaABMLocalidades ventanaABMLocalidades;
 		
 		public Controlador(Vista vista, Agenda agenda)
 		{
@@ -37,6 +39,7 @@ public class Controlador implements ActionListener
 			this.vista.getBtnBorrar().addActionListener(this);
 			this.vista.getBtnReporte().addActionListener(this);
 			this.vista.getBtnEditar().addActionListener(this);
+			this.vista.getBtnAbmLocalidades().addActionListener(this);
 			this.agenda = agenda;
 			this.personas_en_tabla = null;
 		}
@@ -66,20 +69,30 @@ public class Controlador implements ActionListener
 			
 		}
 		
-		private void llenarComboBoxEditables(){
+		private void llenarComboBoxEditables(Localidad localidad,Tipo tipo){
 			this.ventanaEditar.getComboBoxLocalidad().removeAllItems();
 			this.ventanaEditar.getComboBoxTipo().removeAllItems();
 			this.localidades_en_tabla=agenda.obtenerLocalidades();
 			
+			this.ventanaEditar.getComboBoxLocalidad().insertItemAt(localidad.getNombre(), 0);
+			
+			this.ventanaEditar.getComboBoxLocalidad().setSelectedIndex(0);
+			
 			for (int i = 0; i < this.localidades_en_tabla.size(); i ++){
+				if(!this.localidades_en_tabla.get(i).getNombre().equals(localidad.getNombre())){
+					this.ventanaEditar.getComboBoxLocalidad().addItem(this.localidades_en_tabla.get(i).getNombre());}
 
-				this.ventanaEditar.getComboBoxLocalidad().addItem(this.localidades_en_tabla.get(i).getNombre());
 			}
 			
+			
+			
 			this.tipos_en_tabla=agenda.obtenerTipos();
+			
+			this.ventanaEditar.getComboBoxTipo().insertItemAt(tipo.getNombre(), 0);
+			this.ventanaEditar.getComboBoxTipo().setSelectedIndex(0);
 			for (int i = 0; i < this.tipos_en_tabla.size(); i ++){
-				
-				this.ventanaEditar.getComboBoxTipo().addItem(this.tipos_en_tabla.get(i).getNombre());
+				if(!this.tipos_en_tabla.get(i).getNombre().equals(tipo.getNombre())){
+					this.ventanaEditar.getComboBoxTipo().addItem(this.tipos_en_tabla.get(i).getNombre());}
 			}
 			
 		}
@@ -118,7 +131,7 @@ public class Controlador implements ActionListener
 					this.ventanaEditar=new VentanaEditarPersona(this);
 					this.llenarCamposEditables(this.vista.getTablaPersonas().getSelectedRow());}
 				else{
-					JOptionPane.showMessageDialog(null, "Seleccione contacto a editar");
+					this.vista.alertaEditar();
 				}
 			}
 			
@@ -145,7 +158,12 @@ public class Controlador implements ActionListener
 				ReporteAgenda reporte = new ReporteAgenda(agenda.obtenerPersonas());
 				reporte.mostrar();				
 			}
-			else if(e.getSource() == this.ventanaPersona.getBtnAgregarPersona())
+			
+			else if(e.getSource() == this.vista.getBtnAbmLocalidades())
+			{				
+				this.ventanaABMLocalidades=new VentanaABMLocalidades(this);
+			}
+			else if(!(this.ventanaPersona==null) && e.getSource() == this.ventanaPersona.getBtnAgregarPersona())
 			{	
 				PersonaDTO nuevaPersona;
 				Tipo nuevoTipo=null;
@@ -180,12 +198,12 @@ public class Controlador implements ActionListener
 				this.llenarTabla();
 				this.ventanaPersona.dispose();
 			}
-			else if(e.getSource()== this.ventanaPersona.getBtnAgregarLocalidad())
+			else if(!(this.ventanaPersona==null) && e.getSource()== this.ventanaPersona.getBtnAgregarLocalidad())
 			{
 				System.out.println("ventanalocalidad");
 				this.ventanaLocalidad = new VentanaLocalidad(this);
 			}
-			else if (e.getSource()==this.ventanaPersona.getBtnAgregarTipo())
+			else if (!(this.ventanaPersona==null) && e.getSource()==this.ventanaPersona.getBtnAgregarTipo())
 			{
 				System.out.println("ventanaTipo");
 				this.ventanaTipo = new VentanaTipo(this);
@@ -211,7 +229,7 @@ public class Controlador implements ActionListener
 				this.llenarComboBox();
 				this.ventanaLocalidad.dispose();
 			}
-			else if (e.getSource()==this.ventanaPersona.getButtonEliminarLocalidad())
+			else if (!(this.ventanaPersona==null) && e.getSource()==this.ventanaPersona.getButtonEliminarLocalidad())
 			{
 				System.out.println("intenta eliminar");
 					Localidad localidad=null;
@@ -229,10 +247,12 @@ public class Controlador implements ActionListener
 				}
 				
 				
-				this.agenda.eliminarLocalidad(localidad);
+				if(this.agenda.eliminarLocalidad(localidad)==false){
+					this.ventanaPersona.showAlertEliminar();
+				};
 				this.llenarComboBox();
 			}
-			else if (e.getSource()==this.ventanaPersona.getButtonEliminarTipo())
+			else if (!(this.ventanaPersona==null) && e.getSource()==this.ventanaPersona.getButtonEliminarTipo())
 			{
 				
 				Tipo tipo=null;
@@ -311,7 +331,8 @@ public class Controlador implements ActionListener
 				ventanaEditar.setTextFieldPiso(persona.getPiso());
 				ventanaEditar.setTextFieldDepartamento(persona.getDepartamento());
 				
-				this.llenarComboBoxEditables();
+				
+				this.llenarComboBoxEditables(persona.getLocalidad(),persona.getTipo());
 		
 		}
 

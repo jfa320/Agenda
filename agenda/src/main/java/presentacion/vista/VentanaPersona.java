@@ -6,6 +6,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
@@ -275,6 +276,15 @@ public class VentanaPersona extends JFrame
 
 	public JButton getButtonEliminarLocalidad() {
 		return buttonEliminarLocalidad;
+	}
+
+
+
+
+
+	public void showAlertEliminar() {
+		JOptionPane.showMessageDialog(null, "No es posible eliminar esta localidad porque esta asociada a una persona");
+		
 	}
 }
 
