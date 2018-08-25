@@ -1,6 +1,9 @@
 package dto;
 
-
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.sql.Date;
 
 public class PersonaDTO 
 {
@@ -8,7 +11,7 @@ public class PersonaDTO
 	private String nombre;
 	private String telefono;
 	private String email;
-	private String cumpleaños;
+	private java.sql.Date cumpleaños;
 	private Tipo tipo_contacto;
 	private Localidad localidad;
 	private String calle;
@@ -23,7 +26,7 @@ public class PersonaDTO
 		this.nombre = nombre;
 		this.telefono = telefono;
 		this.email=email;
-		this.cumpleaños=cumpleaños;
+		this.cumpleaños=generarCumpleaño(cumpleaños);
 		this.tipo_contacto=tipo_contacto;
 		this.localidad=localidad;
 		this.calle=calle;
@@ -32,6 +35,25 @@ public class PersonaDTO
 		this.departamento=departamento;
 	}
 	
+	private java.sql.Date generarCumpleaño(String cumpleaño) 
+	{
+		SimpleDateFormat formato=new SimpleDateFormat("yyyy-MM-dd");
+		java.util.Date utilDate = new java.util.Date();
+		java.sql.Date sqlDate = null;
+		
+		try {
+			utilDate= formato.parse(cumpleaño);
+			
+			sqlDate = new java.sql.Date(utilDate.getTime());
+		} catch (ParseException e) 
+		{
+			
+			e.printStackTrace();
+		}
+		
+		return sqlDate;
+	}
+
 	public int getIdPersona() 
 	{
 		return this.idPersona;
@@ -79,12 +101,10 @@ public class PersonaDTO
 	}
 	
 	public String getCumpleaños() {
-		return cumpleaños;
+		return cumpleaños.toString();
 	}
 
-	public void setCumpleaños(String cumpleaños){
-		this.cumpleaños=cumpleaños;
-	}
+	
 	
 	public Tipo getTipo() {
 		return tipo_contacto;
@@ -132,5 +152,11 @@ public class PersonaDTO
 	
 	public void setDepartamento(String departamento){
 		this.departamento=departamento;
+	}
+
+	public void setCumpleaños(String text) 
+	{
+		
+		
 	}
 }

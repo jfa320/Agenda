@@ -96,20 +96,25 @@ public class VentanaAMPersona extends JFrame
 		textFieldCumple.setBounds(183, 290, 151, 20);
 		panel.add(textFieldCumple);
 		textFieldCumple.setColumns(10);
-		textFieldCumple.setText("//");
+		
 		
 		textFieldCumple.addKeyListener(new KeyAdapter()
 		{
 			   public void keyTyped(KeyEvent e)
 			   {
+				  
 			      char caracter = e.getKeyChar();   
-			      if(((caracter < '0') || (caracter > '9')) &&(caracter != '\b')  ) 
+			      
+			     
+			    
+			      
+			       
+			       if(((caracter < '0') || (caracter > '9')) &&(caracter != '\b')  && caracter!='-') 
 			    	  e.consume();
 
 			      if (textFieldCumple.getText().length()== 10)
 		    		  e.consume();
-			      if ((caracter == '-')   ) 
-			    	  e.consume();	 
+			      
 			   }
 			});
 		
@@ -144,43 +149,43 @@ public class VentanaAMPersona extends JFrame
 		textFieldNombreApellido.setColumns(10);
 		
 		lblDepartamento = new JLabel("Departamento");
-		lblDepartamento.setBounds(29, 163, 104, 20);
+		lblDepartamento.setBounds(11, 166, 104, 20);
 		panel.add(lblDepartamento);
 		
 		lblPiso = new JLabel("Piso");
-		lblPiso.setBounds(29, 132, 57, 20);
+		lblPiso.setBounds(11, 135, 57, 20);
 		panel.add(lblPiso);
 		
 		lblTelefono = new JLabel("Telefono");
-		lblTelefono.setBounds(29, 42, 86, 20);
+		lblTelefono.setBounds(11, 42, 86, 20);
 		panel.add(lblTelefono);
 		
 		lblAltura = new JLabel("Altura");
-		lblAltura.setBounds(29, 101, 57, 20);
+		lblAltura.setBounds(11, 104, 57, 20);
 		panel.add(lblAltura);
 		
 		lblCalle = new JLabel("Calle");
-		lblCalle.setBounds(29, 76, 46, 14);
+		lblCalle.setBounds(11, 76, 46, 14);
 		panel.add(lblCalle);
 		
 		lblTipoContacto = new JLabel("Tipo Contacto *");
-		lblTipoContacto.setBounds(29, 194, 104, 20);
+		lblTipoContacto.setBounds(11, 197, 104, 20);
 		panel.add(lblTipoContacto);
 		
-		lblCumpleaos = new JLabel("Cumpleaños *");
-		lblCumpleaos.setBounds(29, 288, 71, 20);
+		lblCumpleaos = new JLabel("Cumpleaños *(xxxx/xx/xx)");
+		lblCumpleaos.setBounds(10, 290, 163, 20);
 		panel.add(lblCumpleaos);
 		
 		lblEmail = new JLabel("Email");
-		lblEmail.setBounds(29, 262, 46, 14);
+		lblEmail.setBounds(10, 262, 46, 14);
 		panel.add(lblEmail);
 		
 		lblLocalidad = new JLabel("Localidad * ");
-		lblLocalidad.setBounds(29, 228, 71, 20);
+		lblLocalidad.setBounds(10, 228, 71, 20);
 		panel.add(lblLocalidad);
 		
 		lblNombreApellido = new JLabel("Nombre *");
-		lblNombreApellido.setBounds(29, 11, 104, 20);
+		lblNombreApellido.setBounds(11, 11, 104, 20);
 		panel.add(lblNombreApellido);
 		
 		btnAbmTipos = new JButton("ABM Tipos");
