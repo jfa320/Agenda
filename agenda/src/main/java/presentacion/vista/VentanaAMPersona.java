@@ -156,8 +156,8 @@ public class VentanaAMPersona extends JFrame
 		lblPiso.setBounds(11, 135, 57, 20);
 		panel.add(lblPiso);
 		
-		lblTelefono = new JLabel("Telefono");
-		lblTelefono.setBounds(11, 42, 86, 20);
+		lblTelefono = new JLabel("Telefono *");
+		lblTelefono.setBounds(11, 42, 104, 20);
 		panel.add(lblTelefono);
 		
 		lblAltura = new JLabel("Altura");

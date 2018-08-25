@@ -106,7 +106,7 @@ public class Controlador implements ActionListener
 			this.vista.getModelPersonas().setColumnCount(0);
 			this.vista.getModelPersonas().setColumnIdentifiers(this.vista.getNombreColumnas());
 			
-			
+			personas_en_tabla=agenda.obtenerPersonas();
 			for (int i = 0; i < this.personas_en_tabla.size(); i ++)
 			{
 				System.out.println(this.personas_en_tabla.get(i));
@@ -210,8 +210,10 @@ public class Controlador implements ActionListener
 			
 				
 				this.agenda.agregarPersona(nuevaPersona);
-				this.llenarTabla();
+				
 				this.ventanaPersona.dispose();
+				this.llenarTabla();
+				System.out.println("llegue aca");
 				}
 				else
 					JOptionPane.showMessageDialog(null, "Falta completar campos obligatorios *");
