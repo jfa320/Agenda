@@ -136,6 +136,11 @@ public class VentanaABMLocalidades extends JFrame
 		JOptionPane.showMessageDialog(null, "Seleccione localidad a borrar");
 		
 	}
+
+	public void alertaClavesForaneas() {
+		JOptionPane.showMessageDialog(null, "No es posible borrar o editar esta localidad porque esta asociado a una persona");
+		
+	}
 	
 }
 

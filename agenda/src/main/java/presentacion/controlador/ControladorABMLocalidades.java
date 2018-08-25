@@ -67,14 +67,22 @@ public class ControladorABMLocalidades implements ActionListener {
 			if(this.vistaABM.getTable().getSelectedRow()>=0){
 				
 				
-				agenda.borrarLocalidad(localidadEnFila(this.vistaABM.getTable().getSelectedRow()));
-				this.llenarTabla();
+				if(agenda.borrarLocalidad(localidadEnFila(this.vistaABM.getTable().getSelectedRow()))){
+					this.llenarTabla();
+				}
+				
+				else{
+					this.vistaABM.alertaClavesForaneas();
+				}
+				
 			}
+				
 			else{
 				this.vistaABM.alertaBorrar();
 			}
+			
 		}
-		
+	
 		
 		else if(!(this.ventanaLocalidad==null) && e.getSource()==this.ventanaLocalidad.getBtnConfirmarLocalidad()){
 			Localidad nuevaLocalidad=new Localidad(0,this.ventanaLocalidad.getTxtNombre().getText());
@@ -98,9 +106,13 @@ public class ControladorABMLocalidades implements ActionListener {
 
 	private void actualizarDatosEditados() {
 		Localidad localidad=localidades.get(this.vistaABM.getTable().getSelectedRow());
-		agenda.borrarLocalidad(localidad);
-		localidad.setNombre(this.ventanaEditarLocalidad.getTxtNombre().getText());
-		agenda.agregarLocalidad(localidad);
+		if(agenda.borrarLocalidad(localidad)){
+			localidad.setNombre(this.ventanaEditarLocalidad.getTxtNombre().getText());
+			agenda.agregarLocalidad(localidad);
+		}
+		else{
+			this.ventanaEditarLocalidad.alertaClavesForaneas();
+		}
 	}
 
 	private void llenarCamposEditables(int selectedRow) {

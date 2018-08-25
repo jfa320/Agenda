@@ -7,9 +7,11 @@ import java.util.List;
 
 
 
+
 import modelo.Agenda;
 import presentacion.reportes.ReporteAgenda;
 import presentacion.vista.VentanaABMLocalidades;
+import presentacion.vista.VentanaABMTipos;
 import presentacion.vista.VentanaAMPersona;
 import presentacion.vista.VentanaLocalidad;
 import presentacion.vista.VentanaTipo;
@@ -24,13 +26,15 @@ public class Controlador implements ActionListener
 		private List<PersonaDTO> personas_en_tabla;
 		private VentanaAMPersona ventanaPersona; 
 		
-		private VentanaTipo ventanaTipo;
+
 		private Agenda agenda;
 		private List<Localidad> localidades_en_tabla;
 		private List<Tipo> tipos_en_tabla;
 		private VentanaAMPersona ventanaEditar;
 		private VentanaABMLocalidades ventanaABMLocalidades;
 		private ControladorABMLocalidades controladorABMLocalidades;
+		private VentanaABMTipos ventanaABMTipos;
+		private ControladorABMTipos controladorABMTipos;
 		
 		public Controlador(Vista vista, Agenda agenda)
 		{
@@ -40,6 +44,7 @@ public class Controlador implements ActionListener
 			this.vista.getBtnReporte().addActionListener(this);
 			this.vista.getBtnEditar().addActionListener(this);
 			this.vista.getBtnAbmLocalidades().addActionListener(this);
+			this.vista.getBtnAbmTipos().addActionListener(this);
 			this.agenda = agenda;
 			this.personas_en_tabla = agenda.obtenerPersonas();
 		}
@@ -164,6 +169,13 @@ public class Controlador implements ActionListener
 				this.ventanaABMLocalidades=new VentanaABMLocalidades(controladorABMLocalidades);
 				this.controladorABMLocalidades=new ControladorABMLocalidades(ventanaABMLocalidades,agenda);
 			}
+			
+			else if(e.getSource() == this.vista.getBtnAbmTipos())
+			{				
+				this.ventanaABMTipos=new VentanaABMTipos(controladorABMTipos);
+				this.controladorABMTipos=new ControladorABMTipos(ventanaABMTipos,agenda);
+			}
+			
 			else if(!(this.ventanaPersona==null) && e.getSource() == this.ventanaPersona.getButtonGuardar())
 			{	
 				PersonaDTO nuevaPersona;
@@ -207,53 +219,44 @@ public class Controlador implements ActionListener
 			}
 			else if (!(this.ventanaPersona==null) && e.getSource()==this.ventanaPersona.getBtnABMTipo())
 			{
-				System.out.println("ventanaTipo");
-				this.ventanaTipo = new VentanaTipo(this);
-			}
-			else if (!(this.ventanaTipo==null) && e.getSource()==this.ventanaTipo.getBtnConfirmarTipo()  )
-			{
+				this.ventanaABMTipos = new VentanaABMTipos(controladorABMTipos);
+				this.controladorABMTipos=new ControladorABMTipos(ventanaABMTipos,agenda);
 				
-				Tipo nuevoTipo;
-				nuevoTipo=new Tipo(0,ventanaTipo.getTxtNombre().getText());
-				this.agenda.agregarTipo(nuevoTipo);
-				this.llenarComboBox();
-				this.ventanaTipo.dispose();
+//				System.out.println("ventanaTipo");
+//				this.ventanaTipo = new VentanaTipo(this);
 			}
-			
-//			else if (! (this.ventanaLocalidad==null) && e.getSource()==this.ventanaLocalidad.getBtnConfirmarLocalidad())
+//			else if (!(this.ventanaTipo==null) && e.getSource()==this.ventanaTipo.getBtnConfirmarTipo()  )
 //			{
-//				Localidad nuevaLocalidad;
 //				
-//				System.out.println(agenda);
-//				nuevaLocalidad=new Localidad(0,ventanaLocalidad.getTxtNombre().getText());
-//				
-//				this.agenda.agregarLocalidad(nuevaLocalidad);
+//				Tipo nuevoTipo;
+//				nuevoTipo=new Tipo(0,ventanaTipo.getTxtNombre().getText());
+//				this.agenda.agregarTipo(nuevoTipo);
 //				this.llenarComboBox();
-//				this.ventanaLocalidad.dispose();
+//				this.ventanaTipo.dispose();
 //			}
-			else if (!(this.ventanaPersona==null) && e.getSource()==this.ventanaPersona.getBtnABMLocalidad())
-			{
-				System.out.println("intenta eliminar");
-					Localidad localidad=null;
-					
-					List<Localidad> localidades=agenda.obtenerLocalidades();
-					for (int i = 0; i < localidades.size(); i ++){
-					
-					if (localidades.get(i).getNombre().equals(ventanaPersona.getComboBoxLocalidad().getSelectedItem().toString()))
-					{
-		
-						localidad=new Localidad(localidades.get(i).getIdLocalidad(),localidades.get(i).getNombre());
-					}
-					
-					
-				}
-				
-				
-//				if(this.agenda.eliminarLocalidad(localidad)==false){
-//					this.ventanaPersona.showAlertEliminar();
-//				};
-				this.llenarComboBox();
-			}
+			
+
+//			else if (!(this.ventanaPersona==null) && e.getSource()==this.ventanaPersona.getBtnABMLocalidad())
+//			{
+//				
+//				Localidad localidad=null;
+//					
+//				List<Localidad> localidades=agenda.obtenerLocalidades();
+//				for (int i = 0; i < localidades.size(); i ++){
+//					
+//				if (localidades.get(i).getNombre().equals(ventanaPersona.getComboBoxLocalidad().getSelectedItem().toString()))
+//					{
+//		
+//					localidad=new Localidad(localidades.get(i).getIdLocalidad(),localidades.get(i).getNombre());
+//					}
+//					
+//					
+//				}
+//				
+//				
+//
+//				this.llenarComboBox();
+//			}
 			else if (!(this.ventanaPersona==null) && e.getSource()==this.ventanaPersona.getBtnABMTipo())
 			{
 				

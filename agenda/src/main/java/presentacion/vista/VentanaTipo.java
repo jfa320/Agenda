@@ -2,27 +2,28 @@ package presentacion.vista;
 
 
 import javax.swing.JButton;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import presentacion.controlador.Controlador;
+import presentacion.controlador.ControladorABMTipos;
 
 public class VentanaTipo extends JFrame
 {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private Controlador controlador;
+	private ControladorABMTipos controlador;
 	
 	private JButton btnConfirmarTipo;
 	
 	private JTextField txtNombre;
 	
 	
-	public VentanaTipo(Controlador controlador) 
+	public VentanaTipo(ControladorABMTipos controlador) 
 	{
 		super();
 		this.controlador = controlador;
@@ -49,7 +50,7 @@ public class VentanaTipo extends JFrame
 		panel.add(txtNombre);
 		txtNombre.setColumns(10);
 		
-		btnConfirmarTipo=new JButton("Agregar");
+		btnConfirmarTipo=new JButton("Aceptar");
 		btnConfirmarTipo.addActionListener(this.controlador);
 		btnConfirmarTipo.setBounds(208, 66, 89, 23);
 		panel.add(btnConfirmarTipo);
@@ -66,4 +67,21 @@ public class VentanaTipo extends JFrame
 		return btnConfirmarTipo;
 	}
 
+	public void setTxtNombre(String txtNombre) {
+		this.txtNombre.setText(txtNombre);
+	}
+
+
+	public void setBtnConfirmarTipo(JButton btnConfirmarTipo) {
+		this.btnConfirmarTipo=btnConfirmarTipo;
+	}
+
+
+	public void alertaClavesForaneas() {
+		JOptionPane.showMessageDialog(null, "No es posible borrar o editar este tipo porque esta asociado a una persona");
+		
+	}
+
+	
+	
 }

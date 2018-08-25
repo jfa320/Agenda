@@ -51,10 +51,7 @@ public class Agenda
 		this.localidad.insert(nuevaLocalidad);
 	}
 	
-	public boolean eliminarLocalidad(Localidad localidad)
-	{
-		return this.localidad.delete(localidad);
-	}
+	
 
 	@Override
 	public String toString() {
@@ -70,14 +67,15 @@ public class Agenda
 		
 		return this.tipo.readAll();
 	}
-	public void eliminarTipo(Tipo tipo)
+	public boolean eliminarTipo(Tipo tipo)
 	{
-		this.tipo.delete(tipo);
+		return this.tipo.delete(tipo);
 	}
 
-	public void borrarLocalidad(Localidad localidad) {
-		this.localidad.delete(localidad);
+	public boolean borrarLocalidad(Localidad localidad) {
+		return this.localidad.delete(localidad);
 		
 	}
+
 	
 }

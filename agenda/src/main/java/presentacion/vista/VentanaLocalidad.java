@@ -5,6 +5,7 @@ package presentacion.vista;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
@@ -69,6 +70,11 @@ public class VentanaLocalidad extends JFrame
 	
 	public void setTxtNombre(String txtNombre){
 		this.txtNombre.setText(txtNombre);
+	}
+
+
+	public void alertaClavesForaneas() {
+		JOptionPane.showMessageDialog(null, "No es posible borrar o editar esta localidad porque esta asociado a una persona");
 	}
 
 }

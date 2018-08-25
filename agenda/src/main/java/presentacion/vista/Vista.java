@@ -26,7 +26,7 @@ public class Vista
 	private DefaultTableModel modelPersonas;
 	private JButton btnAbmLocalidades;
 	private  String[] nombreColumnas = {"Nombre y apellido","Telefono","Email","Cumpleaños","Tipo Contacto","Localidad","Calle","Altura","Piso","Departamento"};
-	
+	private JButton btnAbmTipos;
 	public Vista() 
 	{
 		super();
@@ -82,11 +82,11 @@ public class Vista
 		panel.add(btnAgregar);
 		
 		btnBorrar = new JButton("Borrar");
-		btnBorrar.setBounds(296, 228, 89, 23);
+		btnBorrar.setBounds(290, 228, 89, 23);
 		panel.add(btnBorrar);
 		
 		btnReporte = new JButton("Reporte");
-		btnReporte.setBounds(426, 228, 89, 23);
+		btnReporte.setBounds(418, 228, 89, 23);
 		panel.add(btnReporte);
 		
 		btnEditarContacto = new JButton("Editar");
@@ -95,8 +95,12 @@ public class Vista
 		
 		btnAbmLocalidades = new JButton("ABM Localidades");
 		
-		btnAbmLocalidades.setBounds(542, 228, 136, 23);
+		btnAbmLocalidades.setBounds(545, 228, 136, 23);
 		panel.add(btnAbmLocalidades);
+		
+		btnAbmTipos = new JButton("ABM Tipos");
+		btnAbmTipos.setBounds(710, 228, 136, 23);
+		panel.add(btnAbmTipos);
 		
 		
 	}
@@ -162,5 +166,13 @@ public class Vista
 	
 	public void alertaEditar(){
 		JOptionPane.showMessageDialog(null, "Seleccione contacto a editar");
+	}
+	
+	public JButton getBtnAbmTipos(){
+		return this.btnAbmTipos;
+	}
+	
+	public void setBtnAbmTipos(JButton btnAbmTipos){
+		this.btnAbmLocalidades=btnAbmTipos;
 	}
 }

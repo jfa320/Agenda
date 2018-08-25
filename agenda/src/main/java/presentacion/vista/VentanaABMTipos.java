@@ -2,10 +2,6 @@ package presentacion.vista;
 
 import javax.swing.JFrame;
 
-
-
-
-import presentacion.controlador.ControladorABMLocalidades;
 import presentacion.controlador.ControladorABMTipos;
 
 import javax.swing.JOptionPane;
@@ -23,7 +19,7 @@ public class VentanaABMTipos extends JFrame
 	private ControladorABMTipos controlador;
 	private JTable table;
 	private  String[] nombreColumnas = {"Nombre de Tipo"};
-	private DefaultTableModel modelLocalidades;
+	private DefaultTableModel modelTipos;
 	
 	private JButton btnAgregar;
 	private JButton btnBorrar;
@@ -61,13 +57,13 @@ public class VentanaABMTipos extends JFrame
 		panel.setLayout(null);
 		
 		
-		modelLocalidades = new DefaultTableModel(null,nombreColumnas);
+		modelTipos = new DefaultTableModel(null,nombreColumnas);
 		
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 5, 388, 245);
 		panel.add(scrollPane);
 		
-		table = new JTable(modelLocalidades);
+		table = new JTable(modelTipos);
 		scrollPane.setViewportView(table);
 		
 		
@@ -82,8 +78,8 @@ public class VentanaABMTipos extends JFrame
 	public String[] getNombreColumnas(){
 		return nombreColumnas;
 	}
-	public DefaultTableModel getModelLocalidades(){
-		return modelLocalidades;
+	public DefaultTableModel getModelTipos(){
+		return modelTipos;
 	}
 	public JButton getBtnAgregar(){
 		return btnAgregar;
@@ -110,8 +106,8 @@ public class VentanaABMTipos extends JFrame
 	public void setNombreColumnas(String[] nombreColumnas){
 		this.nombreColumnas=nombreColumnas;
 	}
-	public void setDefaultTableModel(DefaultTableModel modelLocalidades){
-		this.modelLocalidades=modelLocalidades;
+	public void setDefaultTableModel(DefaultTableModel modelTipos){
+		this.modelTipos=modelTipos;
 	}
 	public void setBtnAgregar(JButton btnAgregar){
 		this.btnAgregar=btnAgregar;
@@ -137,6 +133,10 @@ public class VentanaABMTipos extends JFrame
 	public void alertaBorrar() {
 		JOptionPane.showMessageDialog(null, "Seleccione tipo a borrar");
 		
+	}
+
+	public void alertaClavesForaneas() {
+		JOptionPane.showMessageDialog(null, "No es posible borrar o editar este tipo porque esta asociado a una persona");
 	}
 	
 }
