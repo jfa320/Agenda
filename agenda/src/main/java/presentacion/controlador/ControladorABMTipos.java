@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import dto.Localidad;
 import dto.Tipo;
 import presentacion.vista.VentanaABMTipos;
@@ -85,11 +87,20 @@ public class ControladorABMTipos implements ActionListener {
 		
 		else if(!(this.ventanaTipo==null) && e.getSource()==this.ventanaTipo.getBtnConfirmarTipo()){
 			Tipo nuevoTipo=new Tipo(0,this.ventanaTipo.getTxtNombre().getText());
-			agenda.agregarTipo(nuevoTipo);
+			
+			if (verificarNuevoTipo(nuevoTipo))
+			{
+				agenda.agregarTipo(nuevoTipo);
+				this.llenarTabla();
+				this.ventanaTipo.dispose();
 			
 			
-			this.llenarTabla();
-			this.ventanaTipo.dispose();
+			}
+			else
+			{
+				JOptionPane.showMessageDialog(null, "Ese tipo de contacto ya existe");
+			}
+			
 		}
 		else if (!(this.ventanaEditarTipo==null) && e.getSource()==this.ventanaEditarTipo.getBtnConfirmarTipo()){
 			this.ventanaEditarTipo.dispose();
@@ -120,6 +131,18 @@ public class ControladorABMTipos implements ActionListener {
 	private void llenarCamposEditables(int selectedRow) {
 		Tipo localidad=this.tipos.get(selectedRow);
 		this.ventanaEditarTipo.setTxtNombre(localidad.getNombre());
+	}
+	
+	
+	private boolean verificarNuevoTipo(Tipo nuevoTipo)
+	{
+		for (Tipo tipo:this.agenda.obtenerTipos())
+		{
+			if (nuevoTipo.getNombre().equals(tipo.getNombre()))
+				return false;
+		}
+		return true;
+			
 	}
 	
 	

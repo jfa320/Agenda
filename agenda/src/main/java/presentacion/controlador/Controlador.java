@@ -4,9 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-
-
-
+import javax.swing.JOptionPane;
 
 import modelo.Agenda;
 import presentacion.reportes.ReporteAgenda;
@@ -178,7 +176,11 @@ public class Controlador implements ActionListener
 			
 			else if(!(this.ventanaPersona==null) && e.getSource() == this.ventanaPersona.getButtonGuardar())
 			{	
-				PersonaDTO nuevaPersona;
+				if (verificarDatosTelefono() &&	verificarDatosNombre() &&verificarDatosCumpleaños() && verificarComboBox())
+					
+					
+				{
+					PersonaDTO nuevaPersona;
 				Tipo nuevoTipo=null;
 				Localidad nuevaLocalidad=null;
 				List <Tipo> tipos=agenda.obtenerTipos();
@@ -210,6 +212,10 @@ public class Controlador implements ActionListener
 				this.agenda.agregarPersona(nuevaPersona);
 				this.llenarTabla();
 				this.ventanaPersona.dispose();
+				}
+				else
+					JOptionPane.showMessageDialog(null, "Falta completar campos obligatorios *");
+				
 			}
 			else if(!(this.ventanaPersona==null) && e.getSource()== this.ventanaPersona.getBtnABMLocalidad())
 			{
@@ -285,6 +291,7 @@ public class Controlador implements ActionListener
 			
 		}
 
+		
 		private void actualizarDatosEditados() {
 
 			PersonaDTO persona=personas_en_tabla.get(this.vista.getTablaPersonas().getSelectedRow());
@@ -339,6 +346,29 @@ public class Controlador implements ActionListener
 				
 				this.llenarComboBoxEditables(persona.getLocalidad(),persona.getTipo());
 		
+		}
+		private boolean verificarDatosTelefono()
+		{
+			
+			return !this.ventanaPersona.getTextFieldTelefono().getText().isEmpty();
+		
+		}
+		private boolean verificarDatosNombre()
+		{
+			return !this.ventanaPersona.getTextFieldNombreApellido().getText().isEmpty();
+		
+		}
+		private boolean verificarDatosCumpleaños()
+		{
+			return !this.ventanaPersona.getTextFieldCumple().getText().isEmpty();
+		
+		}
+		private boolean verificarComboBox() 
+		{
+			if (this.ventanaPersona.getComboBoxLocalidad().getSelectedItem() == null || this.ventanaPersona.getComboBoxTipo().getSelectedItem()==null )
+				return false;
+			return true;
+			
 		}
 
 }

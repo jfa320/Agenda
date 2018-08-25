@@ -5,6 +5,10 @@ package presentacion.vista;
 import javax.swing.JFrame;
 import presentacion.controlador.Controlador;
 import javax.swing.JLabel;
+
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
@@ -47,10 +51,10 @@ public class VentanaAMPersona extends JFrame
 		getContentPane().setLayout(null);
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 519, 410);
+		setBounds(100, 100, 519, 488);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(10, 11, 493, 373);
+		panel.setBounds(10, 50, 493, 373);
 		getContentPane().add(panel);
 		panel.setLayout(null);
 		
@@ -92,6 +96,23 @@ public class VentanaAMPersona extends JFrame
 		textFieldCumple.setBounds(183, 290, 151, 20);
 		panel.add(textFieldCumple);
 		textFieldCumple.setColumns(10);
+		textFieldCumple.setText("//");
+		
+		textFieldCumple.addKeyListener(new KeyAdapter()
+		{
+			   public void keyTyped(KeyEvent e)
+			   {
+			      char caracter = e.getKeyChar();   
+			      if(((caracter < '0') || (caracter > '9')) &&(caracter != '\b')  ) 
+			    	  e.consume();
+
+			      if (textFieldCumple.getText().length()== 10)
+		    		  e.consume();
+			      if ((caracter == '-')   ) 
+			    	  e.consume();	 
+			   }
+			});
+		
 		
 		textFieldEmail = new JTextField();
 		textFieldEmail.setBounds(183, 259, 151, 20);
@@ -102,6 +123,20 @@ public class VentanaAMPersona extends JFrame
 		textFieldTelefono.setBounds(183, 42, 151, 20);
 		panel.add(textFieldTelefono);
 		textFieldTelefono.setColumns(10);
+		textFieldTelefono.addKeyListener(new KeyAdapter()
+		{
+			   public void keyTyped(KeyEvent e)
+			   {
+			      char caracter = e.getKeyChar();
+			      if(((caracter < '0') ||
+			         (caracter > '9')) &&
+			         (caracter != '\b' ))
+			      {
+			         e.consume(); 
+			      }
+			   }
+			});
+		
 		
 		textFieldNombreApellido = new JTextField();
 		textFieldNombreApellido.setBounds(183, 11, 151, 20);
@@ -128,11 +163,11 @@ public class VentanaAMPersona extends JFrame
 		lblCalle.setBounds(29, 76, 46, 14);
 		panel.add(lblCalle);
 		
-		lblTipoContacto = new JLabel("Tipo Contacto");
+		lblTipoContacto = new JLabel("Tipo Contacto *");
 		lblTipoContacto.setBounds(29, 194, 104, 20);
 		panel.add(lblTipoContacto);
 		
-		lblCumpleaos = new JLabel("Cumpleaños");
+		lblCumpleaos = new JLabel("Cumpleaños *");
 		lblCumpleaos.setBounds(29, 288, 71, 20);
 		panel.add(lblCumpleaos);
 		
@@ -140,11 +175,11 @@ public class VentanaAMPersona extends JFrame
 		lblEmail.setBounds(29, 262, 46, 14);
 		panel.add(lblEmail);
 		
-		lblLocalidad = new JLabel("Localidad");
+		lblLocalidad = new JLabel("Localidad * ");
 		lblLocalidad.setBounds(29, 228, 71, 20);
 		panel.add(lblLocalidad);
 		
-		lblNombreApellido = new JLabel("Nombre y Apellido");
+		lblNombreApellido = new JLabel("Nombre *");
 		lblNombreApellido.setBounds(29, 11, 104, 20);
 		panel.add(lblNombreApellido);
 		
@@ -156,6 +191,10 @@ public class VentanaAMPersona extends JFrame
 		btnAbmLocalidades = new JButton("ABM Localidades");
 		btnAbmLocalidades.setBounds(344, 227, 139, 23);
 		panel.add(btnAbmLocalidades);
+		
+		JLabel labelCamposObligatorios = new JLabel("Las etiquetas con *, son campos obligatorios");
+		labelCamposObligatorios.setBounds(10, 11, 472, 20);
+		getContentPane().add(labelCamposObligatorios);
 		btnAbmLocalidades.addActionListener(controlador);
 			
 		setVisible(true);

@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import dto.Localidad;
 import presentacion.vista.VentanaABMLocalidades;
 
@@ -86,11 +88,17 @@ public class ControladorABMLocalidades implements ActionListener {
 		
 		else if(!(this.ventanaLocalidad==null) && e.getSource()==this.ventanaLocalidad.getBtnConfirmarLocalidad()){
 			Localidad nuevaLocalidad=new Localidad(0,this.ventanaLocalidad.getTxtNombre().getText());
-			agenda.agregarLocalidad(nuevaLocalidad);
+			if (verificarNuevaLocalidad(nuevaLocalidad))
+			{
+				agenda.agregarLocalidad(nuevaLocalidad);
 			
 			
-			this.llenarTabla();
-			this.ventanaLocalidad.dispose();
+				this.llenarTabla();
+				this.ventanaLocalidad.dispose();
+			}
+			else
+				JOptionPane.showMessageDialog(null, "Esa localidad ya existe");
+			
 		}
 		else if (!(this.ventanaEditarLocalidad==null) && e.getSource()==this.ventanaEditarLocalidad.getBtnConfirmarLocalidad()){
 			this.ventanaEditarLocalidad.dispose();
@@ -120,4 +128,14 @@ public class ControladorABMLocalidades implements ActionListener {
 		this.ventanaEditarLocalidad.setTxtNombre(localidad.getNombre());
 	}
 
+	private boolean verificarNuevaLocalidad(Localidad nuevaLocalidad)
+	{
+		for (Localidad localidad:this.agenda.obtenerLocalidades())
+		{
+			if (nuevaLocalidad.getNombre().equals(localidad.getNombre()))
+				return false;
+		}
+		return true;
+			
+	}
 }
