@@ -4,7 +4,9 @@ import javax.swing.JFrame;
 
 
 
+
 import presentacion.controlador.ControladorABMLocalidades;
+import presentacion.controlador.ControladorABMTipos;
 
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -14,13 +16,13 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 
-public class VentanaABMLocalidades extends JFrame 
+public class VentanaABMTipos extends JFrame 
 {
 	private static final long serialVersionUID = 1L;
 
-	private ControladorABMLocalidades controlador;
+	private ControladorABMTipos controlador;
 	private JTable table;
-	private  String[] nombreColumnas = {"Nombre de Localidad"};
+	private  String[] nombreColumnas = {"Nombre de Tipo"};
 	private DefaultTableModel modelLocalidades;
 	
 	private JButton btnAgregar;
@@ -29,7 +31,7 @@ public class VentanaABMLocalidades extends JFrame
 	private JPanel panel;
 	private JScrollPane scrollPane;
 
-	public VentanaABMLocalidades(ControladorABMLocalidades controlador) 
+	public VentanaABMTipos(ControladorABMTipos controlador) 
 	{
 		super();
 		this.controlador = controlador;
@@ -71,7 +73,7 @@ public class VentanaABMLocalidades extends JFrame
 		
 	}
 	
-	public ControladorABMLocalidades getControlador(){
+	public ControladorABMTipos getControlador(){
 		return controlador;
 	}
 	public JTable getTable(){
@@ -99,7 +101,7 @@ public class VentanaABMLocalidades extends JFrame
 		return scrollPane;
 	}
 	
-	public void setControlador(ControladorABMLocalidades controlador){
+	public void setControlador(ControladorABMTipos controlador){
 		this.controlador=controlador;
 	}
 	public void setTable(JTable table){
@@ -128,12 +130,12 @@ public class VentanaABMLocalidades extends JFrame
 	}
 
 	public void alertaEditar() {
-		JOptionPane.showMessageDialog(null, "Seleccione localidad a editar");
+		JOptionPane.showMessageDialog(null, "Seleccione tipo a editar");
 		
 	}
 
 	public void alertaBorrar() {
-		JOptionPane.showMessageDialog(null, "Seleccione localidad a borrar");
+		JOptionPane.showMessageDialog(null, "Seleccione tipo a borrar");
 		
 	}
 	

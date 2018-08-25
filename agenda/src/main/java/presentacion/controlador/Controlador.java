@@ -10,9 +10,8 @@ import java.util.List;
 import modelo.Agenda;
 import presentacion.reportes.ReporteAgenda;
 import presentacion.vista.VentanaABMLocalidades;
-import presentacion.vista.VentanaEditarPersona;
+import presentacion.vista.VentanaAMPersona;
 import presentacion.vista.VentanaLocalidad;
-import presentacion.vista.VentanaPersona;
 import presentacion.vista.VentanaTipo;
 import presentacion.vista.Vista;
 import dto.Localidad;
@@ -23,14 +22,15 @@ public class Controlador implements ActionListener
 {
 		private Vista vista;
 		private List<PersonaDTO> personas_en_tabla;
-		private VentanaPersona ventanaPersona; 
-		private VentanaLocalidad ventanaLocalidad;
+		private VentanaAMPersona ventanaPersona; 
+		
 		private VentanaTipo ventanaTipo;
 		private Agenda agenda;
 		private List<Localidad> localidades_en_tabla;
 		private List<Tipo> tipos_en_tabla;
-		private VentanaEditarPersona ventanaEditar;
+		private VentanaAMPersona ventanaEditar;
 		private VentanaABMLocalidades ventanaABMLocalidades;
+		private ControladorABMLocalidades controladorABMLocalidades;
 		
 		public Controlador(Vista vista, Agenda agenda)
 		{
@@ -41,7 +41,7 @@ public class Controlador implements ActionListener
 			this.vista.getBtnEditar().addActionListener(this);
 			this.vista.getBtnAbmLocalidades().addActionListener(this);
 			this.agenda = agenda;
-			this.personas_en_tabla = null;
+			this.personas_en_tabla = agenda.obtenerPersonas();
 		}
 		
 		public void inicializar()
@@ -103,7 +103,7 @@ public class Controlador implements ActionListener
 			this.vista.getModelPersonas().setColumnCount(0);
 			this.vista.getModelPersonas().setColumnIdentifiers(this.vista.getNombreColumnas());
 			
-			this.personas_en_tabla = agenda.obtenerPersonas();
+			
 			for (int i = 0; i < this.personas_en_tabla.size(); i ++)
 			{
 				System.out.println(this.personas_en_tabla.get(i));
@@ -120,15 +120,15 @@ public class Controlador implements ActionListener
 			if(e.getSource() == this.vista.getBtnAgregar())
 			{
 				System.out.println(agenda);
-				System.out.println("Ventana persona");
+			
 				
-				this.ventanaPersona = new VentanaPersona(this);
+				this.ventanaPersona = new VentanaAMPersona(this);
 				this.llenarComboBox();
 			}
 			else if(e.getSource()== this.vista.getBtnEditar())
 			{				
 				if(this.vista.getTablaPersonas().getSelectedRow()>=0){
-					this.ventanaEditar=new VentanaEditarPersona(this);
+					this.ventanaEditar=new VentanaAMPersona(this);
 					this.llenarCamposEditables(this.vista.getTablaPersonas().getSelectedRow());}
 				else{
 					this.vista.alertaEditar();
@@ -136,7 +136,7 @@ public class Controlador implements ActionListener
 			}
 			
 			
-			else if(!(this.ventanaEditar==null) && e.getSource()==this.ventanaEditar.getButtonGuardarCambios()){
+			else if(!(this.ventanaEditar==null) && e.getSource()==this.ventanaEditar.getButtonGuardar()){
 				this.ventanaEditar.dispose();
 				
 				this.actualizarDatosEditados();
@@ -161,9 +161,10 @@ public class Controlador implements ActionListener
 			
 			else if(e.getSource() == this.vista.getBtnAbmLocalidades())
 			{				
-				this.ventanaABMLocalidades=new VentanaABMLocalidades(this);
+				this.ventanaABMLocalidades=new VentanaABMLocalidades(controladorABMLocalidades);
+				this.controladorABMLocalidades=new ControladorABMLocalidades(ventanaABMLocalidades,agenda);
 			}
-			else if(!(this.ventanaPersona==null) && e.getSource() == this.ventanaPersona.getBtnAgregarPersona())
+			else if(!(this.ventanaPersona==null) && e.getSource() == this.ventanaPersona.getButtonGuardar())
 			{	
 				PersonaDTO nuevaPersona;
 				Tipo nuevoTipo=null;
@@ -189,21 +190,22 @@ public class Controlador implements ActionListener
 					}
 				}
 				
-				System.out.println(nuevaLocalidad.getNombre());
 				
-				nuevaPersona = new PersonaDTO(0,this.ventanaPersona.getTxtNombre().getText(), ventanaPersona.getTxtTelefono().getText(),ventanaPersona.getTxtEmail().getText(),ventanaPersona.getTxtCumple().getText(),nuevoTipo,nuevaLocalidad,ventanaPersona.getTxtCalle().getText(),ventanaPersona.getTxtAltura().getText(),ventanaPersona.getTxtPiso().getText(),ventanaPersona.getTxtDepto().getText());
+				
+				nuevaPersona = new PersonaDTO(0,this.ventanaPersona.getTextFieldNombreApellido().getText(), ventanaPersona.getTextFieldTelefono().getText(),ventanaPersona.getTextFieldEmail().getText(),ventanaPersona.getTextFieldCumple().getText(),nuevoTipo,nuevaLocalidad,ventanaPersona.getTextFieldCalle().getText(),ventanaPersona.getTextFieldAltura().getText(),ventanaPersona.getTextFieldPiso().getText(),ventanaPersona.getTextFieldDepartamento().getText());
 			
 				
 				this.agenda.agregarPersona(nuevaPersona);
 				this.llenarTabla();
 				this.ventanaPersona.dispose();
 			}
-			else if(!(this.ventanaPersona==null) && e.getSource()== this.ventanaPersona.getBtnAgregarLocalidad())
+			else if(!(this.ventanaPersona==null) && e.getSource()== this.ventanaPersona.getBtnABMLocalidad())
 			{
-				System.out.println("ventanalocalidad");
-				this.ventanaLocalidad = new VentanaLocalidad(this);
+				
+				this.ventanaABMLocalidades = new VentanaABMLocalidades(controladorABMLocalidades);
+				this.controladorABMLocalidades=new ControladorABMLocalidades(ventanaABMLocalidades,agenda);
 			}
-			else if (!(this.ventanaPersona==null) && e.getSource()==this.ventanaPersona.getBtnAgregarTipo())
+			else if (!(this.ventanaPersona==null) && e.getSource()==this.ventanaPersona.getBtnABMTipo())
 			{
 				System.out.println("ventanaTipo");
 				this.ventanaTipo = new VentanaTipo(this);
@@ -218,18 +220,18 @@ public class Controlador implements ActionListener
 				this.ventanaTipo.dispose();
 			}
 			
-			else if (! (this.ventanaLocalidad==null) && e.getSource()==this.ventanaLocalidad.getBtnConfirmarLocalidad())
-			{
-				Localidad nuevaLocalidad;
-				
-				System.out.println(agenda);
-				nuevaLocalidad=new Localidad(0,ventanaLocalidad.getTxtNombre().getText());
-				
-				this.agenda.agregarLocalidad(nuevaLocalidad);
-				this.llenarComboBox();
-				this.ventanaLocalidad.dispose();
-			}
-			else if (!(this.ventanaPersona==null) && e.getSource()==this.ventanaPersona.getButtonEliminarLocalidad())
+//			else if (! (this.ventanaLocalidad==null) && e.getSource()==this.ventanaLocalidad.getBtnConfirmarLocalidad())
+//			{
+//				Localidad nuevaLocalidad;
+//				
+//				System.out.println(agenda);
+//				nuevaLocalidad=new Localidad(0,ventanaLocalidad.getTxtNombre().getText());
+//				
+//				this.agenda.agregarLocalidad(nuevaLocalidad);
+//				this.llenarComboBox();
+//				this.ventanaLocalidad.dispose();
+//			}
+			else if (!(this.ventanaPersona==null) && e.getSource()==this.ventanaPersona.getBtnABMLocalidad())
 			{
 				System.out.println("intenta eliminar");
 					Localidad localidad=null;
@@ -247,12 +249,12 @@ public class Controlador implements ActionListener
 				}
 				
 				
-				if(this.agenda.eliminarLocalidad(localidad)==false){
-					this.ventanaPersona.showAlertEliminar();
-				};
+//				if(this.agenda.eliminarLocalidad(localidad)==false){
+//					this.ventanaPersona.showAlertEliminar();
+//				};
 				this.llenarComboBox();
 			}
-			else if (!(this.ventanaPersona==null) && e.getSource()==this.ventanaPersona.getButtonEliminarTipo())
+			else if (!(this.ventanaPersona==null) && e.getSource()==this.ventanaPersona.getBtnABMTipo())
 			{
 				
 				Tipo tipo=null;
@@ -282,9 +284,9 @@ public class Controlador implements ActionListener
 
 		private void actualizarDatosEditados() {
 
-			PersonaDTO persona;
+			PersonaDTO persona=personas_en_tabla.get(this.vista.getTablaPersonas().getSelectedRow());
 			
-			persona=personas_en_tabla.get(this.vista.getTablaPersonas().getSelectedRow());
+			
 			agenda.borrarPersona(persona);
 			
 			

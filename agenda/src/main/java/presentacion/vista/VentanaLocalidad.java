@@ -3,7 +3,6 @@ package presentacion.vista;
 
 
 import javax.swing.JButton;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -11,19 +10,20 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import presentacion.controlador.Controlador;
+import presentacion.controlador.ControladorABMLocalidades;
 
 public class VentanaLocalidad extends JFrame
 {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private Controlador controlador;
+	private ControladorABMLocalidades controlador;
 	
 	private JButton btnConfirmarLocalidad;
 	
 	private JTextField txtNombre;
 	
 	
-	public VentanaLocalidad(Controlador controlador) 
+	public VentanaLocalidad(ControladorABMLocalidades controlador) 
 	{
 		super();
 		this.controlador = controlador;
@@ -50,7 +50,7 @@ public class VentanaLocalidad extends JFrame
 		panel.add(txtNombre);
 		txtNombre.setColumns(10);
 		
-		btnConfirmarLocalidad = new JButton("Agregar");
+		btnConfirmarLocalidad = new JButton("Guardar");
 		btnConfirmarLocalidad.addActionListener(this.controlador);
 		btnConfirmarLocalidad.setBounds(208, 66, 89, 23);
 		panel.add(btnConfirmarLocalidad);
@@ -65,6 +65,10 @@ public class VentanaLocalidad extends JFrame
 
 	public JButton getBtnConfirmarLocalidad() {
 		return btnConfirmarLocalidad;
+	}
+	
+	public void setTxtNombre(String txtNombre){
+		this.txtNombre.setText(txtNombre);
 	}
 
 }

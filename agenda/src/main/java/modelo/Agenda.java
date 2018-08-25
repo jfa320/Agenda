@@ -74,5 +74,10 @@ public class Agenda
 	{
 		this.tipo.delete(tipo);
 	}
+
+	public void borrarLocalidad(Localidad localidad) {
+		this.localidad.delete(localidad);
+		
+	}
 	
 }

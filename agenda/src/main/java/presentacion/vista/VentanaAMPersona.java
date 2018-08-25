@@ -3,20 +3,14 @@ package presentacion.vista;
 
 
 import javax.swing.JFrame;
-
-
-
-
-
 import presentacion.controlador.Controlador;
-
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
-public class VentanaEditarPersona extends JFrame
+public class VentanaAMPersona extends JFrame
 {
 	private static final long serialVersionUID = 1L;
 	
@@ -31,7 +25,7 @@ public class VentanaEditarPersona extends JFrame
 	private JTextField textFieldDepartamento;
 	
 	private JLabel lblNombreApellido;
-	private JLabel lblNewLabel_1;
+	private JLabel lblLocalidad;
 	private JLabel lblTelefono;
 	private JLabel lblEmail;
 	private JLabel lblCumpleaos;
@@ -43,18 +37,20 @@ public class VentanaEditarPersona extends JFrame
 	private JButton btnGuardarCambios;
 	private JComboBox<String> comboBoxTipo;
 	private JComboBox<String> comboBoxLocalidad;
+	private JButton btnAbmLocalidades;
+	private JButton btnAbmTipos; 
 	
-	public VentanaEditarPersona(Controlador controlador) 
+	public VentanaAMPersona(Controlador controlador) 
 	{
 		super();
 		this.setControlador(controlador);
 		getContentPane().setLayout(null);
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 444, 410);
+		setBounds(100, 100, 519, 410);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(10, 11, 414, 373);
+		panel.setBounds(10, 11, 493, 373);
 		getContentPane().add(panel);
 		panel.setLayout(null);
 		
@@ -71,7 +67,7 @@ public class VentanaEditarPersona extends JFrame
 		panel.add(textFieldDepartamento);
 		textFieldDepartamento.setColumns(10);
 		
-		btnGuardarCambios = new JButton("Guardar Cambios");
+		btnGuardarCambios = new JButton("Guardar");
 		btnGuardarCambios.setBounds(225, 324, 162, 23);
 		panel.add(btnGuardarCambios);
 		btnGuardarCambios.addActionListener(controlador);
@@ -144,13 +140,23 @@ public class VentanaEditarPersona extends JFrame
 		lblEmail.setBounds(29, 262, 46, 14);
 		panel.add(lblEmail);
 		
-		lblNewLabel_1 = new JLabel("Localidad");
-		lblNewLabel_1.setBounds(29, 228, 71, 20);
-		panel.add(lblNewLabel_1);
+		lblLocalidad = new JLabel("Localidad");
+		lblLocalidad.setBounds(29, 228, 71, 20);
+		panel.add(lblLocalidad);
 		
 		lblNombreApellido = new JLabel("Nombre y Apellido");
 		lblNombreApellido.setBounds(29, 11, 104, 20);
 		panel.add(lblNombreApellido);
+		
+		btnAbmTipos = new JButton("ABM Tipos");
+		btnAbmTipos.setBounds(344, 196, 139, 23);
+		panel.add(btnAbmTipos);
+		btnAbmTipos.addActionListener(controlador);
+		
+		btnAbmLocalidades = new JButton("ABM Localidades");
+		btnAbmLocalidades.setBounds(344, 227, 139, 23);
+		panel.add(btnAbmLocalidades);
+		btnAbmLocalidades.addActionListener(controlador);
 			
 		setVisible(true);
 	}
@@ -232,8 +238,19 @@ public class VentanaEditarPersona extends JFrame
 
 
 
-	public JButton getButtonGuardarCambios() {
+	public JButton getButtonGuardar() {
 		return this.btnGuardarCambios;
 	}
-	
+
+
+
+	public JButton getBtnABMLocalidad() {
+		return this.btnAbmLocalidades;
+	}
+
+
+
+	public JButton getBtnABMTipo() {
+		return this.btnAbmTipos;
+	}
 }
