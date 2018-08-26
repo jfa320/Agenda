@@ -109,7 +109,7 @@
 		<band height="7" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="184" splitType="Stretch">
+		<band height="230" splitType="Stretch">
 			<textField>
 				<reportElement x="355" y="154" width="100" height="30" uuid="5ce007da-8e81-48b7-91fd-8e603c20d7ef"/>
 				<textElement textAlignment="Right"/>
@@ -120,12 +120,27 @@
 				<textElement textAlignment="Left"/>
 				<textFieldExpression><![CDATA[" de " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
-			<frame>
-				<reportElement x="0" y="0" width="555" height="60" uuid="0676ea8a-160b-4f21-9767-48ed804daac8"/>
-				<frame>
-					<reportElement x="0" y="0" width="555" height="100" uuid="90a8fd63-2c78-4311-8fbf-5bfaec62fcbc"/>
-				</frame>
-			</frame>
 		</band>
 	</pageFooter>
+	<summary>
+		<band height="253">
+			<pieChart>
+				<chart evaluationTime="Report">
+					<reportElement x="0" y="0" width="555" height="253" uuid="c497305a-d4a5-48fb-ac1d-ee46a70a4818"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<pieDataset>
+					<keyExpression><![CDATA[$F{signo}]]></keyExpression>
+					<valueExpression><![CDATA[$V{Signo_COUNT}]]></valueExpression>
+					<labelExpression><![CDATA[$F{signo} +"=" + $V{Signo_COUNT}]]></labelExpression>
+				</pieDataset>
+				<piePlot>
+					<plot/>
+					<itemLabel/>
+				</piePlot>
+			</pieChart>
+		</band>
+	</summary>
 </jasperReport>

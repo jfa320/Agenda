@@ -2,8 +2,7 @@ package dto;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.sql.Date;
+
 
 public class PersonaDTO 
 {
@@ -35,14 +34,14 @@ public class PersonaDTO
 		this.departamento=departamento;
 	}
 	
-	private java.sql.Date generarCumpleaño(String cumpleaño) 
+	private java.sql.Date generarCumpleaño(String cumpleaños) 
 	{
 		SimpleDateFormat formato=new SimpleDateFormat("yyyy-MM-dd");
 		java.util.Date utilDate = new java.util.Date();
 		java.sql.Date sqlDate = null;
 		
 		try {
-			utilDate= formato.parse(cumpleaño);
+			utilDate= formato.parse(cumpleaños);
 			
 			sqlDate = new java.sql.Date(utilDate.getTime());
 		} catch (ParseException e) 
@@ -154,9 +153,10 @@ public class PersonaDTO
 		this.departamento=departamento;
 	}
 
-	public void setCumpleaños(String text) 
-	{
-		
+	public void setCumpleaños(String text) {
+		this.cumpleaños=this.generarCumpleaño(text);
 		
 	}
+
+	
 }

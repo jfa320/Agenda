@@ -16,8 +16,6 @@ import presentacion.reportes.ReporteAgenda;
 import presentacion.vista.VentanaABMLocalidades;
 import presentacion.vista.VentanaABMTipos;
 import presentacion.vista.VentanaAMPersona;
-import presentacion.vista.VentanaLocalidad;
-import presentacion.vista.VentanaTipo;
 import presentacion.vista.Vista;
 import dto.Localidad;
 import dto.PersonaDTO;
@@ -383,13 +381,20 @@ public class Controlador implements ActionListener
 			return true;
 			
 		}
-		private List<PersonaReporte> generarListaReporte(List<PersonaDTO> obtenerPersonas) 
-		{List<PersonaReporte> personasReporte=new ArrayList<>();
+		
+		
+		private List<PersonaReporte> generarListaReporte(List<PersonaDTO> obtenerPersonas) {
+		
+		ordenarFechaNacimiento(obtenerPersonas);	
+			
+		List<PersonaReporte> personasReporte=new ArrayList<>();
 		Map<String,ArrayList<PersonaReporte>> personasReporteOrdenado=new TreeMap<>();
+		
 		
 		for(PersonaDTO persona: obtenerPersonas)
 		{
 			personasReporte.add(new PersonaReporte(persona));
+			
 		}
 		
 		
@@ -401,8 +406,10 @@ public class Controlador implements ActionListener
 				
 			}
 			personasReporteOrdenado.get(persona.getSigno()).add(persona);
-				
+			
 		}
+		
+	
 		
 		personasReporte=new ArrayList<>();
 		
@@ -421,11 +428,18 @@ public class Controlador implements ActionListener
 			
 		}
 
-		private void ordenar(List<PersonaReporte> personasReporte) {
+		private void ordenarFechaNacimiento(List<PersonaDTO> obtenerPersonas) {
+			Collections.sort(obtenerPersonas, new Comparator<PersonaDTO>() {
+				   public int compare(PersonaDTO obj1, PersonaDTO obj2) {
+				      return obj1.getCumpleaños().compareTo(obj2.getCumpleaños());
+				   }
+				});
 			
 		
-
-			
 		}
+
+		
+
+	
 		}
 
