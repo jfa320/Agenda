@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import javax.swing.JOptionPane;
 
@@ -382,16 +384,39 @@ public class Controlador implements ActionListener
 			
 		}
 		private List<PersonaReporte> generarListaReporte(List<PersonaDTO> obtenerPersonas) 
+		{List<PersonaReporte> personasReporte=new ArrayList<>();
+		Map<String,ArrayList<PersonaReporte>> personasReporteOrdenado=new TreeMap<>();
+		
+		for(PersonaDTO persona: obtenerPersonas)
 		{
-			List<PersonaReporte> personasReporte=new ArrayList<>();
-			for(PersonaDTO persona: obtenerPersonas)
+			personasReporte.add(new PersonaReporte(persona));
+		}
+		
+		
+		for(PersonaReporte persona:personasReporte)
+		{
+			if (!personasReporteOrdenado.containsKey(persona.getSigno()))
 			{
-				personasReporte.add(new PersonaReporte(persona));
+				personasReporteOrdenado.put(persona.getSigno(),new ArrayList<PersonaReporte>());
+				
 			}
+			personasReporteOrdenado.get(persona.getSigno()).add(persona);
+				
+		}
+		
+		personasReporte=new ArrayList<>();
+		
+		for(String signo: personasReporteOrdenado.keySet())
+		{
+			personasReporte.addAll(personasReporteOrdenado.get(signo));
 			
-			ordenar(personasReporte);
-			
-			return personasReporte;
+		}
+		
+		
+		
+		
+		
+		return personasReporte;
 			
 			
 		}
