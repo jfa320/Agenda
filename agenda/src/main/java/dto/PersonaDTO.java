@@ -100,8 +100,8 @@ public class PersonaDTO
 		this.email=Email;
 	}
 	
-	public String getCumpleaños() {
-		return cumpleaños.toString();
+	public java.sql.Date getCumpleaños() {
+		return cumpleaños;
 	}
 
 	

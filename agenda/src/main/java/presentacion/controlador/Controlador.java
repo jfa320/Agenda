@@ -2,6 +2,9 @@ package presentacion.controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -16,6 +19,7 @@ import presentacion.vista.VentanaTipo;
 import presentacion.vista.Vista;
 import dto.Localidad;
 import dto.PersonaDTO;
+import dto.PersonaReporte;
 import dto.Tipo;
 
 public class Controlador implements ActionListener
@@ -160,9 +164,9 @@ public class Controlador implements ActionListener
 			{		
 			
 				
-				
-				ReporteAgenda reporte = new ReporteAgenda(agenda.obtenerPersonas());
-				reporte.mostrar();				
+				System.out.println(generarListaReporte(agenda.obtenerPersonas()));
+				ReporteAgenda reporte = new ReporteAgenda(generarListaReporte(agenda.obtenerPersonas()));
+				reporte.mostrar();					
 			}
 			
 			else if(e.getSource() == this.vista.getBtnAbmLocalidades())
@@ -344,7 +348,7 @@ public class Controlador implements ActionListener
 				ventanaEditar.setTextFieldNombreApellido(persona.getNombre());
 				ventanaEditar.setTextFieldTelefono(persona.getTelefono());
 				ventanaEditar.setTextFieldEmail(persona.getEmail());
-				ventanaEditar.setTextFieldCumple(persona.getCumpleaños());
+				ventanaEditar.setTextFieldCumple(persona.getCumpleaños().toString());
 				ventanaEditar.setTextFieldCalle(persona.getCalle());
 				ventanaEditar.setTextFieldAltura(persona.getAltura());
 				ventanaEditar.setTextFieldPiso(persona.getPiso());
@@ -377,5 +381,26 @@ public class Controlador implements ActionListener
 			return true;
 			
 		}
+		private List<PersonaReporte> generarListaReporte(List<PersonaDTO> obtenerPersonas) 
+		{
+			List<PersonaReporte> personasReporte=new ArrayList<>();
+			for(PersonaDTO persona: obtenerPersonas)
+			{
+				personasReporte.add(new PersonaReporte(persona));
+			}
+			
+			ordenar(personasReporte);
+			
+			return personasReporte;
+			
+			
+		}
 
-}
+		private void ordenar(List<PersonaReporte> personasReporte) {
+			
+		
+
+			
+		}
+		}
+

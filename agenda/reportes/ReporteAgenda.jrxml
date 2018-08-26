@@ -10,25 +10,25 @@
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
-	<field name="telefono" class="java.lang.String">
-		<fieldDescription><![CDATA[telefono]]></fieldDescription>
+	<field name="cumpleaños" class="java.sql.Date">
+		<fieldDescription><![CDATA[cumpleaños]]></fieldDescription>
 	</field>
-	<field name="localidad" class="dto.Localidad">
-		<fieldDescription><![CDATA[localidad]]></fieldDescription>
+	<field name="signo" class="java.lang.String">
+		<fieldDescription><![CDATA[signo]]></fieldDescription>
 	</field>
 	<field name="nombre" class="java.lang.String">
 		<fieldDescription><![CDATA[nombre]]></fieldDescription>
 	</field>
-	<field name="calle" class="java.lang.String">
-		<fieldDescription><![CDATA[calle]]></fieldDescription>
-	</field>
-	<group name="Localidad">
-		<groupExpression><![CDATA[$F{localidad}.getNombre()]]></groupExpression>
+	<group name="Signo">
+		<groupExpression><![CDATA[$F{signo}]]></groupExpression>
 		<groupHeader>
-			<band height="50">
+			<band height="45">
+				<rectangle>
+					<reportElement x="0" y="0" width="555" height="40" forecolor="#0000FC" backcolor="#00F279" uuid="46d8cb3e-644f-4ccb-847e-d04a3c39c5d5"/>
+				</rectangle>
 				<textField>
-					<reportElement x="0" y="10" width="100" height="30" uuid="e895cecc-16ae-420d-93a9-3ad310d90d2f"/>
-					<textFieldExpression><![CDATA[$F{localidad}.getNombre()]]></textFieldExpression>
+					<reportElement x="3" y="7" width="100" height="30" uuid="8132a108-f9c8-4263-92fa-56630212ab81"/>
+					<textFieldExpression><![CDATA[$F{signo}]]></textFieldExpression>
 				</textField>
 			</band>
 		</groupHeader>
@@ -73,7 +73,7 @@
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="31" splitType="Stretch">
+		<band height="39" splitType="Stretch">
 			<frame>
 				<reportElement x="2" y="6" width="550" height="23" uuid="23209a62-cc9d-4b81-8e93-aa9cc3a92b36"/>
 				<staticText>
@@ -88,7 +88,7 @@
 					<textElement textAlignment="Center">
 						<font size="14"/>
 					</textElement>
-					<text><![CDATA[Telefono]]></text>
+					<text><![CDATA[Cumpleaños]]></text>
 				</staticText>
 			</frame>
 		</band>
@@ -101,7 +101,7 @@
 			</textField>
 			<textField>
 				<reportElement x="285" y="1" width="215" height="18" uuid="dd3f7d4c-c2c3-4ee6-8d98-1b88fe0228ec"/>
-				<textFieldExpression><![CDATA[$F{telefono}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{cumpleaños}.toString()]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
