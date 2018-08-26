@@ -157,7 +157,10 @@ public class Controlador implements ActionListener
 				this.llenarTabla();
 			}
 			else if(e.getSource() == this.vista.getBtnReporte())
-			{				
+			{		
+			
+				
+				
 				ReporteAgenda reporte = new ReporteAgenda(agenda.obtenerPersonas());
 				reporte.mostrar();				
 			}
@@ -294,6 +297,8 @@ public class Controlador implements ActionListener
 		}
 
 		
+		
+
 		private void actualizarDatosEditados() {
 
 			PersonaDTO persona=personas_en_tabla.get(this.vista.getTablaPersonas().getSelectedRow());
