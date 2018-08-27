@@ -183,44 +183,53 @@ public class Controlador implements ActionListener
 			
 			else if(!(this.ventanaPersona==null) && e.getSource() == this.ventanaPersona.getButtonGuardar())
 			{	
-				if (verificarDatosTelefono() &&	verificarDatosNombre() &&verificarDatosCumpleaños() && verificarComboBox())
-					
-					
+				
+				if (verificarDatosTelefono() &&	verificarDatosNombre() &&verificarDatosCumpleaños() && verificarComboBox())	
 				{
-					PersonaDTO nuevaPersona;
-				Tipo nuevoTipo=null;
-				Localidad nuevaLocalidad=null;
-				List <Tipo> tipos=agenda.obtenerTipos();
-				List<Localidad> localidades=agenda.obtenerLocalidades();
-				
-				for (int i = 0; i < tipos.size(); i ++){
-					
-					if (tipos.get(i).getNombre().equals(ventanaPersona.getComboBoxTipo().getSelectedItem().toString()))
+					if (!ventanaPersona.getTextFieldEmail().getText().isEmpty() || !ventanaPersona.getTextFieldServidor().getText().isEmpty())
 					{
-		
-						nuevoTipo=new Tipo(tipos.get(i).getIdTipo(),tipos.get(i).getNombre());
-					}
-				}
+						if (verificarDatosEmail())
+						{
+								
+							PersonaDTO nuevaPersona;
+							Tipo nuevoTipo=null;
+							Localidad nuevaLocalidad=null;
+							List <Tipo> tipos=agenda.obtenerTipos();
+							List<Localidad> localidades=agenda.obtenerLocalidades();
+							
+						for (int i = 0; i < tipos.size(); i ++){
+							
+							if (tipos.get(i).getNombre().equals(ventanaPersona.getComboBoxTipo().getSelectedItem().toString()))
+							{
 				
-				for (int i = 0; i < localidades.size(); i ++){
+								nuevoTipo=new Tipo(tipos.get(i).getIdTipo(),tipos.get(i).getNombre());
+							}
+						}
+						
+						for (int i = 0; i < localidades.size(); i ++){
+							
+							if (localidades.get(i).getNombre().equals(ventanaPersona.getComboBoxLocalidad().getSelectedItem().toString()))
+							{
+				
+								nuevaLocalidad=new Localidad(localidades.get(i).getIdLocalidad(),localidades.get(i).getNombre());
+							}
+						}
+						
+						
+						
+						nuevaPersona = new PersonaDTO(0,this.ventanaPersona.getTextFieldNombreApellido().getText(), ventanaPersona.getTextFieldTelefono().getText(),ventanaPersona.getTextFieldEmail().getText()+"@"+ventanaPersona.getTextFieldDepartamento().getText(),ventanaPersona.getTextFieldCumple().getText(),nuevoTipo,nuevaLocalidad,ventanaPersona.getTextFieldCalle().getText(),ventanaPersona.getTextFieldAltura().getText(),ventanaPersona.getTextFieldPiso().getText(),ventanaPersona.getTextFieldDepartamento().getText());
 					
-					if (localidades.get(i).getNombre().equals(ventanaPersona.getComboBoxLocalidad().getSelectedItem().toString()))
-					{
-		
-						nuevaLocalidad=new Localidad(localidades.get(i).getIdLocalidad(),localidades.get(i).getNombre());
+						
+						this.agenda.agregarPersona(nuevaPersona);
+						
+						this.ventanaPersona.dispose();
+						this.llenarTabla();
+						}
+						else
+							JOptionPane.showMessageDialog(null, "Falta completar el mail");
 					}
-				}
+					
 				
-				
-				
-				nuevaPersona = new PersonaDTO(0,this.ventanaPersona.getTextFieldNombreApellido().getText(), ventanaPersona.getTextFieldTelefono().getText(),ventanaPersona.getTextFieldEmail().getText(),ventanaPersona.getTextFieldCumple().getText(),nuevoTipo,nuevaLocalidad,ventanaPersona.getTextFieldCalle().getText(),ventanaPersona.getTextFieldAltura().getText(),ventanaPersona.getTextFieldPiso().getText(),ventanaPersona.getTextFieldDepartamento().getText());
-			
-				
-				this.agenda.agregarPersona(nuevaPersona);
-				
-				this.ventanaPersona.dispose();
-				this.llenarTabla();
-				System.out.println("llegue aca");
 				}
 				else
 					JOptionPane.showMessageDialog(null, "Falta completar campos obligatorios *");
@@ -237,41 +246,8 @@ public class Controlador implements ActionListener
 				this.ventanaABMTipos = new VentanaABMTipos(controladorABMTipos);
 				this.controladorABMTipos=new ControladorABMTipos(ventanaABMTipos,agenda);
 				
-//				System.out.println("ventanaTipo");
-//				this.ventanaTipo = new VentanaTipo(this);
 			}
-//			else if (!(this.ventanaTipo==null) && e.getSource()==this.ventanaTipo.getBtnConfirmarTipo()  )
-//			{
-//				
-//				Tipo nuevoTipo;
-//				nuevoTipo=new Tipo(0,ventanaTipo.getTxtNombre().getText());
-//				this.agenda.agregarTipo(nuevoTipo);
-//				this.llenarComboBox();
-//				this.ventanaTipo.dispose();
-//			}
-			
 
-//			else if (!(this.ventanaPersona==null) && e.getSource()==this.ventanaPersona.getBtnABMLocalidad())
-//			{
-//				
-//				Localidad localidad=null;
-//					
-//				List<Localidad> localidades=agenda.obtenerLocalidades();
-//				for (int i = 0; i < localidades.size(); i ++){
-//					
-//				if (localidades.get(i).getNombre().equals(ventanaPersona.getComboBoxLocalidad().getSelectedItem().toString()))
-//					{
-//		
-//					localidad=new Localidad(localidades.get(i).getIdLocalidad(),localidades.get(i).getNombre());
-//					}
-//					
-//					
-//				}
-//				
-//				
-//
-//				this.llenarComboBox();
-//			}
 			else if (!(this.ventanaPersona==null) && e.getSource()==this.ventanaPersona.getBtnABMTipo())
 			{
 				
@@ -372,6 +348,11 @@ public class Controlador implements ActionListener
 		private boolean verificarDatosCumpleaños()
 		{
 			return !this.ventanaPersona.getTextFieldCumple().getText().isEmpty();
+		
+		}
+		private boolean verificarDatosEmail()
+		{
+			return (!this.ventanaPersona.getTextFieldCumple().getText().isEmpty() && !this.ventanaPersona.getTextFieldServidor().getText().isEmpty()) ;
 		
 		}
 		private boolean verificarComboBox() 

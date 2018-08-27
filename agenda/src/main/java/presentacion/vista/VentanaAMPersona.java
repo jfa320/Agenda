@@ -43,6 +43,7 @@ public class VentanaAMPersona extends JFrame
 	private JComboBox<String> comboBoxLocalidad;
 	private JButton btnAbmLocalidades;
 	private JButton btnAbmTipos; 
+	private JTextField textFieldServidor;
 	
 	public VentanaAMPersona(Controlador controlador) 
 	{
@@ -120,7 +121,7 @@ public class VentanaAMPersona extends JFrame
 		
 		
 		textFieldEmail = new JTextField();
-		textFieldEmail.setBounds(183, 259, 151, 20);
+		textFieldEmail.setBounds(183, 259, 86, 20);
 		panel.add(textFieldEmail);
 		textFieldEmail.setColumns(10);
 		
@@ -172,7 +173,7 @@ public class VentanaAMPersona extends JFrame
 		lblTipoContacto.setBounds(11, 197, 104, 20);
 		panel.add(lblTipoContacto);
 		
-		lblCumpleaos = new JLabel("Cumpleaños *(xxxx/xx/xx)");
+		lblCumpleaos = new JLabel("Cumpleaños *(xxxx-xx-xx)");
 		lblCumpleaos.setBounds(10, 290, 163, 20);
 		panel.add(lblCumpleaos);
 		
@@ -197,11 +198,20 @@ public class VentanaAMPersona extends JFrame
 		btnAbmLocalidades.setBounds(344, 227, 139, 23);
 		panel.add(btnAbmLocalidades);
 		
+		JLabel arroba = new JLabel("@");
+		arroba.setBounds(271, 259, 24, 20);
+		panel.add(arroba);
+		
+		textFieldServidor = new JTextField();
+		textFieldServidor.setColumns(10);
+		textFieldServidor.setBounds(289, 259, 63, 20);
+		panel.add(textFieldServidor);
+		
 		JLabel labelCamposObligatorios = new JLabel("Las etiquetas con *, son campos obligatorios");
 		labelCamposObligatorios.setBounds(10, 11, 472, 20);
 		getContentPane().add(labelCamposObligatorios);
 		btnAbmLocalidades.addActionListener(controlador);
-			
+		
 		setVisible(true);
 	}
 	
@@ -290,6 +300,12 @@ public class VentanaAMPersona extends JFrame
 
 	public JButton getBtnABMLocalidad() {
 		return this.btnAbmLocalidades;
+	}
+
+
+
+	public JTextField getTextFieldServidor() {
+		return textFieldServidor;
 	}
 
 
