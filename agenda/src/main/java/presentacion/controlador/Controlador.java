@@ -150,6 +150,16 @@ public class Controlador implements ActionListener
 				this.llenarTabla();
 			}
 			
+			else if(!(this.ventanaEditar==null) && e.getSource()==this.ventanaEditar.getBtnABMLocalidad()){
+				this.ventanaABMLocalidades=new VentanaABMLocalidades(controladorABMLocalidades);
+				this.controladorABMLocalidades=new ControladorABMLocalidades(ventanaABMLocalidades,agenda);
+			}
+			
+			else if(!(this.ventanaEditar==null) && e.getSource()==this.ventanaEditar.getBtnABMTipo()){
+				this.ventanaABMTipos=new VentanaABMTipos(controladorABMTipos);
+				this.controladorABMTipos=new ControladorABMTipos(ventanaABMTipos,agenda);
+			}
+			
 			else if(e.getSource() == this.vista.getBtnBorrar())
 			{
 				int[] filas_seleccionadas = this.vista.getTablaPersonas().getSelectedRows();
