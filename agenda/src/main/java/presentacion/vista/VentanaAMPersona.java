@@ -175,7 +175,7 @@ public class VentanaAMPersona extends JFrame
 		lblTipoContacto.setBounds(11, 197, 104, 20);
 		panel.add(lblTipoContacto);
 		
-		lblCumpleaos = new JLabel("Cumpleaños *(xxxx-xx-xx)");
+		lblCumpleaos = new JLabel("Cumpleaños *(AAAA-MM-DD)");
 		lblCumpleaos.setBounds(10, 290, 163, 20);
 		panel.add(lblCumpleaos);
 		
