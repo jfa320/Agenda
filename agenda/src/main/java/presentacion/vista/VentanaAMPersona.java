@@ -384,4 +384,26 @@ public class VentanaAMPersona extends JFrame
 	public JButton getBtnABMTipo() {
 		return this.btnAbmTipos;
 	}
+
+
+
+	public void setTextFieldMes(String string) 
+	{
+		this.textFieldMes.setText(string);
+		
+	}
+
+
+
+	public void setTextFieldDia(String string) {
+		this.textFieldDia.setText(string);
+		
+	}
+
+
+
+	public void setTextFieldServidor(String servidor) {
+		this.textFieldServidor.setText(servidor);
+		
+	}
 }

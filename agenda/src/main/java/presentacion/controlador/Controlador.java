@@ -3,6 +3,7 @@ package presentacion.controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -342,7 +343,7 @@ public class Controlador implements ActionListener
 			
 			
 			
-			nuevaPersona = new PersonaDTO(0,this.ventanaPersona.getTextFieldNombreApellido().getText(), ventanaPersona.getTextFieldTelefono().getText(),ventanaPersona.getTextFieldEmail().getText()+"@"+ventanaPersona.getTextFieldDepartamento().getText(),ventanaPersona.getTextFieldAño().getText()+"-"+ventanaPersona.getTextFieldMes().getText()+"-"+ventanaPersona.getTextFieldDia().getText(),nuevoTipo,nuevaLocalidad,ventanaPersona.getTextFieldCalle().getText(),ventanaPersona.getTextFieldAltura().getText(),ventanaPersona.getTextFieldPiso().getText(),ventanaPersona.getTextFieldDepartamento().getText());
+			nuevaPersona = new PersonaDTO(0,this.ventanaPersona.getTextFieldNombreApellido().getText(), ventanaPersona.getTextFieldTelefono().getText(),ventanaPersona.getTextFieldEmail().getText()+"@"+ventanaPersona.getTextFieldServidor().getText(),ventanaPersona.getTextFieldAño().getText()+"-"+ventanaPersona.getTextFieldMes().getText()+"-"+ventanaPersona.getTextFieldDia().getText(),nuevoTipo,nuevaLocalidad,ventanaPersona.getTextFieldCalle().getText(),ventanaPersona.getTextFieldAltura().getText(),ventanaPersona.getTextFieldPiso().getText(),ventanaPersona.getTextFieldDepartamento().getText());
 			
 			
 			this.agenda.agregarPersona(nuevaPersona);
@@ -395,11 +396,31 @@ public class Controlador implements ActionListener
 
 		private void llenarCamposEditables(int indice) {
 			
+				
+				
 				PersonaDTO persona=personas_en_tabla.get(indice);
+				
+				if (persona.getEmail().equals(""))
+				{
+					ventanaEditar.setTextFieldEmail("");
+				ventanaEditar.setTextFieldServidor("");
+				}
+				else
+				{
+					String email=persona.getEmail();
+					String[] parts = email.split("@");
+					ventanaEditar.setTextFieldEmail(parts[0]);
+					ventanaEditar.setTextFieldServidor(parts[1]);
+				}
+				
+				
+				
 				ventanaEditar.setTextFieldNombreApellido(persona.getNombre());
 				ventanaEditar.setTextFieldTelefono(persona.getTelefono());
-				ventanaEditar.setTextFieldEmail(persona.getEmail());
-				ventanaEditar.setTextFieldAño(persona.getCumpleaños().toString());
+				
+				ventanaEditar.setTextFieldAño(String.valueOf(persona.getCumpleaños().getYear()+1900));
+				ventanaEditar.setTextFieldMes(String.valueOf(persona.getCumpleaños().getMonth()+1));
+				ventanaEditar.setTextFieldDia(String.valueOf(persona.getCumpleaños().getDate()));
 				ventanaEditar.setTextFieldCalle(persona.getCalle());
 				ventanaEditar.setTextFieldAltura(persona.getAltura());
 				ventanaEditar.setTextFieldPiso(persona.getPiso());
