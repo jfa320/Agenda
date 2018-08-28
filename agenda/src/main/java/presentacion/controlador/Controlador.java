@@ -363,7 +363,7 @@ public class Controlador implements ActionListener
 		}
 		private boolean verificarDatosEmail()
 		{
-			return (!this.ventanaPersona.getTextFieldCumple().getText().isEmpty() && !this.ventanaPersona.getTextFieldServidor().getText().isEmpty()) ;
+			return (!this.ventanaPersona.getTextFieldEmail().getText().isEmpty() && !this.ventanaPersona.getTextFieldServidor().getText().isEmpty()) ;
 		
 		}
 		private boolean verificarComboBox() 
