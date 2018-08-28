@@ -22,7 +22,7 @@ public class VentanaAMPersona extends JFrame
 	private JTextField textFieldNombreApellido;
 	private JTextField textFieldTelefono;
 	private JTextField textFieldEmail;
-	private JTextField textFieldCumple;
+	private JTextField textFieldAño;
 	private JTextField textFieldCalle;
 	private JTextField textFieldAltura;
 	private JTextField textFieldPiso;
@@ -44,6 +44,8 @@ public class VentanaAMPersona extends JFrame
 	private JButton btnAbmLocalidades;
 	private JButton btnAbmTipos; 
 	private JTextField textFieldServidor;
+	private JTextField textFieldMes;
+	private JTextField textFieldDia;
 	
 	public VentanaAMPersona(Controlador controlador) 
 	{
@@ -93,13 +95,13 @@ public class VentanaAMPersona extends JFrame
 		panel.add(textFieldCalle);
 		textFieldCalle.setColumns(10);
 		
-		textFieldCumple = new JTextField();
-		textFieldCumple.setBounds(183, 290, 151, 20);
-		panel.add(textFieldCumple);
-		textFieldCumple.setColumns(10);
+		textFieldAño = new JTextField();
+		textFieldAño.setBounds(183, 290, 31, 20);
+		panel.add(textFieldAño);
+		textFieldAño.setColumns(10);
 		
 		
-		textFieldCumple.addKeyListener(new KeyAdapter()
+		textFieldAño.addKeyListener(new KeyAdapter()
 		{
 			   public void keyTyped(KeyEvent e)
 			   {
@@ -113,7 +115,7 @@ public class VentanaAMPersona extends JFrame
 			       if(((caracter < '0') || (caracter > '9')) &&(caracter != '\b')  && caracter!='-') 
 			    	  e.consume();
 
-			      if (textFieldCumple.getText().length()== 10)
+			      if (textFieldAño.getText().length()== 4)
 		    		  e.consume();
 			      
 			   }
@@ -207,6 +209,63 @@ public class VentanaAMPersona extends JFrame
 		textFieldServidor.setBounds(289, 259, 63, 20);
 		panel.add(textFieldServidor);
 		
+		JLabel label = new JLabel("-");
+		label.setBounds(225, 290, 16, 20);
+		panel.add(label);
+		
+		textFieldMes = new JTextField();
+		textFieldMes.setColumns(10);
+		textFieldMes.setBounds(238, 290, 31, 20);
+		panel.add(textFieldMes);
+		textFieldMes.addKeyListener(new KeyAdapter()
+		{
+			   public void keyTyped(KeyEvent e)
+			   {
+				  
+			      char caracter = e.getKeyChar();   
+			      
+			     
+			    
+			      
+			       
+			       if(((caracter < '0') || (caracter > '9')) &&(caracter != '\b')  && caracter!='-') 
+			    	  e.consume();
+
+			      if (textFieldMes.getText().length()== 2)
+		    		  e.consume();			      
+			   }
+			});
+		
+		
+		JLabel label_1 = new JLabel("-");
+		label_1.setBounds(279, 290, 16, 20);
+		panel.add(label_1);
+		
+		textFieldDia = new JTextField();
+		textFieldDia.setColumns(10);
+		textFieldDia.setBounds(299, 290, 31, 20);
+		panel.add(textFieldDia);
+		textFieldDia.addKeyListener(new KeyAdapter()
+		{
+			   public void keyTyped(KeyEvent e)
+			   {
+				  
+			      char caracter = e.getKeyChar();   
+			      
+			     
+			    
+			      
+			       
+			       if(((caracter < '0') || (caracter > '9')) &&(caracter != '\b')  && caracter!='-') 
+			    	  e.consume();
+
+			      if (textFieldDia.getText().length()== 2)
+		    		  e.consume();
+			      
+			   }
+			});
+		
+		
 		JLabel labelCamposObligatorios = new JLabel("Las etiquetas con *, son campos obligatorios");
 		labelCamposObligatorios.setBounds(10, 11, 472, 20);
 		getContentPane().add(labelCamposObligatorios);
@@ -241,8 +300,8 @@ public class VentanaAMPersona extends JFrame
 		return textFieldEmail;
 	}
 	
-	public JTextField getTextFieldCumple(){
-		return textFieldCumple;
+	public JTextField getTextFieldAño(){
+		return textFieldAño;
 	}
 	public JTextField getTextFieldCalle(){
 		return textFieldCalle;
@@ -258,6 +317,18 @@ public class VentanaAMPersona extends JFrame
 		return textFieldDepartamento;
 	}
 	
+	public JTextField getTextFieldMes() {
+		return textFieldMes;
+	}
+
+
+
+	public JTextField getTextFieldDia() {
+		return textFieldDia;
+	}
+
+
+
 	public JComboBox<String> getComboBoxTipo(){
 		return comboBoxTipo;
 	}
@@ -274,8 +345,8 @@ public class VentanaAMPersona extends JFrame
 	public void setTextFieldEmail(String textFieldEmail){
 		this.textFieldEmail.setText(textFieldEmail);
 	}
-	public void setTextFieldCumple(String textFieldCumple){
-		this.textFieldCumple.setText(textFieldCumple);
+	public void setTextFieldAño(String textFieldCumple){
+		this.textFieldAño.setText(textFieldCumple);
 	}
 	public void setTextFieldCalle(String textFieldCalle){
 		this.textFieldCalle.setText(textFieldCalle);
