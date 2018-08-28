@@ -22,11 +22,25 @@ public class ControladorABMLocalidades implements ActionListener {
 	private List<Localidad> localidades;
 	private VentanaLocalidad ventanaLocalidad;
 	private VentanaLocalidad ventanaEditarLocalidad;
+	private Controlador controlador;
 
-	public ControladorABMLocalidades(VentanaABMLocalidades vistaABM, Agenda agenda)
+//	public ControladorABMLocalidades(VentanaABMLocalidades vistaABM, Agenda agenda)
+//	{
+//		this.vistaABM = vistaABM;
+//		
+//		this.agenda = agenda;
+//		this.localidades=agenda.obtenerLocalidades();
+//		
+//		
+//		this.llenarTabla();
+//		this.vistaABM.getBtnAgregar().addActionListener(this);
+//		this.vistaABM.getBtnEditar().addActionListener(this);
+//		this.vistaABM.getBtnBorrar().addActionListener(this);
+//	}
+	public ControladorABMLocalidades(VentanaABMLocalidades vistaABM, Agenda agenda,Controlador controlador)
 	{
 		this.vistaABM = vistaABM;
-		
+		this.controlador=controlador;
 		this.agenda = agenda;
 		this.localidades=agenda.obtenerLocalidades();
 		
@@ -73,6 +87,7 @@ public class ControladorABMLocalidades implements ActionListener {
 				
 				if(agenda.borrarLocalidad(localidadEnFila(this.vistaABM.getTable().getSelectedRow()))){
 					this.llenarTabla();
+					controlador.llenarComboBox();
 				}
 				
 				else{
@@ -97,6 +112,8 @@ public class ControladorABMLocalidades implements ActionListener {
 			
 				this.llenarTabla();
 				this.ventanaLocalidad.dispose();
+				
+				this.controlador.llenarComboBox();
 			}
 			else
 				JOptionPane.showMessageDialog(null, "Esa localidad ya existe");
@@ -106,6 +123,7 @@ public class ControladorABMLocalidades implements ActionListener {
 			this.ventanaEditarLocalidad.dispose();
 			this.actualizarDatosEditados();
 			this.llenarTabla();
+			this.controlador.llenarComboBox();
 		}
 	}
 

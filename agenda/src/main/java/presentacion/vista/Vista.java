@@ -11,8 +11,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
 
 import persistencia.conexion.Conexion;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+
 
 
 public class Vista

@@ -58,22 +58,24 @@ public class Controlador implements ActionListener
 			
 		}
 		
-		private void llenarComboBox(){
-			this.ventanaPersona.getComboBoxLocalidad().removeAllItems();
-			this.ventanaPersona.getComboBoxTipo().removeAllItems();
-			this.localidades_en_tabla=agenda.obtenerLocalidades();
+		public void llenarComboBox(){
 			
-			for (int i = 0; i < this.localidades_en_tabla.size(); i ++){
-
-				this.ventanaPersona.getComboBoxLocalidad().addItem(this.localidades_en_tabla.get(i).getNombre());
-			}
-			
-			this.tipos_en_tabla=agenda.obtenerTipos();
-			for (int i = 0; i < this.tipos_en_tabla.size(); i ++){
+			if(! (this.ventanaPersona==null)){
+				this.ventanaPersona.getComboBoxLocalidad().removeAllItems();
+				this.ventanaPersona.getComboBoxTipo().removeAllItems();
+				this.localidades_en_tabla=agenda.obtenerLocalidades();
+				this.tipos_en_tabla=agenda.obtenerTipos();
 				
-				this.ventanaPersona.getComboBoxTipo().addItem(this.tipos_en_tabla.get(i).getNombre());
+				for (int i = 0; i < this.localidades_en_tabla.size(); i ++){
+	
+					this.ventanaPersona.getComboBoxLocalidad().addItem(this.localidades_en_tabla.get(i).getNombre());
+				}
+				
+				for (int i = 0; i < this.tipos_en_tabla.size(); i ++){
+					
+					this.ventanaPersona.getComboBoxTipo().addItem(this.tipos_en_tabla.get(i).getNombre());
+				}
 			}
-			
 		}
 		
 		private void llenarComboBoxEditables(Localidad localidad,Tipo tipo){
@@ -150,14 +152,14 @@ public class Controlador implements ActionListener
 			
 			else if(!(this.ventanaEditar==null) && e.getSource()==this.ventanaEditar.getBtnABMLocalidad()){
 				this.ventanaABMLocalidades=new VentanaABMLocalidades(controladorABMLocalidades);
-				this.controladorABMLocalidades=new ControladorABMLocalidades(ventanaABMLocalidades,agenda);
+				this.controladorABMLocalidades=new ControladorABMLocalidades(ventanaABMLocalidades,agenda,this);
 				
 				
 			}
 			
 			else if(!(this.ventanaEditar==null) && e.getSource()==this.ventanaEditar.getBtnABMTipo()){
 				this.ventanaABMTipos=new VentanaABMTipos(controladorABMTipos);
-				this.controladorABMTipos=new ControladorABMTipos(ventanaABMTipos,agenda);
+				this.controladorABMTipos=new ControladorABMTipos(ventanaABMTipos,agenda,this);
 			}
 			
 			else if(e.getSource() == this.vista.getBtnBorrar())
@@ -182,13 +184,18 @@ public class Controlador implements ActionListener
 			else if(e.getSource() == this.vista.getBtnAbmLocalidades())
 			{				
 				this.ventanaABMLocalidades=new VentanaABMLocalidades(controladorABMLocalidades);
-				this.controladorABMLocalidades=new ControladorABMLocalidades(ventanaABMLocalidades,agenda);
+				
+				this.controladorABMLocalidades=new ControladorABMLocalidades(ventanaABMLocalidades,agenda,this);
+				
+				
+				
+				
 			}
 			
 			else if(e.getSource() == this.vista.getBtnAbmTipos())
 			{				
 				this.ventanaABMTipos=new VentanaABMTipos(controladorABMTipos);
-				this.controladorABMTipos=new ControladorABMTipos(ventanaABMTipos,agenda);
+				this.controladorABMTipos=new ControladorABMTipos(ventanaABMTipos,agenda,this);
 			}
 			
 			else if(!(this.ventanaPersona==null) && e.getSource() == this.ventanaPersona.getButtonGuardar())
@@ -222,12 +229,13 @@ public class Controlador implements ActionListener
 			{
 				
 				this.ventanaABMLocalidades = new VentanaABMLocalidades(controladorABMLocalidades);
-				this.controladorABMLocalidades=new ControladorABMLocalidades(ventanaABMLocalidades,agenda);
+				this.controladorABMLocalidades=new ControladorABMLocalidades(ventanaABMLocalidades,agenda,this);
+			
 			}
 			else if (!(this.ventanaPersona==null) && e.getSource()==this.ventanaPersona.getBtnABMTipo())
 			{
 				this.ventanaABMTipos = new VentanaABMTipos(controladorABMTipos);
-				this.controladorABMTipos=new ControladorABMTipos(ventanaABMTipos,agenda);
+				this.controladorABMTipos=new ControladorABMTipos(ventanaABMTipos,agenda,this);
 				
 			}
 

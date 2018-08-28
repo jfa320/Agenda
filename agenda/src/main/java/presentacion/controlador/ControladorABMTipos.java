@@ -6,10 +6,9 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
-import dto.Localidad;
 import dto.Tipo;
 import presentacion.vista.VentanaABMTipos;
-import presentacion.vista.VentanaLocalidad;
+
 import presentacion.vista.VentanaTipo;
 import modelo.Agenda;
 
@@ -21,16 +20,17 @@ public class ControladorABMTipos implements ActionListener {
 	private List<Tipo> tipos;
 	private VentanaTipo ventanaTipo;
 	private VentanaTipo ventanaEditarTipo;
+	private Controlador controlador;
 
 
 
-	public ControladorABMTipos(VentanaABMTipos vistaABM, Agenda agenda)
+	public ControladorABMTipos(VentanaABMTipos vistaABM, Agenda agenda,Controlador controlador)
 	{
 		this.vistaABM = vistaABM;
 		
 		this.agenda = agenda;
 		this.tipos=agenda.obtenerTipos();
-		
+		this.controlador=controlador;
 		
 		this.llenarTabla();
 		this.vistaABM.getBtnAgregar().addActionListener(this);
@@ -74,7 +74,9 @@ public class ControladorABMTipos implements ActionListener {
 				
 				
 				if(agenda.eliminarTipo(tipoEnFila(this.vistaABM.getTable().getSelectedRow()))){
-					this.llenarTabla();}
+					this.llenarTabla();
+					this.controlador.llenarComboBox();
+				}
 				else{
 					this.vistaABM.alertaClavesForaneas();
 				}
@@ -93,7 +95,7 @@ public class ControladorABMTipos implements ActionListener {
 				agenda.agregarTipo(nuevoTipo);
 				this.llenarTabla();
 				this.ventanaTipo.dispose();
-			
+				this.controlador.llenarComboBox();
 			
 			}
 			else
@@ -106,6 +108,7 @@ public class ControladorABMTipos implements ActionListener {
 			this.ventanaEditarTipo.dispose();
 			this.actualizarDatosEditados();
 			this.llenarTabla();
+			this.controlador.llenarComboBox();
 		}
 		
 	}
