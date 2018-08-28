@@ -408,7 +408,7 @@ this.llenarTabla();
 		}
 		private boolean verificarDatosEmail()
 		{
-			return (!this.ventanaPersona.getTextFieldAño().getText().isEmpty() && !this.ventanaPersona.getTextFieldServidor().getText().isEmpty()) ;
+			return (!this.ventanaPersona.getTextFieldEmail().getText().isEmpty() && !this.ventanaPersona.getTextFieldServidor().getText().isEmpty()) ;
 		
 		}
 		private boolean verificarComboBox() 
