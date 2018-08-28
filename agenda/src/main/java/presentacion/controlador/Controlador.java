@@ -194,22 +194,33 @@ public class Controlador implements ActionListener
 			else if(!(this.ventanaPersona==null) && e.getSource() == this.ventanaPersona.getButtonGuardar())
 			{	
 				
-				if (verificarDatosTelefono() &&	verificarDatosNombre() &&verificarDatosCumpleaños() && verificarComboBox())	
+				if (verificarDatosTelefono() &&	verificarDatosNombre()  && verificarComboBox())	
 				{
 					if (!ventanaPersona.getTextFieldEmail().getText().isEmpty() || !ventanaPersona.getTextFieldServidor().getText().isEmpty())
 					{
-						
-						if (verificarDatosEmail())
+						if (verificarDatosCumpleaños())
 						{
-								
-							crearPersona();
+							if (verificarDatosEmail())
+							{
+									
+								crearPersona();
+							}
+							else
+								JOptionPane.showMessageDialog(null, "Falta completar el mail");
 						}
 						else
-							JOptionPane.showMessageDialog(null, "Falta completar el mail");
+							JOptionPane.showMessageDialog(null, "Fecha invalida");
+						
 					}
 					else if (ventanaPersona.getTextFieldEmail().getText().isEmpty() && ventanaPersona.getTextFieldServidor().getText().isEmpty())
 					{
-						crearPersonaSinMail();
+						if (verificarDatosCumpleaños())
+						{
+							crearPersonaSinMail();
+						}
+						else
+							JOptionPane.showMessageDialog(null, "Fecha invalida");
+						
 					}
 					
 				
@@ -403,7 +414,18 @@ public class Controlador implements ActionListener
 		}
 		private boolean verificarDatosCumpleaños()
 		{
-			return !this.ventanaPersona.getTextFieldAño().getText().isEmpty();
+			if (!this.ventanaPersona.getTextFieldAño().getText().isEmpty() && !this.ventanaPersona.getTextFieldMes().getText().isEmpty() && !this.ventanaPersona.getTextFieldDia().getText().isEmpty() )
+			{
+				if ((Integer.parseInt(this.ventanaPersona.getTextFieldAño().getText())<2018 && Integer.parseInt(this.ventanaPersona.getTextFieldAño().getText())>1900 ) && (Integer.parseInt(this.ventanaPersona.getTextFieldMes().getText())<13) && (Integer.parseInt(this.ventanaPersona.getTextFieldDia().getText())<31))
+					return true;
+				else
+					return false;
+			}
+			else
+				return false;
+			
+			
+			
 		
 		}
 		private boolean verificarDatosEmail()
