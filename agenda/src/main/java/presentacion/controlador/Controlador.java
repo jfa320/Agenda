@@ -113,7 +113,7 @@ public class Controlador implements ActionListener
 			personas_en_tabla=agenda.obtenerPersonas();
 			for (int i = 0; i < this.personas_en_tabla.size(); i ++)
 			{
-				System.out.println(this.personas_en_tabla.get(i));
+				
 				Object[] fila = {this.personas_en_tabla.get(i).getNombre(), this.personas_en_tabla.get(i).getTelefono(),this.personas_en_tabla.get(i).getEmail(),this.personas_en_tabla.get(i).getCumpleaños(),this.personas_en_tabla.get(i).getTipo().getNombre(),this.personas_en_tabla.get(i).getLocalidad().getNombre(),
 								 this.personas_en_tabla.get(i).getCalle(),this.personas_en_tabla.get(i).getAltura(),this.personas_en_tabla.get(i).getPiso(),this.personas_en_tabla.get(i).getDepartamento()};
 				this.vista.getModelPersonas().addRow(fila);
@@ -126,7 +126,7 @@ public class Controlador implements ActionListener
 			
 			if(e.getSource() == this.vista.getBtnAgregar())
 			{
-				System.out.println(agenda);
+				
 			
 				
 				this.ventanaPersona = new VentanaAMPersona(this);
@@ -174,7 +174,7 @@ public class Controlador implements ActionListener
 			{		
 			
 				
-				System.out.println(generarListaReporte(agenda.obtenerPersonas()));
+				
 				ReporteAgenda reporte = new ReporteAgenda(generarListaReporte(agenda.obtenerPersonas()));
 				reporte.mostrar();					
 			}
@@ -198,6 +198,7 @@ public class Controlador implements ActionListener
 				{
 					if (!ventanaPersona.getTextFieldEmail().getText().isEmpty() || !ventanaPersona.getTextFieldServidor().getText().isEmpty())
 					{
+						
 						if (verificarDatosEmail())
 						{
 								
