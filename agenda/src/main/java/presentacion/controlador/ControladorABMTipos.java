@@ -100,7 +100,7 @@ public class ControladorABMTipos implements ActionListener {
 			}
 			else
 			{
-				JOptionPane.showMessageDialog(null, "Ese tipo de contacto ya existe");
+				JOptionPane.showMessageDialog(null, "Ese tipo de contacto no es valido");
 			}
 			
 		}
@@ -139,6 +139,8 @@ public class ControladorABMTipos implements ActionListener {
 	
 	private boolean verificarNuevoTipo(Tipo nuevoTipo)
 	{
+		if (nuevoTipo.getNombre().equals(""))
+			return false;
 		for (Tipo tipo:this.agenda.obtenerTipos())
 		{
 			if (nuevoTipo.getNombre().equals(tipo.getNombre()))

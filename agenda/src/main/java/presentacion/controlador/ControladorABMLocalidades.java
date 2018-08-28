@@ -116,7 +116,7 @@ public class ControladorABMLocalidades implements ActionListener {
 				this.controlador.llenarComboBox();
 			}
 			else
-				JOptionPane.showMessageDialog(null, "Esa localidad ya existe");
+				JOptionPane.showMessageDialog(null, "Esa localidad no es valida");
 			
 		}
 		else if (!(this.ventanaEditarLocalidad==null) && e.getSource()==this.ventanaEditarLocalidad.getBtnConfirmarLocalidad()){
@@ -150,6 +150,9 @@ public class ControladorABMLocalidades implements ActionListener {
 
 	private boolean verificarNuevaLocalidad(Localidad nuevaLocalidad)
 	{
+		if (nuevaLocalidad.getNombre().equals(""))
+			return false;
+		
 		for (Localidad localidad:this.agenda.obtenerLocalidades())
 		{
 			if (nuevaLocalidad.getNombre().equals(localidad.getNombre()))
