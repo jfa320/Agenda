@@ -126,9 +126,7 @@ public class Controlador implements ActionListener
 			
 			if(e.getSource() == this.vista.getBtnAgregar())
 			{
-				
 			
-				
 				this.ventanaPersona = new VentanaAMPersona(this);
 				this.llenarComboBox();
 			}
@@ -153,6 +151,8 @@ public class Controlador implements ActionListener
 			else if(!(this.ventanaEditar==null) && e.getSource()==this.ventanaEditar.getBtnABMLocalidad()){
 				this.ventanaABMLocalidades=new VentanaABMLocalidades(controladorABMLocalidades);
 				this.controladorABMLocalidades=new ControladorABMLocalidades(ventanaABMLocalidades,agenda);
+				
+				
 			}
 			
 			else if(!(this.ventanaEditar==null) && e.getSource()==this.ventanaEditar.getBtnABMTipo()){
@@ -266,34 +266,34 @@ public class Controlador implements ActionListener
 			List <Tipo> tipos=agenda.obtenerTipos();
 			List<Localidad> localidades=agenda.obtenerLocalidades();
 			
-for (int i = 0; i < tipos.size(); i ++){
+			for (int i = 0; i < tipos.size(); i ++){
+						
+						if (tipos.get(i).getNombre().equals(ventanaPersona.getComboBoxTipo().getSelectedItem().toString()))
+						{
 			
-			if (tipos.get(i).getNombre().equals(ventanaPersona.getComboBoxTipo().getSelectedItem().toString()))
-			{
-
-				nuevoTipo=new Tipo(tipos.get(i).getIdTipo(),tipos.get(i).getNombre());
+							nuevoTipo=new Tipo(tipos.get(i).getIdTipo(),tipos.get(i).getNombre());
+						}
 			}
-}
-
-for (int i = 0; i < localidades.size(); i ++){
 			
-			if (localidades.get(i).getNombre().equals(ventanaPersona.getComboBoxLocalidad().getSelectedItem().toString()))
-			{
-
-				nuevaLocalidad=new Localidad(localidades.get(i).getIdLocalidad(),localidades.get(i).getNombre());
+			for (int i = 0; i < localidades.size(); i ++){
+						
+						if (localidades.get(i).getNombre().equals(ventanaPersona.getComboBoxLocalidad().getSelectedItem().toString()))
+						{
+			
+							nuevaLocalidad=new Localidad(localidades.get(i).getIdLocalidad(),localidades.get(i).getNombre());
+						}
 			}
-}
-
-
-
-nuevaPersona = new PersonaDTO(0,this.ventanaPersona.getTextFieldNombreApellido().getText(), ventanaPersona.getTextFieldTelefono().getText(),"",ventanaPersona.getTextFieldAño().getText()+"-"+ventanaPersona.getTextFieldMes().getText()+"-"+ventanaPersona.getTextFieldDia().getText(),nuevoTipo,nuevaLocalidad,ventanaPersona.getTextFieldCalle().getText(),ventanaPersona.getTextFieldAltura().getText(),ventanaPersona.getTextFieldPiso().getText(),ventanaPersona.getTextFieldDepartamento().getText());
-
-
-this.agenda.agregarPersona(nuevaPersona);
-
-this.ventanaPersona.dispose();
-this.llenarTabla();
 			
+			
+			
+			nuevaPersona = new PersonaDTO(0,this.ventanaPersona.getTextFieldNombreApellido().getText(), ventanaPersona.getTextFieldTelefono().getText(),"",ventanaPersona.getTextFieldAño().getText()+"-"+ventanaPersona.getTextFieldMes().getText()+"-"+ventanaPersona.getTextFieldDia().getText(),nuevoTipo,nuevaLocalidad,ventanaPersona.getTextFieldCalle().getText(),ventanaPersona.getTextFieldAltura().getText(),ventanaPersona.getTextFieldPiso().getText(),ventanaPersona.getTextFieldDepartamento().getText());
+			
+			
+			this.agenda.agregarPersona(nuevaPersona);
+			
+			this.ventanaPersona.dispose();
+			this.llenarTabla();
+						
 		}
 
 		private void crearPersona() {
@@ -303,33 +303,33 @@ this.llenarTabla();
 			List <Tipo> tipos=agenda.obtenerTipos();
 			List<Localidad> localidades=agenda.obtenerLocalidades();
 			
-for (int i = 0; i < tipos.size(); i ++){
+			for (int i = 0; i < tipos.size(); i ++){
+						
+						if (tipos.get(i).getNombre().equals(ventanaPersona.getComboBoxTipo().getSelectedItem().toString()))
+						{
 			
-			if (tipos.get(i).getNombre().equals(ventanaPersona.getComboBoxTipo().getSelectedItem().toString()))
-			{
-
-				nuevoTipo=new Tipo(tipos.get(i).getIdTipo(),tipos.get(i).getNombre());
+							nuevoTipo=new Tipo(tipos.get(i).getIdTipo(),tipos.get(i).getNombre());
+						}
 			}
-}
-
-for (int i = 0; i < localidades.size(); i ++){
 			
-			if (localidades.get(i).getNombre().equals(ventanaPersona.getComboBoxLocalidad().getSelectedItem().toString()))
-			{
-
-				nuevaLocalidad=new Localidad(localidades.get(i).getIdLocalidad(),localidades.get(i).getNombre());
+			for (int i = 0; i < localidades.size(); i ++){
+						
+						if (localidades.get(i).getNombre().equals(ventanaPersona.getComboBoxLocalidad().getSelectedItem().toString()))
+						{
+			
+							nuevaLocalidad=new Localidad(localidades.get(i).getIdLocalidad(),localidades.get(i).getNombre());
+						}
 			}
-}
-
-
-
-nuevaPersona = new PersonaDTO(0,this.ventanaPersona.getTextFieldNombreApellido().getText(), ventanaPersona.getTextFieldTelefono().getText(),ventanaPersona.getTextFieldEmail().getText()+"@"+ventanaPersona.getTextFieldDepartamento().getText(),ventanaPersona.getTextFieldAño().getText()+"-"+ventanaPersona.getTextFieldMes().getText()+"-"+ventanaPersona.getTextFieldDia().getText(),nuevoTipo,nuevaLocalidad,ventanaPersona.getTextFieldCalle().getText(),ventanaPersona.getTextFieldAltura().getText(),ventanaPersona.getTextFieldPiso().getText(),ventanaPersona.getTextFieldDepartamento().getText());
-
-
-this.agenda.agregarPersona(nuevaPersona);
-
-this.ventanaPersona.dispose();
-this.llenarTabla();
+			
+			
+			
+			nuevaPersona = new PersonaDTO(0,this.ventanaPersona.getTextFieldNombreApellido().getText(), ventanaPersona.getTextFieldTelefono().getText(),ventanaPersona.getTextFieldEmail().getText()+"@"+ventanaPersona.getTextFieldDepartamento().getText(),ventanaPersona.getTextFieldAño().getText()+"-"+ventanaPersona.getTextFieldMes().getText()+"-"+ventanaPersona.getTextFieldDia().getText(),nuevoTipo,nuevaLocalidad,ventanaPersona.getTextFieldCalle().getText(),ventanaPersona.getTextFieldAltura().getText(),ventanaPersona.getTextFieldPiso().getText(),ventanaPersona.getTextFieldDepartamento().getText());
+			
+			
+			this.agenda.agregarPersona(nuevaPersona);
+			
+			this.ventanaPersona.dispose();
+			this.llenarTabla();
 		}
 
 		

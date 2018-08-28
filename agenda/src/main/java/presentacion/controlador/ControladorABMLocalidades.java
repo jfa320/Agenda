@@ -57,6 +57,8 @@ public class ControladorABMLocalidades implements ActionListener {
 		if(e.getSource()==this.vistaABM.getBtnAgregar()){
 			this.ventanaLocalidad=new VentanaLocalidad(this);
 		}
+		
+		
 		else if(e.getSource()==this.vistaABM.getBtnEditar()){
 			if(this.vistaABM.getTable().getSelectedRow()>=0){
 				this.ventanaEditarLocalidad=new VentanaLocalidad(this);
