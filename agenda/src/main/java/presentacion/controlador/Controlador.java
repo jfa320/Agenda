@@ -362,11 +362,15 @@ public class Controlador implements ActionListener
 			
 			agenda.borrarPersona(persona);
 			
+			if (this.ventanaEditar.getTextFieldEmail().getText().isEmpty() && this.ventanaEditar.getTextFieldServidor().getText().isEmpty())
+				persona.setEmail("");
+			else
+				persona.setEmail(this.ventanaEditar.getTextFieldEmail().getText()+"@"+this.ventanaEditar.getTextFieldServidor().getText());
 			
 			persona.setNombre(this.ventanaEditar.getTextFieldNombreApellido().getText());
 			persona.setTelefono(this.ventanaEditar.getTextFieldTelefono().getText());
-			persona.setEmail(this.ventanaEditar.getTextFieldEmail().getText());
-			persona.setCumpleaños(this.ventanaEditar.getTextFieldAño().getText());
+			
+			persona.setCumpleaños(this.ventanaEditar.getTextFieldAño().getText()+"-"+this.ventanaEditar.getTextFieldMes().getText()+"-"+this.ventanaEditar.getTextFieldDia().getText());
 			persona.setCalle(this.ventanaEditar.getTextFieldCalle().getText());
 			persona.setAltura(this.ventanaEditar.getTextFieldAltura().getText());
 			persona.setPiso(this.ventanaEditar.getTextFieldPiso().getText());
@@ -403,7 +407,7 @@ public class Controlador implements ActionListener
 				if (persona.getEmail().equals(""))
 				{
 					ventanaEditar.setTextFieldEmail("");
-				ventanaEditar.setTextFieldServidor("");
+					ventanaEditar.setTextFieldServidor("");
 				}
 				else
 				{
