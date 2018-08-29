@@ -96,7 +96,7 @@ public class VentanaAMPersona extends JFrame
 		textFieldCalle.setColumns(10);
 		
 		textFieldAño = new JTextField();
-		textFieldAño.setBounds(183, 290, 31, 20);
+		textFieldAño.setBounds(303, 290, 31, 20);
 		panel.add(textFieldAño);
 		textFieldAño.setColumns(10);
 		
@@ -175,7 +175,7 @@ public class VentanaAMPersona extends JFrame
 		lblTipoContacto.setBounds(11, 197, 104, 20);
 		panel.add(lblTipoContacto);
 		
-		lblCumpleaos = new JLabel("Cumpleaños *(AAAA-MM-DD)");
+		lblCumpleaos = new JLabel("Cumpleaños *(DD-MM-AAAA)");
 		lblCumpleaos.setBounds(10, 290, 163, 20);
 		panel.add(lblCumpleaos);
 		
@@ -243,7 +243,7 @@ public class VentanaAMPersona extends JFrame
 		
 		textFieldDia = new JTextField();
 		textFieldDia.setColumns(10);
-		textFieldDia.setBounds(299, 290, 31, 20);
+		textFieldDia.setBounds(183, 290, 31, 20);
 		panel.add(textFieldDia);
 		textFieldDia.addKeyListener(new KeyAdapter()
 		{

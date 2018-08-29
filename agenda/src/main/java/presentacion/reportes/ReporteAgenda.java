@@ -18,7 +18,6 @@ import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 import dto.Localidad;
 import dto.PersonaDTO;
-import dto.PersonaReporte;
 
 public class ReporteAgenda
 {

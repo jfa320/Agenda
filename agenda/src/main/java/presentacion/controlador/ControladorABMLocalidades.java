@@ -24,19 +24,7 @@ public class ControladorABMLocalidades implements ActionListener {
 	private VentanaLocalidad ventanaEditarLocalidad;
 	private Controlador controlador;
 
-//	public ControladorABMLocalidades(VentanaABMLocalidades vistaABM, Agenda agenda)
-//	{
-//		this.vistaABM = vistaABM;
-//		
-//		this.agenda = agenda;
-//		this.localidades=agenda.obtenerLocalidades();
-//		
-//		
-//		this.llenarTabla();
-//		this.vistaABM.getBtnAgregar().addActionListener(this);
-//		this.vistaABM.getBtnEditar().addActionListener(this);
-//		this.vistaABM.getBtnBorrar().addActionListener(this);
-//	}
+
 	public ControladorABMLocalidades(VentanaABMLocalidades vistaABM, Agenda agenda,Controlador controlador)
 	{
 		this.vistaABM = vistaABM;

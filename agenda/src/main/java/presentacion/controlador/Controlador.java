@@ -2,8 +2,8 @@ package presentacion.controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -13,6 +13,7 @@ import java.util.TreeMap;
 import javax.swing.JOptionPane;
 
 import modelo.Agenda;
+import presentacion.reportes.PersonaReporte;
 import presentacion.reportes.ReporteAgenda;
 import presentacion.vista.VentanaABMLocalidades;
 import presentacion.vista.VentanaABMTipos;
@@ -20,7 +21,6 @@ import presentacion.vista.VentanaAMPersona;
 import presentacion.vista.Vista;
 import dto.Localidad;
 import dto.PersonaDTO;
-import dto.PersonaReporte;
 import dto.Tipo;
 
 public class Controlador implements ActionListener
@@ -38,6 +38,7 @@ public class Controlador implements ActionListener
 		private ControladorABMLocalidades controladorABMLocalidades;
 		private VentanaABMTipos ventanaABMTipos;
 		private ControladorABMTipos controladorABMTipos;
+		private int indicePersonaEditar;
 		
 		public Controlador(Vista vista, Agenda agenda)
 		{
@@ -77,7 +78,27 @@ public class Controlador implements ActionListener
 					this.ventanaPersona.getComboBoxTipo().addItem(this.tipos_en_tabla.get(i).getNombre());
 				}
 			}
-		}
+			
+			if(!(this.ventanaEditar==null)){
+				this.ventanaEditar.getComboBoxLocalidad().removeAllItems();
+				this.ventanaEditar.getComboBoxTipo().removeAllItems();
+				this.localidades_en_tabla=agenda.obtenerLocalidades();
+				this.tipos_en_tabla=agenda.obtenerTipos();
+				
+				for (int i = 0; i < this.localidades_en_tabla.size(); i ++){
+	
+					this.ventanaEditar.getComboBoxLocalidad().addItem(this.localidades_en_tabla.get(i).getNombre());
+				}
+				
+				for (int i = 0; i < this.tipos_en_tabla.size(); i ++){
+					
+					this.ventanaEditar.getComboBoxTipo().addItem(this.tipos_en_tabla.get(i).getNombre());
+				}
+				this.llenarCamposEditables(indicePersonaEditar);
+				
+			}
+			}
+
 		
 		private void llenarComboBoxEditables(Localidad localidad,Tipo tipo){
 			this.ventanaEditar.getComboBoxLocalidad().removeAllItems();
@@ -117,12 +138,18 @@ public class Controlador implements ActionListener
 			for (int i = 0; i < this.personas_en_tabla.size(); i ++)
 			{
 				
-				Object[] fila = {this.personas_en_tabla.get(i).getNombre(), this.personas_en_tabla.get(i).getTelefono(),this.personas_en_tabla.get(i).getEmail(),this.personas_en_tabla.get(i).getCumpleaños(),this.personas_en_tabla.get(i).getTipo().getNombre(),this.personas_en_tabla.get(i).getLocalidad().getNombre(),
+				Object[] fila = {this.personas_en_tabla.get(i).getNombre(), this.personas_en_tabla.get(i).getTelefono(),this.personas_en_tabla.get(i).getEmail(),this.convertirFecha(this.personas_en_tabla.get(i).getCumpleaños()),this.personas_en_tabla.get(i).getTipo().getNombre(),this.personas_en_tabla.get(i).getLocalidad().getNombre(),
 								 this.personas_en_tabla.get(i).getCalle(),this.personas_en_tabla.get(i).getAltura(),this.personas_en_tabla.get(i).getPiso(),this.personas_en_tabla.get(i).getDepartamento()};
 				this.vista.getModelPersonas().addRow(fila);
 			}				
 		}
 		
+
+
+		private String convertirFecha(Date cumpleaños) {
+			return String.valueOf(cumpleaños.getDate()) + "/" + (String.valueOf(cumpleaños.getMonth()+1)) + "/" +(String.valueOf(cumpleaños.getYear()+1900));
+		}
+
 		public void actionPerformed(ActionEvent e) 
 		{
 			
@@ -137,7 +164,8 @@ public class Controlador implements ActionListener
 			{				
 				if(this.vista.getTablaPersonas().getSelectedRow()>=0){
 					this.ventanaEditar=new VentanaAMPersona(this);
-					this.llenarCamposEditables(this.vista.getTablaPersonas().getSelectedRow());}
+					indicePersonaEditar=this.vista.getTablaPersonas().getSelectedRow();
+					this.llenarCamposEditables(indicePersonaEditar);}
 				else{
 					this.vista.alertaEditar();
 				}

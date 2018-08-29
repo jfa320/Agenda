@@ -1,20 +1,23 @@
-package dto;
+package presentacion.reportes;
 
 import java.sql.Date;
+
+import dto.PersonaDTO;
 
 public class PersonaReporte 
 {
 	private String nombre;
-	private java.sql.Date cumpleaños;
+	private String cumpleaños;
 	private String signo;
+	private String telefono;
 	
 	
 	public PersonaReporte(PersonaDTO persona)
 	{
 		this.nombre=persona.getNombre();
-		this.cumpleaños=persona.getCumpleaños();
-		this.signo=getSigno(cumpleaños);
-		
+		this.cumpleaños=this.convertirFecha(persona.getCumpleaños());
+		this.signo=getSigno(persona.getCumpleaños());
+		this.telefono=persona.getTelefono();
 	}
 	
 	
@@ -73,7 +76,7 @@ public class PersonaReporte
 
 
 
-	public java.sql.Date getCumpleaños() {
+	public String getCumpleaños() {
 		return cumpleaños;
 	}
 
@@ -82,7 +85,7 @@ public class PersonaReporte
 
 
 	public void setCumpleaños(java.sql.Date cumpleaños) {
-		this.cumpleaños = cumpleaños;
+		this.cumpleaños = this.convertirFecha(cumpleaños);
 	}
 
 
@@ -101,6 +104,15 @@ public class PersonaReporte
 		this.signo = signo;
 	}
 	
+	public String getTelefono(){
+		return this.telefono;
+	}
 	
+	public void setTelefono(String telefono){
+		this.telefono=telefono;
+	}
+	private String convertirFecha(Date cumpleaños) {
+		return String.valueOf(cumpleaños.getDate()) + "/" + (String.valueOf(cumpleaños.getMonth()+1)) + "/" +(String.valueOf(cumpleaños.getYear()+1900));
+	}
 	
 }
