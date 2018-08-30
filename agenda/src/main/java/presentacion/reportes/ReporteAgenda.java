@@ -1,6 +1,7 @@
 package presentacion.reportes;
 
 import java.io.File;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -10,6 +11,7 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 
 import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
@@ -24,6 +26,7 @@ public class ReporteAgenda
 	private JasperViewer reporteViewer;
 	private JasperPrint	reporteLleno;
 	private Logger log = Logger.getLogger(ReporteAgenda.class);
+	private String reportSource = "reportes" + File.separator + "ReporteAgenda.jrxml";
 	//Recibe la lista de personas para armar el reporte
     public ReporteAgenda(List<PersonaReporte> list)
     {
@@ -32,6 +35,9 @@ public class ReporteAgenda
 		parametersMap.put("Fecha", new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
 		
     	try		{
+    		 
+    		
+    		JasperCompileManager.compileReportToFile(reportSource,"reportes" + File.separator + "ReporteAgenda.jasper");
 			this.reporte = (JasperReport) JRLoader.loadObjectFromFile( "reportes" + File.separator + "ReporteAgenda.jasper" );
 			this.reporteLleno = JasperFillManager.fillReport(this.reporte, parametersMap, 
 					new JRBeanCollectionDataSource(list));
