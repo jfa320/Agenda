@@ -18,6 +18,7 @@ public class PersonaDAOSQL implements PersonaDAO
 	private static final String insert = "INSERT INTO personas(idPersona, nombre, telefono,email,cumple,idTipo,idLocalidad,calle,altura,piso,departamento) VALUES(?, ?, ?, ?, ?, ?,?, ?, ?, ?,?)";
 	private static final String delete = "DELETE FROM personas WHERE idPersona = ?";
 	private static final String readall = "SELECT * FROM personas";
+	private static final String update = "UPDATE tipos SET nombre=?,telefono=?,email=?,cumple=?,idTipo=?,idLocalidad=?,calle=?,altura=?,piso=?,departamento=? WHERE idPersona = ?";
 	//private static final String update = "UPDATE personas SET nombre = ? , "+"telefono= ? ,"+"email= ? ,"+"cumple= ? ,"+"idTipo= ? ,"+"idLocalidad= ? ,"+"calle= ? ,"+"altura= ? ,"+"piso= ? ,"+ "departamento = ? "+ "WHERE idPersona = ?";;
 		
 	public boolean insert(PersonaDTO persona)
@@ -129,10 +130,36 @@ public class PersonaDAOSQL implements PersonaDAO
 	}
 
 	
-	public void update(PersonaDTO persona) {
+	public boolean update(PersonaDTO persona_a_editar) 
+	{
 
-		this.delete(persona);
-		this.insert(persona);
+		PreparedStatement statement;
+		int chequeoUpdate = 0;
+		Conexion conexion = Conexion.getConexion();
+		try 
+		{
+			statement = conexion.getSQLConexion().prepareStatement(update);
+			statement.setString(1, persona_a_editar.getNombre());
+			statement.setString(2,persona_a_editar.getTelefono() );
+			statement.setString(3,persona_a_editar.getEmail() );
+			statement.setDate(4,persona_a_editar.getCumpleaños());
+			statement.setInt(5, persona_a_editar.getTipo().getIdTipo());
+			statement.setInt(6, persona_a_editar.getLocalidad().getIdLocalidad());
+			statement.setString(7,persona_a_editar.getCalle());
+			statement.setString(8,persona_a_editar.getAltura() );
+			statement.setString(9,persona_a_editar.getPiso() );
+			statement.setString(10,persona_a_editar.getDepartamento() );
+			statement.setInt(11,persona_a_editar.getIdPersona() );
+			
+			chequeoUpdate = statement.executeUpdate();
+			if(chequeoUpdate > 0) //Si se ejecutó devuelvo true
+				return true;
+		} 
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+		}
+		return false;
 	}
 }
 
