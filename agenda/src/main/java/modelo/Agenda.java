@@ -76,6 +76,15 @@ public class Agenda
 		return this.localidad.delete(localidad);
 		
 	}
+	public boolean editarLocalidad (Localidad localidad)
+	{
+		return this.localidad.update(localidad);
+	}
+	
+	public boolean editarTipo (Tipo tipo)
+	{
+		return this.tipo.update(tipo);
+	}
 
 	
 }

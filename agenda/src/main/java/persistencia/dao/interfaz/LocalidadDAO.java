@@ -12,4 +12,6 @@ public interface LocalidadDAO {
 	public boolean delete(Localidad localidad_a_eliminar);
 	
 	public List<Localidad> readAll();
+	
+	public boolean update(Localidad localidad);
 }

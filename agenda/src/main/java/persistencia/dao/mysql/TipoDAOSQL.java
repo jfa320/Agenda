@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import dto.Localidad;
 import dto.Tipo;
 import persistencia.conexion.Conexion;
 
@@ -17,7 +18,7 @@ public class TipoDAOSQL implements TipoDAO
 	private static final String insert = "INSERT INTO tipos(idTipo, tipo) VALUES(?, ?)";
 	private static final String delete = "DELETE FROM tipos WHERE idTipo = ?";
 	private static final String readall = "SELECT * FROM tipos";
-		
+	private static final String update = "UPDATE tipos SET tipo=? WHERE idTipo = ?";
 	public boolean insert(Tipo tipo)
 	{
 		
@@ -85,6 +86,31 @@ public class TipoDAOSQL implements TipoDAO
 		}
 		return tipos;
 	}
+	
+	public boolean update(Tipo tipo_a_editar)
+	{
+		PreparedStatement statement;
+		int chequeoUpdate = 0;
+		Conexion conexion = Conexion.getConexion();
+		try 
+		{
+			statement = conexion.getSQLConexion().prepareStatement(update);
+			statement.setString(1, (tipo_a_editar.getNombre()));
+			statement.setString(2, Integer.toString(tipo_a_editar.getIdTipo()));
+			
+			System.out.println(tipo_a_editar.getIdTipo());
+			chequeoUpdate = statement.executeUpdate();
+			if(chequeoUpdate > 0) //Si se ejecutó devuelvo true
+				return true;
+		} 
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+		}
+		return false;
+		
+	}
+
 
 	
 }

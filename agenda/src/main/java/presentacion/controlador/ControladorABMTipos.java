@@ -121,13 +121,9 @@ public class ControladorABMTipos implements ActionListener {
 	private void actualizarDatosEditados() {
 		Tipo tipo=tipos.get(this.vistaABM.getTable().getSelectedRow());
 		 
-		if(agenda.eliminarTipo(tipo)){
-			tipo.setTipo(this.ventanaEditarTipo.getTxtNombre().getText());
-			agenda.agregarTipo(tipo);
-		}
-		else{
-			this.ventanaEditarTipo.alertaClavesForaneas();
-		}
+		tipo.setTipo(this.ventanaEditarTipo.getTxtNombre().getText());
+		agenda.editarTipo(tipo);
+	
 		
 	}
 

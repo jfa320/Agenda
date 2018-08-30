@@ -13,4 +13,5 @@ public interface TipoDAO {
 	public boolean delete(Tipo tipo_a_eliminar);
 	
 	public List<Tipo> readAll();
+	public boolean update(Tipo tipo_a_eliminar);
 }

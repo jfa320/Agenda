@@ -17,7 +17,7 @@ public class LocalidadDAOSQL implements LocalidadDAO
 	private static final String insert = "INSERT INTO localidades(idLocalidad, nombre) VALUES(?, ?)";
 	private static final String delete = "DELETE FROM localidades WHERE idLocalidad = ?";
 	private static final String readall = "SELECT * FROM localidades";
-		
+	private static final String update = "UPDATE localidades SET nombre=? WHERE idLocalidad = ?";
 	public boolean insert(Localidad localidad)
 	{
 		
@@ -87,4 +87,26 @@ public class LocalidadDAOSQL implements LocalidadDAO
 		}
 		return localidades;
 	}
+	public boolean update(Localidad localidad_a_editar)
+	{
+		PreparedStatement statement;
+		int chequeoUpdate = 0;
+		Conexion conexion = Conexion.getConexion();
+		try 
+		{
+			statement = conexion.getSQLConexion().prepareStatement(update);
+			statement.setString(1, (localidad_a_editar.getNombre()));
+			statement.setString(2, Integer.toString(localidad_a_editar.getIdLocalidad()));
+			chequeoUpdate = statement.executeUpdate();
+			if(chequeoUpdate > 0) //Si se ejecutó devuelvo true
+				return true;
+		} 
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+		}
+		return false;
+		
+	}
+	
 }
