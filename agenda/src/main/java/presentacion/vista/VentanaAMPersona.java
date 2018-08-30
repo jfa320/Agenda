@@ -43,7 +43,6 @@ public class VentanaAMPersona extends JFrame
 	private JComboBox<String> comboBoxLocalidad;
 	private JButton btnAbmLocalidades;
 	private JButton btnAbmTipos; 
-	private JTextField textFieldServidor;
 	private JTextField textFieldMes;
 	private JTextField textFieldDia;
 	
@@ -96,7 +95,7 @@ public class VentanaAMPersona extends JFrame
 		textFieldCalle.setColumns(10);
 		
 		textFieldAño = new JTextField();
-		textFieldAño.setBounds(303, 290, 31, 20);
+		textFieldAño.setBounds(292, 290, 31, 20);
 		panel.add(textFieldAño);
 		textFieldAño.setColumns(10);
 		
@@ -123,7 +122,7 @@ public class VentanaAMPersona extends JFrame
 		
 		
 		textFieldEmail = new JTextField();
-		textFieldEmail.setBounds(183, 259, 86, 20);
+		textFieldEmail.setBounds(183, 259, 151, 20);
 		panel.add(textFieldEmail);
 		textFieldEmail.setColumns(10);
 		
@@ -200,15 +199,6 @@ public class VentanaAMPersona extends JFrame
 		btnAbmLocalidades.setBounds(344, 227, 139, 23);
 		panel.add(btnAbmLocalidades);
 		
-		JLabel arroba = new JLabel("@");
-		arroba.setBounds(271, 259, 24, 20);
-		panel.add(arroba);
-		
-		textFieldServidor = new JTextField();
-		textFieldServidor.setColumns(10);
-		textFieldServidor.setBounds(289, 259, 63, 20);
-		panel.add(textFieldServidor);
-		
 		JLabel label = new JLabel("-");
 		label.setBounds(225, 290, 16, 20);
 		panel.add(label);
@@ -223,11 +213,7 @@ public class VentanaAMPersona extends JFrame
 			   {
 				  
 			      char caracter = e.getKeyChar();   
-			      
-			     
-			    
-			      
-			       
+
 			       if(((caracter < '0') || (caracter > '9')) &&(caracter != '\b')  && caracter!='-') 
 			    	  e.consume();
 
@@ -251,11 +237,6 @@ public class VentanaAMPersona extends JFrame
 			   {
 				  
 			      char caracter = e.getKeyChar();   
-			      
-			     
-			    
-			      
-			       
 			       if(((caracter < '0') || (caracter > '9')) &&(caracter != '\b')  && caracter!='-') 
 			    	  e.consume();
 
@@ -375,9 +356,7 @@ public class VentanaAMPersona extends JFrame
 
 
 
-	public JTextField getTextFieldServidor() {
-		return textFieldServidor;
-	}
+	
 
 
 
@@ -402,8 +381,5 @@ public class VentanaAMPersona extends JFrame
 
 
 
-	public void setTextFieldServidor(String servidor) {
-		this.textFieldServidor.setText(servidor);
-		
-	}
+	
 }

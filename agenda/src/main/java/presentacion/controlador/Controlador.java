@@ -229,41 +229,15 @@ public class Controlador implements ActionListener
 			
 			else if(!(this.ventanaPersona==null) && e.getSource() == this.ventanaPersona.getButtonGuardar())
 			{	
-				
-				if (verificarDatosTelefono() &&	verificarDatosNombre()  && verificarComboBox())	
+				if (verificarCamposObligatorios(this.ventanaPersona))
 				{
-					if (!ventanaPersona.getTextFieldEmail().getText().isEmpty() || !ventanaPersona.getTextFieldServidor().getText().isEmpty())
-					{
-						if (verificarDatosCumpleaños())
-						{
-							if (verificarDatosEmail())
-							{
-									
-								crearPersona();
-							}
-							else
-								JOptionPane.showMessageDialog(null, "Falta completar el mail");
-						}
-						else
-							JOptionPane.showMessageDialog(null, "Fecha invalida");
-						
-					}
-					else if (ventanaPersona.getTextFieldEmail().getText().isEmpty() && ventanaPersona.getTextFieldServidor().getText().isEmpty())
-					{
-						if (verificarDatosCumpleaños())
-						{
-							crearPersonaSinMail();
-						}
-						else
-							JOptionPane.showMessageDialog(null, "Fecha invalida");
-						
-					}
+					PersonaDTO nuevaPersona=crearPersona(this.ventanaPersona);
+					this.agenda.agregarPersona(nuevaPersona);
 					
-				
+					this.ventanaPersona.dispose();
+					this.llenarTabla();
 				}
-				else
-					JOptionPane.showMessageDialog(null, "Falta completar campos obligatorios *");
-				
+
 			}
 			else if(!(this.ventanaPersona==null) && e.getSource()== this.ventanaPersona.getBtnABMLocalidad())
 			{
@@ -300,15 +274,12 @@ public class Controlador implements ActionListener
 			this.agenda.eliminarTipo(tipo);
 			this.llenarComboBox();
 			}
-			
-			
-			
-			
-			
+
 		}
 
-		private void crearPersonaSinMail() {
-			PersonaDTO nuevaPersona;
+		private PersonaDTO crearPersona(VentanaAMPersona ventana) {
+			
+			
 			Tipo nuevoTipo=null;
 			Localidad nuevaLocalidad=null;
 			List <Tipo> tipos=agenda.obtenerTipos();
@@ -316,84 +287,104 @@ public class Controlador implements ActionListener
 			
 			for (int i = 0; i < tipos.size(); i ++){
 						
-						if (tipos.get(i).getNombre().equals(ventanaPersona.getComboBoxTipo().getSelectedItem().toString()))
-						{
-			
-							nuevoTipo=new Tipo(tipos.get(i).getIdTipo(),tipos.get(i).getNombre());
-						}
-			}
-			
-			for (int i = 0; i < localidades.size(); i ++){
-						
-						if (localidades.get(i).getNombre().equals(ventanaPersona.getComboBoxLocalidad().getSelectedItem().toString()))
-						{
-			
-							nuevaLocalidad=new Localidad(localidades.get(i).getIdLocalidad(),localidades.get(i).getNombre());
-						}
-			}
-			
-			
-			
-			nuevaPersona = new PersonaDTO(0,this.ventanaPersona.getTextFieldNombreApellido().getText(), ventanaPersona.getTextFieldTelefono().getText(),"",ventanaPersona.getTextFieldAño().getText()+"-"+ventanaPersona.getTextFieldMes().getText()+"-"+ventanaPersona.getTextFieldDia().getText(),nuevoTipo,nuevaLocalidad,ventanaPersona.getTextFieldCalle().getText(),ventanaPersona.getTextFieldAltura().getText(),ventanaPersona.getTextFieldPiso().getText(),ventanaPersona.getTextFieldDepartamento().getText());
-			
-			
-			this.agenda.agregarPersona(nuevaPersona);
-			
-			this.ventanaPersona.dispose();
-			this.llenarTabla();
-						
-		}
+			if (tipos.get(i).getNombre().equals(ventana.getComboBoxTipo().getSelectedItem().toString()))
+			{
 
-		private void crearPersona() {
-			PersonaDTO nuevaPersona;
-			Tipo nuevoTipo=null;
-			Localidad nuevaLocalidad=null;
-			List <Tipo> tipos=agenda.obtenerTipos();
-			List<Localidad> localidades=agenda.obtenerLocalidades();
-			
-			for (int i = 0; i < tipos.size(); i ++){
-						
-						if (tipos.get(i).getNombre().equals(ventanaPersona.getComboBoxTipo().getSelectedItem().toString()))
-						{
-			
-							nuevoTipo=new Tipo(tipos.get(i).getIdTipo(),tipos.get(i).getNombre());
-						}
+				nuevoTipo=new Tipo(tipos.get(i).getIdTipo(),tipos.get(i).getNombre());
+			}
 			}
 			
-			for (int i = 0; i < localidades.size(); i ++){
+			for (int i = 0; i < localidades.size(); i ++)
+			{
 						
-						if (localidades.get(i).getNombre().equals(ventanaPersona.getComboBoxLocalidad().getSelectedItem().toString()))
-						{
-			
-							nuevaLocalidad=new Localidad(localidades.get(i).getIdLocalidad(),localidades.get(i).getNombre());
-						}
+				if (localidades.get(i).getNombre().equals(ventana.getComboBoxLocalidad().getSelectedItem().toString()))
+				{
+
+					nuevaLocalidad=new Localidad(localidades.get(i).getIdLocalidad(),localidades.get(i).getNombre());
+				}
 			}
 			
 			
 			
-			nuevaPersona = new PersonaDTO(0,this.ventanaPersona.getTextFieldNombreApellido().getText(), ventanaPersona.getTextFieldTelefono().getText(),ventanaPersona.getTextFieldEmail().getText()+"@"+ventanaPersona.getTextFieldServidor().getText(),ventanaPersona.getTextFieldAño().getText()+"-"+ventanaPersona.getTextFieldMes().getText()+"-"+ventanaPersona.getTextFieldDia().getText(),nuevoTipo,nuevaLocalidad,ventanaPersona.getTextFieldCalle().getText(),ventanaPersona.getTextFieldAltura().getText(),ventanaPersona.getTextFieldPiso().getText(),ventanaPersona.getTextFieldDepartamento().getText());
+			return new PersonaDTO(0,ventana.getTextFieldNombreApellido().getText(), ventana.getTextFieldTelefono().getText(),ventana.getTextFieldEmail().getText(),ventana.getTextFieldAño().getText()+"-"+ventana.getTextFieldMes().getText()+"-"+ventana.getTextFieldDia().getText(),nuevoTipo,nuevaLocalidad,ventana.getTextFieldCalle().getText(),ventana.getTextFieldAltura().getText(),ventana.getTextFieldPiso().getText(),ventana.getTextFieldDepartamento().getText());
 			
 			
-			this.agenda.agregarPersona(nuevaPersona);
-			
-			this.ventanaPersona.dispose();
-			this.llenarTabla();
+				
 		}
 
 		
+
 		
 
-		private void actualizarDatosEditados() {
+		private boolean verificarCamposObligatorios(VentanaAMPersona ventana) 
+		{
+			if (ventana.getTextFieldNombreApellido().getText().isEmpty())
+			{
+				JOptionPane.showMessageDialog(null, "Falta completar el nombre");
+				return false;
+			}
+			if (ventana.getTextFieldTelefono().getText().isEmpty())
+			{
+				JOptionPane.showMessageDialog(null, "Falta completar el numero");
+				return false;
+			}
+			if (ventana.getComboBoxLocalidad().getSelectedItem() == null)
+			{
+				JOptionPane.showMessageDialog(null, "Falta completar la localidad");
+				return false;
+			}
+			if (ventana.getComboBoxTipo().getSelectedItem() == null)
+			{
+				JOptionPane.showMessageDialog(null, "Falta completar el tipo de contacto");
+				return false;
+			}
+			if (ventana.getTextFieldDia().getText().isEmpty())
+			{
+				JOptionPane.showMessageDialog(null, "Falta completar el dia de su cumpleaños");
+				return false;
+			}
+			else if ( (Integer.parseInt(ventana.getTextFieldDia().getText())>31))
+			{
+				JOptionPane.showMessageDialog(null, "Ingrese un dia valido");
+				return false;
+			}
+			if (ventana.getTextFieldMes().getText().isEmpty())
+			{
+				JOptionPane.showMessageDialog(null, "Falta completar el mes de su cumpleaños");
+				return false;
+			}
+			else if ((Integer.parseInt(ventana.getTextFieldMes().getText())>13))
+			{
+				JOptionPane.showMessageDialog(null, "Ingrese un mes valido");
+				return false;
+			}
+			if (ventana.getTextFieldAño().getText().isEmpty())
+			{
+				JOptionPane.showMessageDialog(null, "Falta completar el año de su cumpleaños");
+				return false;
+			}
+			else if (!(Integer.parseInt(ventana.getTextFieldAño().getText())<2018 && Integer.parseInt(ventana.getTextFieldAño().getText())>1900 ))
+			{
+				JOptionPane.showMessageDialog(null, "Ingrese un año valido");
+				return false;
+			}
+			return true;
+			
+		}
+
+
+		private void actualizarDatosEditados() 
+		{
 
 			PersonaDTO persona=personas_en_tabla.get(this.vista.getTablaPersonas().getSelectedRow());
 			
 			
-			agenda.borrarPersona(persona);
 			
-			if (this.ventanaEditar.getTextFieldEmail().getText().isEmpty() && this.ventanaEditar.getTextFieldServidor().getText().isEmpty())
+			
+			if (this.ventanaEditar.getTextFieldEmail().getText().isEmpty())
 				persona.setEmail("");
 			else
-				persona.setEmail(this.ventanaEditar.getTextFieldEmail().getText()+"@"+this.ventanaEditar.getTextFieldServidor().getText());
+				persona.setEmail(this.ventanaEditar.getTextFieldEmail().getText());
 			
 			persona.setNombre(this.ventanaEditar.getTextFieldNombreApellido().getText());
 			persona.setTelefono(this.ventanaEditar.getTextFieldTelefono().getText());
@@ -423,33 +414,17 @@ public class Controlador implements ActionListener
 			persona.setTipo(tipo);
 			persona.setLocalidad(localidad);
 			
-			agenda.agregarPersona(persona);
+			agenda.actualizarContacto(persona);
 		}
 
 		private void llenarCamposEditables(int indice) {
 			
 				
 				
-				PersonaDTO persona=personas_en_tabla.get(indice);
-				
-				if (persona.getEmail().equals(""))
-				{
-					ventanaEditar.setTextFieldEmail("");
-					ventanaEditar.setTextFieldServidor("");
-				}
-				else
-				{
-					String email=persona.getEmail();
-					String[] parts = email.split("@");
-					ventanaEditar.setTextFieldEmail(parts[0]);
-					ventanaEditar.setTextFieldServidor(parts[1]);
-				}
-				
-				
-				
+				PersonaDTO persona=personas_en_tabla.get(indice);		
+				ventanaEditar.setTextFieldEmail(persona.getEmail());
 				ventanaEditar.setTextFieldNombreApellido(persona.getNombre());
-				ventanaEditar.setTextFieldTelefono(persona.getTelefono());
-				
+				ventanaEditar.setTextFieldTelefono(persona.getTelefono());				
 				ventanaEditar.setTextFieldAño(String.valueOf(persona.getCumpleaños().getYear()+1900));
 				ventanaEditar.setTextFieldMes(String.valueOf(persona.getCumpleaños().getMonth()+1));
 				ventanaEditar.setTextFieldDia(String.valueOf(persona.getCumpleaños().getDate()));
@@ -462,45 +437,7 @@ public class Controlador implements ActionListener
 				this.llenarComboBoxEditables(persona.getLocalidad(),persona.getTipo());
 		
 		}
-		private boolean verificarDatosTelefono()
-		{
-			
-			return !this.ventanaPersona.getTextFieldTelefono().getText().isEmpty();
 		
-		}
-		private boolean verificarDatosNombre()
-		{
-			return !this.ventanaPersona.getTextFieldNombreApellido().getText().isEmpty();
-		
-		}
-		private boolean verificarDatosCumpleaños()
-		{
-			if (!this.ventanaPersona.getTextFieldAño().getText().isEmpty() && !this.ventanaPersona.getTextFieldMes().getText().isEmpty() && !this.ventanaPersona.getTextFieldDia().getText().isEmpty() )
-			{
-				if ((Integer.parseInt(this.ventanaPersona.getTextFieldAño().getText())<2018 && Integer.parseInt(this.ventanaPersona.getTextFieldAño().getText())>1900 ) && (Integer.parseInt(this.ventanaPersona.getTextFieldMes().getText())<13) && (Integer.parseInt(this.ventanaPersona.getTextFieldDia().getText())<31))
-					return true;
-				else
-					return false;
-			}
-			else
-				return false;
-			
-			
-			
-		
-		}
-		private boolean verificarDatosEmail()
-		{
-			return (!this.ventanaPersona.getTextFieldEmail().getText().isEmpty() && !this.ventanaPersona.getTextFieldServidor().getText().isEmpty()) ;
-		
-		}
-		private boolean verificarComboBox() 
-		{
-			if (this.ventanaPersona.getComboBoxLocalidad().getSelectedItem() == null || this.ventanaPersona.getComboBoxTipo().getSelectedItem()==null )
-				return false;
-			return true;
-			
-		}
 		
 		
 		private List<PersonaReporte> generarListaReporte(List<PersonaDTO> obtenerPersonas) {

@@ -18,7 +18,7 @@ public class PersonaDAOSQL implements PersonaDAO
 	private static final String insert = "INSERT INTO personas(idPersona, nombre, telefono,email,cumple,idTipo,idLocalidad,calle,altura,piso,departamento) VALUES(?, ?, ?, ?, ?, ?,?, ?, ?, ?,?)";
 	private static final String delete = "DELETE FROM personas WHERE idPersona = ?";
 	private static final String readall = "SELECT * FROM personas";
-	private static final String update = "UPDATE tipos SET nombre=?,telefono=?,email=?,cumple=?,idTipo=?,idLocalidad=?,calle=?,altura=?,piso=?,departamento=? WHERE idPersona = ?";
+	private static final String update = "UPDATE personas SET nombre=?,telefono=?,email=?,cumple=?,idTipo=?,idLocalidad=?,calle=?,altura=?,piso=?,departamento=? WHERE idPersona = ?";
 	//private static final String update = "UPDATE personas SET nombre = ? , "+"telefono= ? ,"+"email= ? ,"+"cumple= ? ,"+"idTipo= ? ,"+"idLocalidad= ? ,"+"calle= ? ,"+"altura= ? ,"+"piso= ? ,"+ "departamento = ? "+ "WHERE idPersona = ?";;
 		
 	public boolean insert(PersonaDTO persona)
