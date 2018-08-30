@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import presentacion.controlador.Controlador;
+
 import presentacion.controlador.ControladorABMLocalidades;
 
 public class VentanaLocalidad extends JFrame

@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import dto.Localidad;
+
 import dto.Tipo;
 import persistencia.conexion.Conexion;
 

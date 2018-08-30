@@ -136,7 +136,7 @@ public class VentanaABMTipos extends JFrame
 	}
 
 	public void alertaClavesForaneas() {
-		JOptionPane.showMessageDialog(null, "No es posible borrar o editar este tipo porque esta asociado a una persona");
+		JOptionPane.showMessageDialog(null, "No es posible borrar este tipo porque esta asociado a una persona");
 	}
 	
 }

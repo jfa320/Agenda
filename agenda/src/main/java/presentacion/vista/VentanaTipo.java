@@ -9,7 +9,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import presentacion.controlador.Controlador;
 import presentacion.controlador.ControladorABMTipos;
 
 public class VentanaTipo extends JFrame
