@@ -109,6 +109,7 @@ public class ControladorABMTipos implements ActionListener {
 			this.actualizarDatosEditados();
 			this.llenarTabla();
 			this.controlador.llenarComboBox();
+			this.controlador.llenarTabla();
 		}
 		
 	}

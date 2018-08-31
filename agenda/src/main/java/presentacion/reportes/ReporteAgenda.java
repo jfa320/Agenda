@@ -1,7 +1,7 @@
 package presentacion.reportes;
 
 import java.io.File;
-import java.io.InputStream;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
+
 
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
@@ -35,10 +36,9 @@ public class ReporteAgenda
 		parametersMap.put("Fecha", new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
 		
     	try		{
-    		 
-    		
+    	
     		JasperCompileManager.compileReportToFile(reportSource,"reportes" + File.separator + "ReporteAgenda.jasper");
-			this.reporte = (JasperReport) JRLoader.loadObjectFromFile( "reportes" + File.separator + "ReporteAgenda.jasper" );
+			this.reporte = (JasperReport) JRLoader.loadObjectFromFile("reportes" + File.separator + "ReporteAgenda.jasper");
 			this.reporteLleno = JasperFillManager.fillReport(this.reporte, parametersMap, 
 					new JRBeanCollectionDataSource(list));
 			
@@ -47,6 +47,7 @@ public class ReporteAgenda
 		catch( JRException ex ) 
 		{
 			log.error("OcurriÃ³ un error mientras se cargaba el archivo ReporteAgenda.Jasper", ex);
+			
 		}
     }       
     

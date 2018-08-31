@@ -128,7 +128,7 @@ public class Controlador implements ActionListener
 			
 		}
 		
-		private void llenarTabla()
+		public void llenarTabla()
 		{
 			this.vista.getModelPersonas().setRowCount(0); //Para vaciar la tabla
 			this.vista.getModelPersonas().setColumnCount(0);
