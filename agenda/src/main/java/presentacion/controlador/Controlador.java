@@ -3,6 +3,8 @@ package presentacion.controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -315,9 +317,9 @@ public class Controlador implements ActionListener
 		
 
 		
-
 		private boolean verificarCamposObligatorios(VentanaAMPersona ventana) 
 		{
+			
 			if (ventana.getTextFieldNombreApellido().getText().isEmpty())
 			{
 				JOptionPane.showMessageDialog(null, "Falta completar el nombre");
@@ -343,35 +345,81 @@ public class Controlador implements ActionListener
 				JOptionPane.showMessageDialog(null, "Falta completar el dia de su cumpleaños");
 				return false;
 			}
-			else if ( (Integer.parseInt(ventana.getTextFieldDia().getText())>31))
-			{
-				JOptionPane.showMessageDialog(null, "Ingrese un dia valido");
-				return false;
-			}
 			if (ventana.getTextFieldMes().getText().isEmpty())
 			{
 				JOptionPane.showMessageDialog(null, "Falta completar el mes de su cumpleaños");
 				return false;
 			}
-			else if ((Integer.parseInt(ventana.getTextFieldMes().getText())>13))
-			{
-				JOptionPane.showMessageDialog(null, "Ingrese un mes valido");
-				return false;
-			}
+			
 			if (ventana.getTextFieldAño().getText().isEmpty())
 			{
 				JOptionPane.showMessageDialog(null, "Falta completar el año de su cumpleaños");
 				return false;
 			}
-			else if (!(Integer.parseInt(ventana.getTextFieldAño().getText())<2018 && Integer.parseInt(ventana.getTextFieldAño().getText())>1900 ))
+			if (!verificarDate(ventana.getTextFieldDia().getText()+"-"+ventana.getTextFieldMes().getText()+"-"+ventana.getTextFieldAño().getText()))
 			{
-				JOptionPane.showMessageDialog(null, "Ingrese un año valido");
+				
+				JOptionPane.showMessageDialog(null, "Ingrese una fecha valida");
 				return false;
 			}
+			
 			return true;
 			
 		}
 
+
+		@SuppressWarnings("deprecation")
+		private boolean verificarDate(String cumpleaños)
+		{	
+			
+			SimpleDateFormat formato=new SimpleDateFormat("dd-MM-yyyy");
+			java.util.Date utilDate = new java.util.Date();
+			
+			
+			try {
+				
+				
+				utilDate= formato.parse(cumpleaños);
+				
+			
+				
+				String[] parts = cumpleaños.split("-");
+				
+				
+				if (!(Integer.parseInt(parts[0])==utilDate.getDate()))
+				{
+					
+					return false;
+				}
+				
+				if (!(Integer.parseInt(parts[1])==(utilDate.getMonth()+1)))
+				{
+				
+					return false;
+				}
+
+				
+
+				if (!(Integer.parseInt(parts[2])==(utilDate.getYear()+1900)))
+				{
+					
+					
+			
+					return false;
+				}
+				
+				
+				
+				return true;
+			} 
+			catch (ParseException e) 
+			{
+				
+				return false;
+			}
+			
+			
+		}
 
 		private void actualizarDatosEditados() 
 		{

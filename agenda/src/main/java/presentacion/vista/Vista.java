@@ -115,7 +115,8 @@ public class Vista
 		             null, "Estas seguro que quieres salir de la Agenda!?", 
 		             "Confirmacion", JOptionPane.YES_NO_OPTION,
 		             JOptionPane.QUESTION_MESSAGE, null, null, null);
-		        if (confirm == 0) {
+		        if (confirm == 0) 
+		        {
 		        	Conexion.getConexion().cerrarConexion();
 		           System.exit(0);
 		        }
