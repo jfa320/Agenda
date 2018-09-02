@@ -76,6 +76,21 @@ public class Conexion
 				e1.printStackTrace();
 			}
 			p.put("validacion","false");
+			FileOutputStream out = null;
+			try {
+				out = new FileOutputStream(System.getProperty("user.dir")+"\\acceso.properties");
+			} catch (FileNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+			
+			try {
+				p.store(out, "");
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 	
