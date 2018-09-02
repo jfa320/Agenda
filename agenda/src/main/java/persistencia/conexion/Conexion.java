@@ -24,21 +24,11 @@ public class Conexion
 	private Conexion() 
 	{
 		
-		Runtime rt = Runtime.getRuntime();
-		
-//		try {
-//			rt.exec("C://BD Laboratorio//mysql-5.7.19-win32//bin//mysqld");
-//			
-//		} catch (IOException e1) {
-//			// TODO Auto-generated catch block
-//			e1.printStackTrace();
-//		}
-//		
-		
+	
 		try
 		{
 			Properties p=new Properties();
-			p.load(new FileReader("C:\\Users\\ferna\\Desktop\\acceso.properties"));
+			p.load(new FileReader(System.getProperty("user.dir")+"\\acceso.properties"));
 			
 			
 			
@@ -59,7 +49,7 @@ public class Conexion
 
 			FileOutputStream out = null;
 			try {
-				out = new FileOutputStream("C:\\Users\\ferna\\Desktop\\acceso.properties");
+				out = new FileOutputStream(System.getProperty("user.dir")+"\\acceso.properties");
 			} catch (FileNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -77,7 +67,7 @@ public class Conexion
 		{
 			Properties p=new Properties();
 			try {
-				p.load(new FileReader("C:\\Users\\ferna\\Desktop\\acceso.properties"));
+				p.load(new FileReader(System.getProperty("user.dir")+"\\acceso.properties"));
 			} catch (FileNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

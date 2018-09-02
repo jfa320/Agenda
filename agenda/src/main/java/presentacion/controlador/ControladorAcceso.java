@@ -6,16 +6,12 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.OutputStream;
-import java.io.Writer;
 import java.util.Properties;
 
 import modelo.Agenda;
 import persistencia.dao.mysql.DAOSQLFactory;
 import presentacion.vista.VentanaAcceso;
-import presentacion.vista.VentanaTipo;
 import presentacion.vista.Vista;
 
 public class ControladorAcceso implements ActionListener
@@ -41,7 +37,7 @@ public class ControladorAcceso implements ActionListener
 				Properties p = new Properties();
 				try 
 				{
-					p.load(new FileReader("C:\\Users\\ferna\\Desktop\\acceso.properties"));
+					p.load(new FileReader(System.getProperty("user.dir")+"\\acceso.properties"));
 				}
 				catch (IOException e)
 				{
@@ -59,7 +55,7 @@ public class ControladorAcceso implements ActionListener
 				
 				FileOutputStream out = null;
 				try {
-					out = new FileOutputStream("C:\\Users\\ferna\\Desktop\\acceso.properties");
+					out = new FileOutputStream(System.getProperty("user.dir")+"\\acceso.properties");
 				} catch (FileNotFoundException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
