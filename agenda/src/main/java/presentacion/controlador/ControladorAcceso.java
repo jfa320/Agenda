@@ -90,7 +90,7 @@ public class ControladorAcceso implements ActionListener
 				
 		      }
 			
-			
+			this.ventana.dispose();
 		}
 
 

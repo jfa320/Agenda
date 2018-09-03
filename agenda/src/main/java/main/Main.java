@@ -28,24 +28,29 @@ public class Main
 		
 		p.load(new FileReader(url));
 		
-		if (!p.isEmpty() || !p.getProperty("validacion").equals("true"))
+		if (!p.isEmpty() )
 		{
-				VentanaAcceso ventana=new VentanaAcceso();
-		
-				ControladorAcceso controladorAcceso=new ControladorAcceso(ventana);
+			
+			VentanaAcceso ventana=new VentanaAcceso();
+			ControladorAcceso controladorAcceso=new ControladorAcceso(ventana);
 		}
 		else
 		{
-			Vista vista = new Vista();
-			Agenda modelo = new Agenda(new DAOSQLFactory());
-			Controlador controlador = new Controlador(vista, modelo);
-			controlador.inicializar();
+			if (!p.getProperty("validacion").equals("true"))
+			{
+				VentanaAcceso ventana=new VentanaAcceso();
+				ControladorAcceso controladorAcceso=new ControladorAcceso(ventana);
+			}
+			else
+			{
+				Vista vista = new Vista();
+				Agenda modelo = new Agenda(new DAOSQLFactory());
+				Controlador controlador = new Controlador(vista, modelo);
+				controlador.inicializar();
+			}
+			
 			
 		}
-		
-	
-		
-		
-		
+
 	}
 }

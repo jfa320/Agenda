@@ -93,18 +93,7 @@ public class VentanaAcceso extends JFrame
 		textFieldIp.setColumns(10);
 		textFieldIp.setBounds(145, 166, 86, 20);
 		getContentPane().add(textFieldIp);
-		textFieldIp.addKeyListener(new KeyAdapter()
-		{
-			   public void keyTyped(KeyEvent e)
-			   {
-				  
-			      char caracter = e.getKeyChar();   
-			      
-			      if(((caracter < '0') || (caracter > '9')) &&(caracter != '\b')&& caracter!='.') 
-			    	  e.consume();
-
-			   }
-			});
+		
 		
 		JLabel labelTitulo = new JLabel("Datos de acceso a la base de datos");
 		labelTitulo.setBounds(34, 11, 348, 14);
