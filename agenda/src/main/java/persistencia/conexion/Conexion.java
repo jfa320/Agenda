@@ -21,10 +21,22 @@ public class Conexion
 	private String usuario="";
 	private String contraseña="";
 	private String puerto="";
+	private String ip="";
 	private Conexion() 
 	{
+//		Runtime rt = Runtime.getRuntime();
+//		try 
+//		{
+//			rt.exec("C:\\Users\\ferna\\Desktop\\inicializar.bat");
+//			
+//		} catch (IOException e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		}
 		
-	
+		
+		
+		
 		try
 		{
 			Properties p=new Properties();
@@ -35,7 +47,9 @@ public class Conexion
 			this.usuario=p.getProperty("usuario");
 			this.contraseña=p.getProperty("contraseña");
 			this.puerto=p.getProperty("puerto");
+			this.ip=p.getProperty("ip");
 
+			System.out.println(usuario+contraseña+puerto+ip);
 			
 			Class.forName("com.mysql.jdbc.Driver"); // quitar si no es necesario
 			this.connection = DriverManager.getConnection("jdbc:mysql://localhost:"+puerto+"/agenda",usuario,contraseña);

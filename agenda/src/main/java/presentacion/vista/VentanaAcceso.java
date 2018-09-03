@@ -19,6 +19,8 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.BorderLayout;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
 public class VentanaAcceso extends JFrame 
@@ -30,7 +32,7 @@ public class VentanaAcceso extends JFrame
 	private JTextField textFieldIp;
 
 	private JButton btnConectar;
-	
+	private JButton btnEditarUsuario;
 	public VentanaAcceso() 
 	{
 		
@@ -109,11 +111,23 @@ public class VentanaAcceso extends JFrame
 		getContentPane().add(labelTitulo);
 		
 		btnConectar = new JButton("Conectar");
-		btnConectar.setBounds(142, 227, 89, 23);
+		btnConectar.setBounds(145, 226, 89, 23);
 		getContentPane().add(btnConectar);
+		
+		btnEditarUsuario = new JButton("Editar Usuario");
+		btnEditarUsuario.setBounds(145, 261, 112, 23);
+		getContentPane().add(btnEditarUsuario);
 		
 	
 		
+	}
+
+	public JButton getBtnEditarUsuario() {
+		return btnEditarUsuario;
+	}
+
+	public void setBtnEditarUsuario(JButton btnEditarUsuario) {
+		this.btnEditarUsuario = btnEditarUsuario;
 	}
 
 	public JButton getBtnConectar() {
@@ -155,6 +169,5 @@ public class VentanaAcceso extends JFrame
 	public void setTextFieldIp(JTextField textFieldIp) {
 		this.textFieldIp = textFieldIp;
 	}
-	
 }
 

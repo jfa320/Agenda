@@ -2,16 +2,20 @@ package presentacion.controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Properties;
 
 import modelo.Agenda;
 import persistencia.dao.mysql.DAOSQLFactory;
 import presentacion.vista.VentanaAcceso;
+import presentacion.vista.VentanaEditarUsuario;
 import presentacion.vista.Vista;
 
 public class ControladorAcceso implements ActionListener
@@ -23,6 +27,7 @@ public class ControladorAcceso implements ActionListener
 		{
 			this.ventana=ventana;
 			this.ventana.getBtnConectar().addActionListener(this);
+			this.ventana.getBtnEditarUsuario().addActionListener(this);
 		}
 
 		
@@ -34,10 +39,10 @@ public class ControladorAcceso implements ActionListener
 			if(evento.getSource()==this.ventana.getBtnConectar())
 			{
 				
-				Properties p = new Properties();
+				config = new Properties();
 				try 
 				{
-					p.load(new FileReader(System.getProperty("user.dir")+"\\acceso.properties"));
+					config.load(new FileReader(System.getProperty("user.dir")+"\\acceso.properties"));
 				}
 				catch (IOException e)
 				{
@@ -48,10 +53,11 @@ public class ControladorAcceso implements ActionListener
 				
 				
 				
-				p.put("usuario", this.ventana.getTextFieldUsuario().getText());
-				p.put("contraseña", this.ventana.getTextFieldContraseña().getText());
-				p.put("puerto", this.ventana.getTextFieldPuerto().getText());
-				p.put("validacion", "");
+				config.put("usuario", this.ventana.getTextFieldUsuario().getText());
+				config.put("contraseña", this.ventana.getTextFieldContraseña().getText());
+				config.put("puerto", this.ventana.getTextFieldPuerto().getText());
+				config.put("ip", this.ventana.getTextFieldIp().getText());
+				config.put("validacion", "");
 				
 				FileOutputStream out = null;
 				try {
@@ -63,7 +69,7 @@ public class ControladorAcceso implements ActionListener
 				
 				
 				try {
-					p.store(out, "");
+					config.store(out, "");
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -73,10 +79,17 @@ public class ControladorAcceso implements ActionListener
 				Agenda modelo = new Agenda(new DAOSQLFactory());
 				Controlador controlador = new Controlador(vista, modelo);
 				controlador.inicializar();
-				
-				
-				
+
 			}
+			else if (evento.getSource()==this.ventana.getBtnEditarUsuario())
+			{
+				VentanaEditarUsuario ventana = new VentanaEditarUsuario();
+				ControladorEditarUsuario controlador=new ControladorEditarUsuario(ventana);
+				
+				
+				
+		      }
+			
 			
 		}
 

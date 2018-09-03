@@ -28,7 +28,7 @@ public class Main
 		
 		p.load(new FileReader(url));
 		
-		if (p.isEmpty() || !p.getProperty("validacion").equals("true"))
+		if (!p.isEmpty() || !p.getProperty("validacion").equals("true"))
 		{
 				VentanaAcceso ventana=new VentanaAcceso();
 		
