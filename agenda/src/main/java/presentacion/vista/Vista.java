@@ -39,17 +39,17 @@ public class Vista
 	private void initialize() 
 	{
 		frame = new JFrame();
-		frame.setBounds(100, 100, 882, 360);
+		frame.setBounds(100, 100, 1068, 319);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 856, 330);
+		panel.setBounds(0, 0, 1052, 274);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JScrollPane spPersonas = new JScrollPane();
-		spPersonas.setBounds(10, 11, 836, 206);
+		spPersonas.setBounds(10, 11, 1032, 206);
 		panel.add(spPersonas);
 		
 		modelPersonas = new DefaultTableModel(null,nombreColumnas);
@@ -104,8 +104,12 @@ public class Vista
 		btnAbmTipos.setBounds(710, 228, 136, 23);
 		panel.add(btnAbmTipos);
 		
-		btnEditarUsuario = new JButton("Editar Usuario");
-		btnEditarUsuario.setBounds(10, 296, 110, 23);
+		btnEditarUsuario = new JButton("Editar Usuario Conexion");
+		btnEditarUsuario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btnEditarUsuario.setBounds(875, 228, 153, 23);
 		panel.add(btnEditarUsuario);
 		
 		

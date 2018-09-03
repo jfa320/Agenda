@@ -24,6 +24,18 @@ public class ControladorEditarUsuario  implements ActionListener
 	
 	public ControladorEditarUsuario(VentanaEditarUsuario ventana)
 	{
+		Runtime rt = Runtime.getRuntime();
+		try 
+		{
+		
+			rt.exec(System.getProperty("user.dir")+"\\mysql-5.7.19-win32\\bin\\mysqld");
+			
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		
 		this.ventana=ventana;
 		this.ventana.getBtnGuardar().addActionListener(this);
 		config = new Properties();
@@ -74,7 +86,7 @@ public class ControladorEditarUsuario  implements ActionListener
 				bwQuery.newLine();
 				bwQuery.write(("flush privileges;"));
 				
-				bwBat.write("cd c:\\mysql-5.7.19-winx64\\bin");
+				bwBat.write("cd "+System.getProperty("user.dir")+"\\mysql-5.7.19-win32\\bin");
 				bwBat.newLine();
 				bwBat.write("mysql -u "+this.config.getProperty("usuario")+" -p"+this.config.getProperty("contraseña")+" < "+System.getProperty("user.dir")+"\\queryEditarUsuario.txt");
 				

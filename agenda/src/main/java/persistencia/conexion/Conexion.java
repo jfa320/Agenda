@@ -24,15 +24,17 @@ public class Conexion
 	private String ip="";
 	private Conexion() 
 	{
-//		Runtime rt = Runtime.getRuntime();
-//		try 
-//		{
-//			rt.exec("C:\\Users\\ferna\\Desktop\\inicializar.bat");
-//			
-//		} catch (IOException e1) {
-//			// TODO Auto-generated catch block
-//			e1.printStackTrace();
-//		}
+		
+		Runtime rt = Runtime.getRuntime();
+		try 
+		{
+		
+			rt.exec(System.getProperty("user.dir")+"\\mysql-5.7.19-win32\\bin\\mysqld");
+			
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
 		
 		

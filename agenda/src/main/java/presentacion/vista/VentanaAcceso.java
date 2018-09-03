@@ -21,6 +21,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 
 public class VentanaAcceso extends JFrame 
@@ -40,7 +41,7 @@ public class VentanaAcceso extends JFrame
 		
 		this.setVisible(true);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 444, 375);
+		setBounds(100, 100, 340, 315);
 		
 		
 		getContentPane().setLayout(null);
@@ -63,21 +64,39 @@ public class VentanaAcceso extends JFrame
 		lblIp.setBounds(34, 169, 46, 14);
 		getContentPane().add(lblIp);
 		
-		textFieldUsuario = new JTextField();
-		textFieldUsuario.setBounds(145, 45, 86, 20);
-		getContentPane().add(textFieldUsuario);
-		textFieldUsuario.setColumns(10);
-		textFieldUsuario.setVisible(true);
+		
+		JLabel labelTitulo = new JLabel("Datos de acceso a la base de datos");
+		labelTitulo.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		labelTitulo.setBounds(34, 11, 348, 14);
+		getContentPane().add(labelTitulo);
+		
+		btnConectar = new JButton("Conectar");
+		btnConectar.setBounds(145, 226, 89, 23);
+		btnConectar.setVisible(true);
+		getContentPane().add(btnConectar);
+		
+		textFieldIp = new JTextField();
+		textFieldIp.setColumns(10);
+		textFieldIp.setBounds(145, 166, 86, 20);
+		getContentPane().add(textFieldIp);
+		
+		
+		textFieldPuerto = new JTextField();
+		textFieldPuerto.setColumns(10);
+		textFieldPuerto.setBounds(145, 127, 86, 20);
+		getContentPane().add(textFieldPuerto);
+		
 		
 		textFieldContraseña = new JTextField();
 		textFieldContraseña.setColumns(10);
 		textFieldContraseña.setBounds(145, 86, 86, 20);
 		getContentPane().add(textFieldContraseña);
 		
-		textFieldPuerto = new JTextField();
-		textFieldPuerto.setColumns(10);
-		textFieldPuerto.setBounds(145, 127, 86, 20);
-		getContentPane().add(textFieldPuerto);
+		textFieldUsuario = new JTextField();
+		textFieldUsuario.setBounds(145, 45, 86, 20);
+		getContentPane().add(textFieldUsuario);
+		
+		textFieldUsuario.setColumns(10);
 		textFieldPuerto.addKeyListener(new KeyAdapter()
 		{
 			   public void keyTyped(KeyEvent e)
@@ -90,20 +109,6 @@ public class VentanaAcceso extends JFrame
 
 			   }
 			});
-		
-		textFieldIp = new JTextField();
-		textFieldIp.setColumns(10);
-		textFieldIp.setBounds(145, 166, 86, 20);
-		getContentPane().add(textFieldIp);
-		
-		
-		JLabel labelTitulo = new JLabel("Datos de acceso a la base de datos");
-		labelTitulo.setBounds(34, 11, 348, 14);
-		getContentPane().add(labelTitulo);
-		
-		btnConectar = new JButton("Conectar");
-		btnConectar.setBounds(145, 226, 89, 23);
-		getContentPane().add(btnConectar);
 		
 		
 		

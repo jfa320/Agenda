@@ -21,6 +21,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 
 public class VentanaEditarUsuario extends JFrame 
@@ -35,16 +36,18 @@ public class VentanaEditarUsuario extends JFrame
 	{
 		this.setVisible(true);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 444, 375);
+		setBounds(100, 100, 275, 220);
 		
 		
 		getContentPane().setLayout(null);
 		
 		JLabel lblUsuario = new JLabel("Usuario");
+		lblUsuario.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblUsuario.setBounds(32, 39, 46, 14);
 		getContentPane().add(lblUsuario);
 		
 		JLabel lblContraseña = new JLabel("Contraseña");
+		lblContraseña.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblContraseña.setBounds(32, 95, 64, 14);
 		getContentPane().add(lblContraseña);
 		
@@ -59,7 +62,7 @@ public class VentanaEditarUsuario extends JFrame
 		textFieldContraseña.setColumns(10);
 		
 		btnGuardar = new JButton("Guardar");
-		btnGuardar.setBounds(32, 158, 89, 23);
+		btnGuardar.setBounds(83, 149, 89, 23);
 		getContentPane().add(btnGuardar);
 		
 	}
