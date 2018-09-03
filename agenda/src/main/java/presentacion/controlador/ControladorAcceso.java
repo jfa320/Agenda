@@ -27,7 +27,7 @@ public class ControladorAcceso implements ActionListener
 		{
 			this.ventana=ventana;
 			this.ventana.getBtnConectar().addActionListener(this);
-			this.ventana.getBtnEditarUsuario().addActionListener(this);
+			
 		}
 
 		
@@ -81,14 +81,7 @@ public class ControladorAcceso implements ActionListener
 				controlador.inicializar();
 
 			}
-			else if (evento.getSource()==this.ventana.getBtnEditarUsuario())
-			{
-				VentanaEditarUsuario ventana = new VentanaEditarUsuario();
-				ControladorEditarUsuario controlador=new ControladorEditarUsuario(ventana);
-				
-				
-				
-		      }
+		
 			
 			this.ventana.dispose();
 		}

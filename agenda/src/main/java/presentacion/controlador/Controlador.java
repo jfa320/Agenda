@@ -20,6 +20,7 @@ import presentacion.reportes.ReporteAgenda;
 import presentacion.vista.VentanaABMLocalidades;
 import presentacion.vista.VentanaABMTipos;
 import presentacion.vista.VentanaAMPersona;
+import presentacion.vista.VentanaEditarUsuario;
 import presentacion.vista.Vista;
 import dto.Localidad;
 import dto.PersonaDTO;
@@ -51,6 +52,7 @@ public class Controlador implements ActionListener
 			this.vista.getBtnEditar().addActionListener(this);
 			this.vista.getBtnAbmLocalidades().addActionListener(this);
 			this.vista.getBtnAbmTipos().addActionListener(this);
+			this.vista.getBtnEditarUsuario().addActionListener(this);
 			this.agenda = agenda;
 			this.personas_en_tabla = agenda.obtenerPersonas();
 		}
@@ -276,6 +278,14 @@ public class Controlador implements ActionListener
 			this.agenda.eliminarTipo(tipo);
 			this.llenarComboBox();
 			}
+			else if (e.getSource()==this.vista.getBtnEditarUsuario())
+			{
+				VentanaEditarUsuario ventana = new VentanaEditarUsuario();
+				ControladorEditarUsuario controlador=new ControladorEditarUsuario(ventana);
+				
+				
+				
+		     }
 
 		}
 

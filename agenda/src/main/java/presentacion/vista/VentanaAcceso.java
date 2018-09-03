@@ -32,7 +32,7 @@ public class VentanaAcceso extends JFrame
 	private JTextField textFieldIp;
 
 	private JButton btnConectar;
-	private JButton btnEditarUsuario;
+	
 	public VentanaAcceso() 
 	{
 		
@@ -45,9 +45,11 @@ public class VentanaAcceso extends JFrame
 		
 		getContentPane().setLayout(null);
 		
+		
 		JLabel lblUsuario = new JLabel("Usuario");
 		lblUsuario.setBounds(34, 48, 46, 14);
 		getContentPane().add(lblUsuario);
+		
 		
 		JLabel lblContraseña = new JLabel("Contraseña");
 		lblContraseña.setBounds(34, 89, 79, 14);
@@ -65,7 +67,7 @@ public class VentanaAcceso extends JFrame
 		textFieldUsuario.setBounds(145, 45, 86, 20);
 		getContentPane().add(textFieldUsuario);
 		textFieldUsuario.setColumns(10);
-		
+		textFieldUsuario.setVisible(true);
 		
 		textFieldContraseña = new JTextField();
 		textFieldContraseña.setColumns(10);
@@ -103,21 +105,13 @@ public class VentanaAcceso extends JFrame
 		btnConectar.setBounds(145, 226, 89, 23);
 		getContentPane().add(btnConectar);
 		
-		btnEditarUsuario = new JButton("Editar Usuario");
-		btnEditarUsuario.setBounds(145, 261, 112, 23);
-		getContentPane().add(btnEditarUsuario);
+		
 		
 	
 		
 	}
 
-	public JButton getBtnEditarUsuario() {
-		return btnEditarUsuario;
-	}
-
-	public void setBtnEditarUsuario(JButton btnEditarUsuario) {
-		this.btnEditarUsuario = btnEditarUsuario;
-	}
+	
 
 	public JButton getBtnConectar() {
 		return btnConectar;

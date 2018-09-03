@@ -28,7 +28,7 @@ public class Main
 		
 		p.load(new FileReader(url));
 		
-		if (!p.isEmpty() )
+		if (p.isEmpty() )
 		{
 			
 			VentanaAcceso ventana=new VentanaAcceso();

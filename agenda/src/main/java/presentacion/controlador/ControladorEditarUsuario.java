@@ -12,6 +12,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Properties;
 
+import javax.swing.JOptionPane;
+
 import presentacion.vista.VentanaAcceso;
 import presentacion.vista.VentanaEditarUsuario;
 
@@ -122,8 +124,8 @@ public class ControladorEditarUsuario  implements ActionListener
 				e.printStackTrace();
 			}
 			
-			
-			this.ventana.dispose();
+			JOptionPane.showMessageDialog(null, "Vuelva iniciar la app");
+			 System.exit(0);
 		}	
 				
 		}

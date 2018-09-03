@@ -11,6 +11,8 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
 
 import persistencia.conexion.Conexion;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
 
@@ -26,6 +28,7 @@ public class Vista
 	private JButton btnAbmLocalidades;
 	private  String[] nombreColumnas = {"Nombre y apellido","Telefono","Email","Cumpleaños","Tipo Contacto","Localidad","Calle","Altura","Piso","Departamento"};
 	private JButton btnAbmTipos;
+	private JButton btnEditarUsuario;
 	public Vista() 
 	{
 		super();
@@ -36,7 +39,7 @@ public class Vista
 	private void initialize() 
 	{
 		frame = new JFrame();
-		frame.setBounds(100, 100, 882, 316);
+		frame.setBounds(100, 100, 882, 360);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -101,9 +104,23 @@ public class Vista
 		btnAbmTipos.setBounds(710, 228, 136, 23);
 		panel.add(btnAbmTipos);
 		
+		btnEditarUsuario = new JButton("Editar Usuario");
+		btnEditarUsuario.setBounds(10, 296, 110, 23);
+		panel.add(btnEditarUsuario);
+		
 		
 	}
 	
+	public JButton getBtnEditarUsuario() {
+		return btnEditarUsuario;
+	}
+
+
+	public void setBtnEditarUsuario(JButton btnEditarUsuario) {
+		this.btnEditarUsuario = btnEditarUsuario;
+	}
+
+
 	public void show()
 	{
 		this.frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
