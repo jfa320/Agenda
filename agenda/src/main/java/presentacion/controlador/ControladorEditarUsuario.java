@@ -28,7 +28,7 @@ public class ControladorEditarUsuario  implements ActionListener
 		try 
 		{
 		
-			rt.exec(System.getProperty("user.dir")+"\\mysql-5.7.19-win32\\bin\\mysqld");
+			rt.exec(System.getProperty("user.dir")+"\\bin\\mysqld");
 			
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
@@ -86,7 +86,7 @@ public class ControladorEditarUsuario  implements ActionListener
 				bwQuery.newLine();
 				bwQuery.write(("flush privileges;"));
 				
-				bwBat.write("cd "+System.getProperty("user.dir")+"\\mysql-5.7.19-win32\\bin");
+				bwBat.write("cd "+System.getProperty("user.dir")+"\\bin");
 				bwBat.newLine();
 				bwBat.write("mysql -u "+this.config.getProperty("usuario")+" -p"+this.config.getProperty("contraseña")+" < "+System.getProperty("user.dir")+"\\queryEditarUsuario.txt");
 				

@@ -3,10 +3,10 @@ package main;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.net.URL;
+
 import java.util.Properties;
 
-import com.itextpdf.text.log.SysoCounter;
+
 
 import modelo.Agenda;
 import persistencia.dao.mysql.DAOSQLFactory;

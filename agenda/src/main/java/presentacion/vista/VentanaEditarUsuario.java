@@ -2,25 +2,12 @@ package presentacion.vista;
 
 import javax.swing.JFrame;
 
-import presentacion.controlador.ControladorABMTipos;
-import presentacion.controlador.ControladorAcceso;
 
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JButton;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import java.awt.BorderLayout;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+
 import java.awt.Font;
 
 
